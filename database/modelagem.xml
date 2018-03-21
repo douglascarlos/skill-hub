@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="yes" ?>
 <DBMODEL Version="4.0">
 <SETTINGS>
-<GLOBALSETTINGS ModelName="modelagem" IDModel="0" IDVersion="0" VersionStr="1.0.0.0" Comments="" UseVersionHistroy="1" AutoIncVersion="1" DatabaseType="MySQL" ZoomFac="100.00" XPos="101" YPos="0" DefaultDataType="5" DefaultTablePrefix="0" DefSaveDBConn="" DefSyncDBConn="" DefQueryDBConn="" Printer="" HPageCount="4.0" PageAspectRatio="1.440892512336408" PageOrientation="1" PageFormat="A4 (210x297 mm, 8.26x11.7 inches)" SelectedPages="" UsePositionGrid="0" PositionGridX="20" PositionGridY="20" TableNameInRefs="1" DefaultTableType="0" ActivateRefDefForNewRelations="1" FKPrefix="" FKPostfix="" CreateFKRefDefIndex="1" DBQuoteCharacter="`" CreateSQLforLinkedObjects="0" DefModelFont="Tahoma" CanvasWidth="4096" CanvasHeight="2842" />
+<GLOBALSETTINGS ModelName="modelagem" IDModel="0" IDVersion="0" VersionStr="1.0.0.0" Comments="" UseVersionHistroy="1" AutoIncVersion="1" DatabaseType="MySQL" ZoomFac="100.00" XPos="101" YPos="0" DefaultDataType="5" DefaultTablePrefix="0" DefSaveDBConn="" DefSyncDBConn="skill-hub" DefQueryDBConn="" Printer="" HPageCount="4.0" PageAspectRatio="1.440892512336408" PageOrientation="1" PageFormat="A4 (210x297 mm, 8.26x11.7 inches)" SelectedPages="" UsePositionGrid="0" PositionGridX="20" PositionGridY="20" TableNameInRefs="1" DefaultTableType="0" ActivateRefDefForNewRelations="1" FKPrefix="" FKPostfix="" CreateFKRefDefIndex="1" DBQuoteCharacter="`" CreateSQLforLinkedObjects="0" DefModelFont="Tahoma" CanvasWidth="4096" CanvasHeight="2842" />
 <DATATYPEGROUPS>
 <DATATYPEGROUP Name="Numeric Types" Icon="1" />
 <DATATYPEGROUP Name="Date and Time Types" Icon="2" />
@@ -424,12 +424,12 @@
 <INDEXCOLUMN idColumn="1024" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
-<INDEX ID="1055" IndexName="members_FKIndex1" IndexKind="1" FKRefDef_Obj_id="1053">
+<INDEX ID="1055" IndexName="members_project_id" IndexKind="1" FKRefDef_Obj_id="1053">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="1061" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
-<INDEX ID="1058" IndexName="members_FKIndex2" IndexKind="1" FKRefDef_Obj_id="1056">
+<INDEX ID="1058" IndexName="members_person_id" IndexKind="1" FKRefDef_Obj_id="1056">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="1062" LengthParam="0" />
 </INDEXCOLUMNS>
@@ -454,11 +454,11 @@
 <OPTIONSELECTED>
 </OPTIONSELECTED>
 </COLUMN>
-<COLUMN ID="1119" ColName="created_at" PrevColName="" Pos="4" idDatatype="14" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<COLUMN ID="1119" ColName="created_at" PrevColName="" Pos="4" idDatatype="14" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 </OPTIONSELECTED>
 </COLUMN>
-<COLUMN ID="1120" ColName="updated_at" PrevColName="update_at" Pos="5" idDatatype="14" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<COLUMN ID="1120" ColName="updated_at" PrevColName="update_at" Pos="5" idDatatype="14" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 </OPTIONSELECTED>
 </COLUMN>
@@ -481,17 +481,17 @@
 <INDEXCOLUMN idColumn="1034" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
-<INDEX ID="1065" IndexName="skills_FKIndex1" IndexKind="1" FKRefDef_Obj_id="1063">
+<INDEX ID="1065" IndexName="skills_person_id" IndexKind="1" FKRefDef_Obj_id="1063">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="1066" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
-<INDEX ID="1069" IndexName="skills_FKIndex2" IndexKind="1" FKRefDef_Obj_id="1067">
+<INDEX ID="1069" IndexName="skills_tag_id" IndexKind="1" FKRefDef_Obj_id="1067">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="1071" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
-<INDEX ID="1074" IndexName="skills_FKIndex3" IndexKind="1" FKRefDef_Obj_id="1072">
+<INDEX ID="1074" IndexName="skills_level_id" IndexKind="1" FKRefDef_Obj_id="1072">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="1075" LengthParam="0" />
 </INDEXCOLUMNS>
@@ -552,12 +552,12 @@
 <INDEXCOLUMN idColumn="1078" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
-<INDEX ID="1082" IndexName="member_skill_FKIndex1" IndexKind="1" FKRefDef_Obj_id="1080">
+<INDEX ID="1082" IndexName="member_skill_member_id" IndexKind="1" FKRefDef_Obj_id="1080">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="1083" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
-<INDEX ID="1086" IndexName="member_skill_FKIndex2" IndexKind="1" FKRefDef_Obj_id="1084">
+<INDEX ID="1086" IndexName="member_skill_skill_id" IndexKind="1" FKRefDef_Obj_id="1084">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="1087" LengthParam="0" />
 </INDEXCOLUMNS>
@@ -585,6 +585,8 @@
 </PLUGINDATA>
 <QUERYDATA>
 <QUERYRECORDS>
+<QUERYRECORD SQLCmdType="4" StoredPosition="21.03 00:53:57" SQLText="SELECT\n *\nFROM\n pg_catalog.pg_tables\nWHERE\n schemaname != \apg_catalog\a\nAND schemaname != \ainformation_schema\a;" />
+<QUERYRECORD SQLCmdType="4" StoredPosition="21.03 00:52:46" SQLText="show tables" />
 </QUERYRECORDS>
 </QUERYDATA>
 <LINKEDMODELS>
