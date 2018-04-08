@@ -13,6 +13,7 @@ public class ConnectionFactory {
             Class.forName("org.postgresql.Driver");
 
             URI dbUri = new URI(System.getenv("DATABASE_URL"));
+            String sslMode = System.getenv("SSL_MODE");
 
             String username = dbUri.getUserInfo().split(":")[0];
             String password = dbUri.getUserInfo().split(":")[1];
@@ -24,11 +25,10 @@ public class ConnectionFactory {
             Properties props = new Properties();
             props.setProperty("user", username);
             props.setProperty("password", password);
-            props.setProperty("ssl", "true");
-
+            props.setProperty("ssl", sslMode);
             return DriverManager.getConnection(dbUrl, props);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("==================>" + e.getMessage());
             throw new RuntimeException(e);
         }
     }
