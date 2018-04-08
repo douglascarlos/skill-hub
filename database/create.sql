@@ -3,9 +3,9 @@ CREATE TABLE people (
   name VARCHAR NOT NULL,
   email VARCHAR NOT NULL,
   enrollment_number INTEGER NOT NULL,
-  created_at DATE NOT NULL,
-  updated_at DATE NOT NULL,
-  deleted_at DATE NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP NOT NULL,
+  deleted_at TIMESTAMP NULL,
   PRIMARY KEY(id)
 );
 
@@ -13,18 +13,18 @@ CREATE TABLE projects (
   id SERIAL NOT NULL,
   name VARCHAR NOT NULL,
   description TEXT NOT NULL,
-  created_at DATE NOT NULL,
-  updated_at DATE NOT NULL,
-  deleted_at DATE NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP NOT NULL,
+  deleted_at TIMESTAMP NULL,
   PRIMARY KEY(id)
 );
 
 CREATE TABLE tags (
   id SERIAL NOT NULL,
   name VARCHAR NOT NULL,
-  created_at DATE NOT NULL,
-  updated_at DATE NOT NULL,
-  deleted_at DATE NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP NOT NULL,
+  deleted_at TIMESTAMP NULL,
   PRIMARY KEY(id)
 );
 
@@ -43,8 +43,6 @@ CREATE TABLE members (
   start_date DATE NOT NULL,
   end_date DATE NULL,
   PRIMARY KEY(id),
-  INDEX members_project_id(project_id),
-  INDEX members_person_id(person_id),
   FOREIGN KEY(project_id)
     REFERENCES projects(id)
       ON DELETE NO ACTION
@@ -60,13 +58,10 @@ CREATE TABLE skills (
   level_id INTEGER NOT NULL,
   tag_id INTEGER NOT NULL,
   person_id INTEGER NOT NULL,
-  created_at DATE NOT NULL,
-  updated_at DATE NOT NULL,
-  deleted_at DATE NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP NOT NULL,
+  deleted_at TIMESTAMP NULL,
   PRIMARY KEY(id),
-  INDEX skills_person_id(person_id),
-  INDEX skills_tag_id(tag_id),
-  INDEX skills_level_id(level_id),
   FOREIGN KEY(person_id)
     REFERENCES people(id)
       ON DELETE NO ACTION
@@ -86,8 +81,6 @@ CREATE TABLE member_skill (
   skill_id INTEGER NOT NULL,
   member_id INTEGER NOT NULL,
   PRIMARY KEY(id),
-  INDEX member_skill_member_id(member_id),
-  INDEX member_skill_skill_id(skill_id),
   FOREIGN KEY(member_id)
     REFERENCES members(id)
       ON DELETE NO ACTION
