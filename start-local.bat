@@ -1,0 +1,1 @@
+heroku local -f Procfile.local -e .env.local
