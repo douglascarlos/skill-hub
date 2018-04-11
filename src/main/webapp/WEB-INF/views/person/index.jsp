@@ -3,6 +3,7 @@
 <%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
+    String name = (String) request.getAttribute("name");
     List<Person> people = (List<Person>) request.getAttribute("people");
 %>
 <!DOCTYPE html>
@@ -52,11 +53,7 @@
                 <form action="/person" method="get">
                     <div class="row">
                         <div class="input-field col s6">
-                            <input id="enrollment_numner" type="text" class="validate">
-                            <label for="enrollment_numner">Matrícula</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <input id="name" type="text" class="validate">
+                            <input name="name" id="name" type="text" class="validate" value="<%= name %>">
                             <label for="name">Nome</label>
                         </div>
                     </div>

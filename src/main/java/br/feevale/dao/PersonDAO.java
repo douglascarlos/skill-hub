@@ -42,4 +42,30 @@ public class PersonDAO {
         return people;
     }
 
+    public ArrayList<Person> filterByName(String name) {
+        String sql = "SELECT id, name, email, enrollment_number FROM people WHERE UPPER(name) like '%" + name.toUpperCase() + "%'";
+        ArrayList<Person> people = new ArrayList<Person>();
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Person person = new Person();
+                person.setId(rs.getLong("id"));
+                person.setName(rs.getString("name"));
+                person.setEmail(rs.getString("email"));
+                person.setEnrollmentNumber(rs.getInt("enrollment_number"));
+
+                people.add(person);
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException exception) {
+            System.out.println("$$$$ " + exception.getMessage());
+            throw new RuntimeException(exception);
+        }
+        return people;
+    }
+
 }

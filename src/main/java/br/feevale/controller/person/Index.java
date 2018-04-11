@@ -18,11 +18,19 @@ public class Index implements Action {
     
     @Override
     public Responder executa(Servlet servlet, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String name = request.getParameter("name");
+        if(name == null){
+            name = "";
+        }
+
         PersonDAO dao = new PersonDAO();
-        List<Person> people = dao.list();
-        
+        List<Person> people = dao.filterByName(name);
+
+        request.setAttribute("name", name);
         request.setAttribute("people", people);
+
         servlet.withSession(request, "successMessage");
+
         return new Forward("/WEB-INF/views/person/index.jsp");
     }
     
