@@ -9,7 +9,7 @@
 </div>
 <div class="row">
     <div class="card-panel">
-        <form>
+        <form action="/person?action=Save" method="post">
             <input type="hidden" name="id" value="<%= person.getId() == 0 ? "" : person.getId() %>" />
             <div class="row">
                 <div class="input-field col s6">

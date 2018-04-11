@@ -5,6 +5,8 @@
 <%
     String name = (String) request.getAttribute("name");
     List<Person> people = (List<Person>) request.getAttribute("people");
+
+    String successMessage = (String) request.getAttribute("successMessage");
 %>
 <jsp:include page="../layout/header.jsp" />
         <div class="section">
@@ -12,6 +14,12 @@
         </div>
         <!-- <div class="divider"></div> -->
         <!--  -->
+
+        <% if(successMessage instanceof String && !successMessage.equals("")){ %>
+        <div class="row">
+            <div class="card-panel green lighten-4 green-text"><strong><%= successMessage %></strong></div>
+        </div>
+        <% } %>
 
         <div class="row">
             <div class="card-panel">
