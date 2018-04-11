@@ -1,5 +1,10 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="br.feevale.model.Person" %>
+<%@ page import="java.util.List" %>
+<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    List<Person> people = (List<Person>) request.getAttribute("people");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,32 +49,25 @@
             <div class="card-panel">
                 <!--  -->
 
-                <form>
+                <form action="/person" method="get">
                     <div class="row">
                         <div class="input-field col s6">
-                            <input id="first_name" type="text" class="validate">
-                            <label for="first_name">Nome</label>
+                            <input id="enrollment_numner" type="text" class="validate">
+                            <label for="enrollment_numner">Matrícula</label>
                         </div>
-
                         <div class="input-field col s6">
-                            <select>
-                                <option value="" disabled selected>Selecione</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
-                            </select>
-                            <label>Materialize Select</label>
+                            <input id="name" type="text" class="validate">
+                            <label for="name">Nome</label>
                         </div>
-
                     </div>
                     <div class="row">
                         <button class="btn waves-effect waves-light right" type="submit">
                             Buscar<i class="material-icons right">send</i>
                         </button>
-                        <a href="./" class="btn waves-effect waves-light right btn-mr">
+                        <a href="/person" class="btn waves-effect waves-light right btn-mr">
                             Limpar<i class="material-icons right">clear_all</i>
                         </a>
-                        <a href="./cadastro.html" class="btn waves-effect waves-light right btn-mr">
+                        <a href="/person?action=create" class="btn waves-effect waves-light right btn-mr">
                             Criar Novo<i class="material-icons right">add</i>
                         </a>
                     </div>
@@ -92,21 +90,22 @@
                 </thead>
 
                 <tbody>
-                <c:forEach var="person" items="${people}">
-                <tr>
-                    <td>${person.enrollmentNumber}</td>
-                    <td>${person.name}</td>
-                    <td>${person.email}</td>
-                    <td>
-                        <i class="material-icons dropdown-trigger pointer" data-target='dropdown1'>more_horiz</i>
-                        <!-- <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a> -->
-                        <ul id='dropdown1' class='dropdown-content'>
-                            <li><a href="#!">Editar</a></li>
-                            <li><a href="#modal_delete" class="modal-trigger">Excluir</a></li>
-                        </ul>
-                    </td>
-                </tr>
-                </c:forEach>
+                <% for(Person person : people){ %>
+                    <tr>
+                        <td><%= person.getEnrollmentNumber() %></td>
+                        <td><%= person.getName() %></td>
+                        <td><%= person.getEmail() %></td>
+                        <td>
+                            <i class="material-icons dropdown-trigger pointer" data-target='dropdown1'>more_horiz</i>
+                            <!-- <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a> -->
+                            <ul id='dropdown1' class='dropdown-content'>
+                                <li><a href="#!">Editar</a></li>
+                                <li><a href="#modal_delete" class="modal-trigger">Excluir</a></li>
+                            </ul>
+                        </td>
+                    </tr>
+                <% } %>
+
                 </tbody>
             </table>
             <!--  -->

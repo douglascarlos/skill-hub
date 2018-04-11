@@ -23,9 +23,6 @@ public class Index implements Action {
         
         request.setAttribute("people", people);
         servlet.withSession(request, "successMessage");
-        System.out.println("====");
-        System.out.println(people);
-        System.out.println("====");
         return new Forward("/WEB-INF/views/person/index.jsp");
     }
     
