@@ -1,9 +1,11 @@
 package br.feevale.controller.person;
 
 import br.feevale.controller.Action;
+import br.feevale.dao.PersonDAO;
 import br.feevale.http.response.Redirect;
 import br.feevale.http.response.Responder;
 import br.feevale.http.servlet.Servlet;
+import br.feevale.model.Person;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +13,25 @@ import javax.servlet.http.HttpServletResponse;
 public class Save implements Action{
 
     public Responder executa(Servlet controller, HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        String inputId = request.getParameter("id");
+        long convertedInputId = 0;
+        if(!inputId.equals("")){
+            convertedInputId = Long.parseLong(inputId);
+        }
+        String inputEnrollmentNumber = request.getParameter("enrollment_number");
+        int convertedInputEnrollmentNumber = Integer.parseInt(inputEnrollmentNumber);
+        String inputName = request.getParameter("name");
+        String inputEmail = request.getParameter("email");
+
+        Person person = new Person();
+
+        person.setEnrollmentNumber(convertedInputEnrollmentNumber);
+        person.setName(inputName);
+        person.setEmail(inputEmail);
+
+        PersonDAO dao = new PersonDAO();
+        dao.save(person);
 
         controller.setSession(request, "successMessage", "Pessoa salva com sucesso.");
 

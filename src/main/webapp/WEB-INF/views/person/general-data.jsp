@@ -10,21 +10,21 @@
 <div class="row">
     <div class="card-panel">
         <form action="/person?action=Save" method="post">
-            <input type="hidden" name="id" value="<%= person.getId() == 0 ? "" : person.getId() %>" />
+            <input name="id" type="hidden" value="<%= person.getId() == 0 ? "" : person.getId() %>" />
             <div class="row">
                 <div class="input-field col s6">
-                    <input id="enrollment_number" type="text" class="validate" value="<%= person.getEnrollmentNumber() == 0 ? "" : person.getEnrollmentNumber() %>">
+                    <input name="enrollment_number" id="enrollment_number" type="text" class="validate" value="<%= person.getEnrollmentNumber() == 0 ? "" : person.getEnrollmentNumber() %>">
                     <label for="enrollment_number">Matrícula</label>
                 </div>
 
                 <div class="input-field col s6">
-                    <input id="name" type="text" class="validate" value="<%= person.getName() == null ? "" : person.getName() %>">
+                    <input name="name" id="name" type="text" class="validate" value="<%= person.getName() == null ? "" : person.getName() %>">
                     <label for="name">Nome</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                    <input id="email" type="text" class="validate" value="<%= person.getEmail() == null ? "" : person.getEmail() %>">
+                    <input name="email" id="email" type="text" class="validate" value="<%= person.getEmail() == null ? "" : person.getEmail() %>">
                     <label for="email">E-mail</label>
                 </div>
             </div>
