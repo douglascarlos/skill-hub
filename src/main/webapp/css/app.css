@@ -15,3 +15,21 @@ main {
 .btn-mr {
 	margin-right: 10px;
 }
+
+.brand-logo img{
+	padding: 5px;
+}
+
+.footer-logo{
+	/*margin-bottom: 0;*/
+}
+
+.footer-logo-label{
+	/*margin-top: 0;*/
+	/*font-style: italic;*/
+}
+
+footer ul li{
+	display: inline;
+	margin-right: 2rem;
+}
