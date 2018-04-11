@@ -16,7 +16,6 @@
                     <input name="enrollment_number" id="enrollment_number" type="text" class="validate" value="<%= person.getEnrollmentNumber() == 0 ? "" : person.getEnrollmentNumber() %>">
                     <label for="enrollment_number">Matrícula</label>
                 </div>
-
                 <div class="input-field col s6">
                     <input name="name" id="name" type="text" class="validate" value="<%= person.getName() == null ? "" : person.getName() %>">
                     <label for="name">Nome</label>

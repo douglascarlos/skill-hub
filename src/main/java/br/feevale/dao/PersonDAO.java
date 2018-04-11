@@ -45,7 +45,11 @@ public class PersonDAO {
     }
 
     public ArrayList<Person> filterByName(String name) {
-        String sql = "SELECT id, name, email, enrollment_number FROM people WHERE UPPER(name) like '%" + name.toUpperCase() + "%'";
+        String sql = "" +
+            "SELECT id, name, email, enrollment_number " +
+            "FROM people " +
+            "WHERE UPPER(name) like '%" + name.toUpperCase() + "%' " +
+            "ORDER BY name";
         ArrayList<Person> people = new ArrayList<Person>();
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
