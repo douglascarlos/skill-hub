@@ -31,7 +31,7 @@
                         <a href="/person" class="btn waves-effect waves-light right btn-mr">
                             Limpar<i class="material-icons right">clear_all</i>
                         </a>
-                        <a href="/person?action=create" class="btn waves-effect waves-light right btn-mr">
+                        <a href="/person?action=Create" class="btn waves-effect waves-light right btn-mr">
                             Criar Novo<i class="material-icons right">add</i>
                         </a>
                     </div>
