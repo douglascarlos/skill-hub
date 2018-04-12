@@ -83,6 +83,41 @@ public class PersonDAO {
         this.store(person);
     }
 
+    public Person find(long id){
+        String sql = "SELECT id, name, email, enrollment_number FROM people WHERE id = ?";
+
+        Person person;
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setLong(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            person = new Person();
+
+            while (rs.next()) {
+                person.setId(rs.getLong("id"));
+                person.setName(rs.getString("name"));
+                person.setEmail(rs.getString("email"));
+                person.setEnrollmentNumber(rs.getInt("enrollment_number"));
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException exception) {
+            System.out.println("-------");
+            System.out.println(exception.getMessage());
+            System.out.println("-------");
+            throw new RuntimeException(exception);
+        }
+
+        if(person.getId() == 0){
+            throw new RuntimeException("Pessoa não encontrada.");
+        }
+
+        return person;
+    }
+
     private void store(Person person){
         String sql = "INSERT INTO people (enrollment_number, name, email, created_at, updated_at) values (?,?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)";
         try {

@@ -47,6 +47,7 @@
     <table class="responsive-table highlight">
         <thead>
         <tr>
+            <th>ID</th>
             <th>Matricula</th>
             <th>Nome</th>
             <th>E-mail</th>
@@ -56,14 +57,14 @@
         <tbody>
         <% for(Person person : people){ %>
             <tr>
+                <td><%= person.getId() %>==="/person?action=Edit&id=<%= person.getId() %>"</td>
                 <td><%= person.getEnrollmentNumber() %></td>
                 <td><%= person.getName() %></td>
                 <td><%= person.getEmail() %></td>
                 <td>
-                    <i class="material-icons dropdown-trigger pointer" data-target='dropdown1'>more_horiz</i>
-                    <!-- <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a> -->
-                    <ul id='dropdown1' class='dropdown-content'>
-                        <li><a href="#!">Editar</a></li>
+                    <i class="material-icons dropdown-trigger pointer" data-target='dropdown_action_<%= person.getId() %>'>more_horiz</i>
+                    <ul id='dropdown_action_<%= person.getId() %>' class='dropdown-content'>
+                        <li><a href="/person?action=Edit&id=<%= person.getId() %>">Editar</a></li>
                         <li><a href="#modal_delete" class="modal-trigger">Excluir</a></li>
                     </ul>
                 </td>
