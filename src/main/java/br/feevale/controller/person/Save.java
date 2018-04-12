@@ -24,13 +24,17 @@ public class Save implements Action{
         String inputName = request.getParameter("name");
         String inputEmail = request.getParameter("email");
 
+        PersonDAO dao = new PersonDAO();
         Person person = new Person();
+
+        if(convertedInputId > 0){
+            person = dao.find(convertedInputId);
+        }
 
         person.setEnrollmentNumber(convertedInputEnrollmentNumber);
         person.setName(inputName);
         person.setEmail(inputEmail);
 
-        PersonDAO dao = new PersonDAO();
         dao.save(person);
 
         controller.setSession(request, "successMessage", "Pessoa salva com sucesso.");

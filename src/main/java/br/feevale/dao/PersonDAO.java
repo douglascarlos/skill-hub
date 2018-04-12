@@ -79,8 +79,9 @@ public class PersonDAO {
     public void save(Person person){
         if(person.getId() > 0){
             this.update(person);
+        }else{
+            this.store(person);
         }
-        this.store(person);
     }
 
     public Person find(long id){
@@ -138,7 +139,29 @@ public class PersonDAO {
     }
 
     private void update(Person person){
+        String sql = "" +
+                "UPDATE people SET " +
+                    "enrollment_number = ?, " +
+                    "name = ?, " +
+                    "email = ?, " +
+                    "updated_at = CURRENT_TIMESTAMP " +
+                "WHERE id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
 
+            stmt.setInt(1, person.getEnrollmentNumber());
+            stmt.setString(2, person.getName());
+            stmt.setString(3, person.getEmail());
+            stmt.setLong(4, person.getId());
+
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException exception) {
+            System.out.println("-------");
+            System.out.println(exception.getMessage());
+            System.out.println("-------");
+            throw new RuntimeException(exception);
+        }
     }
 
 }
