@@ -47,7 +47,6 @@
     <table class="responsive-table highlight">
         <thead>
         <tr>
-            <th>ID</th>
             <th>Matricula</th>
             <th>Nome</th>
             <th>E-mail</th>
@@ -57,7 +56,6 @@
         <tbody>
         <% for(Person person : people){ %>
             <tr>
-                <td><%= person.getId() %>==="/person?action=Edit&id=<%= person.getId() %>"</td>
                 <td><%= person.getEnrollmentNumber() %></td>
                 <td><%= person.getName() %></td>
                 <td><%= person.getEmail() %></td>
