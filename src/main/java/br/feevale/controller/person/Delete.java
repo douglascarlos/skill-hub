@@ -9,7 +9,6 @@ import br.feevale.model.Person;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.nio.charset.StandardCharsets;
 
 public class Delete implements Action {
 
@@ -25,11 +24,8 @@ public class Delete implements Action {
 
         dao.delete(person);
 
-        String item = "Pessoa excluída com sucesso.";
-        byte[] bytes = item.getBytes(StandardCharsets.ISO_8859_1);
-        item = new String(bytes, StandardCharsets.UTF_8);
-
-        controller.setSession(request, "successMessage", item);
+        String message = "Pessoa excluída com sucesso.";
+        controller.setSession(request, "successMessage", message);
 
         return new Redirect("/person");
     }
