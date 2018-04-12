@@ -29,7 +29,7 @@
             </div>
             <div class="row">
                 <button class="btn waves-effect waves-light right" type="submit">
-                    Buscar<i class="material-icons right">send</i>
+                    Buscar<i class="material-icons right">search</i>
                 </button>
                 <a href="/person" class="btn waves-effect waves-light right btn-mr">
                     Limpar<i class="material-icons right">clear_all</i>
@@ -63,10 +63,19 @@
                     <i class="material-icons dropdown-trigger pointer" data-target='dropdown_action_<%= person.getId() %>'>more_horiz</i>
                     <ul id='dropdown_action_<%= person.getId() %>' class='dropdown-content'>
                         <li><a href="/person?action=Edit&id=<%= person.getId() %>">Editar</a></li>
-                        <li><a href="#modal_delete" class="modal-trigger">Excluir</a></li>
+                        <li><a href="#modal_delete_<%= person.getId() %>" class="modal-trigger">Excluir</a></li>
                     </ul>
                 </td>
             </tr>
+            <div id="modal_delete_<%= person.getId() %>" class="modal">
+                <div class="modal-content">
+                    <p>Você tem certeza que deseja <strong>excluir</strong> esta pessoa do sistema?</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn modal-action modal-close waves-effect waves-red btn-mr">Cancelar<i class="material-icons right">cancel</i></button>
+                    <a href="/person?action=Delete&id=<%= person.getId() %>" class="btn modal-action modal-close waves-effect waves-green">Confirmar<i class="material-icons right">check</i></a>
+                </div>
+            </div>
         <% } %>
 
         </tbody>
@@ -80,11 +89,11 @@
 
 <div id="modal_delete" class="modal">
     <div class="modal-content">
-        <h4>Modal Header</h4>
-        <p>A bunch of text</p>
+        <p>Você tem certeza que deseja <strong>excluir</strong> esta pessoa do sistema?</p>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+        <a href="#!" class="btn modal-action modal-close waves-effect waves-red">Cancelar<i class="material-icons right">cancel</i></a>
+        <a href="#!" class="btn modal-action modal-close waves-effect waves-green">Confirmar<i class="material-icons right">check</i></a>
     </div>
 </div>
 <jsp:include page="../layout/footer.jsp" />

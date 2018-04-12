@@ -17,7 +17,7 @@ public class PersonDAO {
     }
 
     public ArrayList<Person> list() {
-        String sql = "SELECT id, name, email, enrollment_number FROM people";
+        String sql = "SELECT id, name, email, enrollment_number FROM people WHERE deleted_at IS NULL";
         ArrayList<Person> people = new ArrayList<Person>();
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -48,7 +48,7 @@ public class PersonDAO {
         String sql = "" +
             "SELECT id, name, email, enrollment_number " +
             "FROM people " +
-            "WHERE UPPER(name) like '%" + name.toUpperCase() + "%' " +
+            "WHERE deleted_at IS NULL AND UPPER(name) like '%" + name.toUpperCase() + "%' " +
             "ORDER BY name";
         ArrayList<Person> people = new ArrayList<Person>();
         try {
@@ -85,7 +85,7 @@ public class PersonDAO {
     }
 
     public Person find(long id){
-        String sql = "SELECT id, name, email, enrollment_number FROM people WHERE id = ?";
+        String sql = "SELECT id, name, email, enrollment_number FROM people WHERE deleted_at IS NULL AND id = ?";
 
         Person person;
 
@@ -117,6 +117,26 @@ public class PersonDAO {
         }
 
         return person;
+    }
+
+    public void delete(Person person){
+        String sql = "" +
+                "UPDATE people SET " +
+                "deleted_at = CURRENT_TIMESTAMP " +
+                "WHERE id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+
+            stmt.setLong(1, person.getId());
+
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException exception) {
+            System.out.println("-------");
+            System.out.println(exception.getMessage());
+            System.out.println("-------");
+            throw new RuntimeException(exception);
+        }
     }
 
     private void store(Person person){
