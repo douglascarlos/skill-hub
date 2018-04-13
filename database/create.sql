@@ -1,3 +1,11 @@
+DROP TABLE IF EXISTS member_skill;
+DROP TABLE IF EXISTS skills;
+DROP TABLE IF EXISTS members;
+DROP TABLE IF EXISTS levels;
+DROP TABLE IF EXISTS tags;
+DROP TABLE IF EXISTS projects;
+DROP TABLE IF EXISTS people;
+
 CREATE TABLE people (
   id SERIAL NOT NULL,
   name VARCHAR NOT NULL,
@@ -21,11 +29,16 @@ CREATE TABLE projects (
 
 CREATE TABLE tags (
   id SERIAL NOT NULL,
+  tag_id INTEGER NULL,
   name VARCHAR NOT NULL,
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP NOT NULL,
   deleted_at TIMESTAMP NULL,
-  PRIMARY KEY(id)
+  PRIMARY KEY(id),
+  FOREIGN KEY(tag_id)
+    REFERENCES tags(id)
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION
 );
 
 CREATE TABLE levels (
