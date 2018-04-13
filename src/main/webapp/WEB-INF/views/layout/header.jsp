@@ -24,14 +24,14 @@
             <ul class="right hide-on-med-and-down">
                 <li><a href="/person">Pessoas</a></li>
                 <li><a href="#">Projetos</a></li>
-                <li><a href="#">Tags</a></li>
+                <li><a href="/tag">Tags</a></li>
             </ul>
         </div>
     </nav>
     <ul class="sidenav" id="mobile-nav">
         <li><a href="/person">Pessoas</a></li>
         <li><a href="#">Projetos</a></li>
-        <li><a href="#">Tags</a></li>
+        <li><a href="/tag">Tags</a></li>
     </ul>
 </header>
 <main>

@@ -86,14 +86,4 @@
     <div class="card-panel blue lighten-4 blue-text"><strong>Não há resultados para a busca.</strong></div>
 </div>
 <% } %>
-
-<div id="modal_delete" class="modal">
-    <div class="modal-content">
-        <p>Você tem certeza que deseja <strong>excluir</strong> esta pessoa do sistema?</p>
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class="btn modal-action modal-close waves-effect waves-red">Cancelar<i class="material-icons right">cancel</i></a>
-        <a href="#!" class="btn modal-action modal-close waves-effect waves-green">Confirmar<i class="material-icons right">check</i></a>
-    </div>
-</div>
 <jsp:include page="../layout/footer.jsp" />
