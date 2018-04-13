@@ -1,0 +1,42 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.nav-wrapper, .page-footer, .btn {
+  @extend .amber;
+}
+
+a, .page-footer, .footer-copyright, .btn {
+    @extend .black-text;
+}
+
+.btn {
+  @extend .black;
+}
+
+.btn {
+    @extend .white-text;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.btn-mr {
+  margin-right: 10px;
+}
+
+.brand-logo img{
+  padding: 5px;
+}
+
+footer ul li{
+  display: inline;
+  margin-right: 2rem;
+}
