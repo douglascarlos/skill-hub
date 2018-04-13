@@ -13,7 +13,7 @@
             <input name="id" type="hidden" value="<%= tag.getId() == 0 ? "" : tag.getId() %>" />
             <div class="row">
                 <div class="input-field col s6">
-                    <input name="name" id="name" type="text" class="validate" value="<%= tag.getName() == null ? "" : tag.getName() %>">
+                    <input name="name" id="name" type="text" required minlength="3" maxlength="255" class="validate" value="<%= tag.getName() == null ? "" : tag.getName() %>">
                     <label for="name">Nome</label>
                 </div>
             </div>
