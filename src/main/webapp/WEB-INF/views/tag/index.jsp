@@ -65,7 +65,7 @@
         </tr>
         <div id="modal_delete_<%= tag.getId() %>" class="modal">
             <div class="modal-content">
-                <p>Você tem certeza que deseja <strong>excluir</strong> esta pessoa do sistema?</p>
+                <p>Você tem certeza que deseja <strong>excluir</strong> esta tag do sistema?</p>
             </div>
             <div class="modal-footer">
                 <button class="btn modal-action modal-close waves-effect waves-red btn-mr">Cancelar<i class="material-icons right">cancel</i></button>

@@ -114,6 +114,26 @@ public class TagDAO {
         }
     }
 
+    public void delete(Tag tag){
+        String sql = "" +
+                "UPDATE tags SET " +
+                "deleted_at = CURRENT_TIMESTAMP " +
+                "WHERE id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+
+            stmt.setLong(1, tag.getId());
+
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException exception) {
+            System.out.println("-------");
+            System.out.println(exception.getMessage());
+            System.out.println("-------");
+            throw new RuntimeException(exception);
+        }
+    }
+
     private void store(Tag tag){
         String sql = "INSERT INTO tags (name, created_at, updated_at) values (?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)";
         try {
