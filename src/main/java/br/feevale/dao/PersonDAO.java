@@ -13,7 +13,9 @@ public class PersonDAO {
     private Connection connection;
 
     public PersonDAO() {
-        connection = ConnectionFactory.getConnection();
+        if(connection == null){
+            connection = ConnectionFactory.getConnection();
+        }
     }
 
     public ArrayList<Person> list() {
@@ -67,6 +69,7 @@ public class PersonDAO {
 
             rs.close();
             stmt.close();
+            connection.close();
         } catch (SQLException exception) {
             System.out.println("-------");
             System.out.println(exception.getMessage());
