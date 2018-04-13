@@ -50,7 +50,7 @@
             <th>Matricula</th>
             <th>Nome</th>
             <th>E-mail</th>
-            <th>Ações</th>
+            <th class="center-align">Ações</th>
         </tr>
         </thead>
         <tbody>
@@ -59,7 +59,7 @@
                 <td><%= person.getEnrollmentNumber() %></td>
                 <td><%= person.getName() %></td>
                 <td><%= person.getEmail() %></td>
-                <td>
+                <td class="center-align">
                     <i class="material-icons dropdown-trigger pointer" data-target='dropdown_action_<%= person.getId() %>'>more_horiz</i>
                     <ul id='dropdown_action_<%= person.getId() %>' class='dropdown-content'>
                         <li><a href="/person?action=Edit&id=<%= person.getId() %>">Editar</a></li>

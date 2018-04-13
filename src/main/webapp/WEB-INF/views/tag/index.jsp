@@ -48,14 +48,14 @@
         <thead>
         <tr>
             <th>Nome</th>
-            <th>Ações</th>
+            <th class="center-align">Ações</th>
         </tr>
         </thead>
         <tbody>
         <% for(Tag tag : tags){ %>
         <tr>
             <td><%= tag.getName() %></td>
-            <td>
+            <td class="center-align">
                 <i class="material-icons dropdown-trigger pointer" data-target='dropdown_action_<%= tag.getId() %>'>more_horiz</i>
                 <ul id='dropdown_action_<%= tag.getId() %>' class='dropdown-content'>
                     <li><a href="/tag?action=Edit&id=<%= tag.getId() %>">Editar</a></li>

@@ -43,4 +43,34 @@ public class TagDAO {
         return tags;
     }
 
+    public ArrayList<Tag> filterByName(String name) {
+        String sql = "" +
+                "SELECT id, name " +
+                "FROM tags " +
+                "WHERE deleted_at IS NULL AND UPPER(name) like '%" + name.toUpperCase() + "%' " +
+                "ORDER BY name";
+        ArrayList<Tag> tags = new ArrayList<Tag>();
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Tag tag = new Tag();
+                tag.setId(rs.getLong("id"));
+                tag.setName(rs.getString("name"));
+
+                tags.add(tag);
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException exception) {
+            System.out.println("-------");
+            System.out.println(exception.getMessage());
+            System.out.println("-------");
+            throw new RuntimeException(exception);
+        }
+        return tags;
+    }
+
 }

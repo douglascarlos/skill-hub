@@ -14,9 +14,15 @@ import java.util.List;
 public class Index implements Action {
     @Override
     public Responder executa(Servlet servlet, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        TagDAO dao = new TagDAO();
-        List<Tag> tags = dao.list();
+        String inputName = request.getParameter("name");
+        if(inputName == null){
+            inputName = "";
+        }
 
+        TagDAO dao = new TagDAO();
+        List<Tag> tags = dao.filterByName(inputName);
+
+        request.setAttribute("name", inputName);
         request.setAttribute("tags", tags);
 
         servlet.withSession(request, "successMessage");
