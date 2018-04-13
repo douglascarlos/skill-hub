@@ -2,3 +2,5 @@
 /.idea/
 .env*
 Procfile.local
+package-lock.json
+node_modules/
