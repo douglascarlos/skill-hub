@@ -1,19 +1,11 @@
-body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-}
-
-main {
-    flex: 1 0 auto;
-}
+$input-focus-color: color("shades", "black");
 
 .nav-wrapper, .page-footer, .btn {
   @extend .amber;
 }
 
 a, .page-footer, .footer-copyright, .btn {
-    @extend .black-text;
+  @extend .black-text;
 }
 
 .btn {
@@ -21,22 +13,47 @@ a, .page-footer, .footer-copyright, .btn {
 }
 
 .btn {
-    @extend .white-text;
+  @extend .white-text;
 }
 
-.pointer {
-  cursor: pointer;
+.select-wrapper {
+  input.select-dropdown {
+    &:focus {
+      border-bottom: 1px solid $input-focus-color;
+    }
+  }
 }
 
-.btn-mr {
-  margin-right: 10px;
+/* Text inputs */
+input:not([type]),
+input[type=text]:not(.browser-default),
+input[type=password]:not(.browser-default),
+input[type=email]:not(.browser-default),
+input[type=url]:not(.browser-default),
+input[type=time]:not(.browser-default),
+input[type=date]:not(.browser-default),
+input[type=datetime]:not(.browser-default),
+input[type=datetime-local]:not(.browser-default),
+input[type=tel]:not(.browser-default),
+input[type=number]:not(.browser-default),
+input[type=search]:not(.browser-default),
+textarea.materialize-textarea {
+
+  // Focused input style
+  &:focus:not([readonly]) {
+    border-bottom: 1px solid $input-focus-color;
+    box-shadow: 0 1px 0 0 $input-focus-color;
+  }
+
+  // Focused label style
+  &:focus:not([readonly]) + label {
+    color: $input-focus-color;
+  }
 }
 
-.brand-logo img{
-  padding: 5px;
-}
-
-footer ul li{
-  display: inline;
-  margin-right: 2rem;
+// Prefix Icons
+.prefix {
+  &.active {
+    color: $input-focus-color;
+  }
 }
