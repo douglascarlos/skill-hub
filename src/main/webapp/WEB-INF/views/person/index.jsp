@@ -83,7 +83,7 @@
 </div>
 <% }else{ %>
 <div class="roe">
-    <div class="card-panel blue lighten-4 blue-text"><strong>Não há resultados para a busca.</strong></div>
+    <div class="card-panel blue lighten-4 blue-text"><strong>Não há resultados.</strong></div>
 </div>
 <% } %>
 <jsp:include page="../layout/footer.jsp" />
