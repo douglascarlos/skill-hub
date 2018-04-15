@@ -19,27 +19,25 @@
 <% } %>
 
 <div class="row">
-    <div class="card-panel">
-        <form action="/person" method="get">
-            <div class="row">
-                <div class="input-field col s6">
-                    <input name="name" id="name" type="text" class="validate" value="<%= name %>">
-                    <label for="name">Nome</label>
-                </div>
+    <form action="/person" method="get">
+        <div class="row">
+            <div class="input-field col s6">
+                <input name="name" id="name" type="text" class="validate" value="<%= name %>">
+                <label for="name">Nome</label>
             </div>
-            <div class="row">
-                <button class="btn waves-effect waves-light right" type="submit">
-                    Buscar<i class="material-icons right">search</i>
-                </button>
-                <a href="/person" class="btn waves-effect waves-light right btn-mr">
-                    Limpar<i class="material-icons right">clear_all</i>
-                </a>
-                <a href="/person?action=Create" class="btn waves-effect waves-light right btn-mr">
-                    Criar Novo<i class="material-icons right">add</i>
-                </a>
-            </div>
-        </form>
-    </div>
+        </div>
+        <div class="row">
+            <button class="btn waves-effect waves-light right" type="submit">
+                Buscar<i class="material-icons right">search</i>
+            </button>
+            <a href="/person" class="btn waves-effect waves-light right btn-mr">
+                Limpar<i class="material-icons right">clear_all</i>
+            </a>
+            <a href="/person?action=Create" class="btn waves-effect waves-light right btn-mr">
+                Criar Novo<i class="material-icons right">add</i>
+            </a>
+        </div>
+    </form>
 </div>
 
 <% if(!people.isEmpty()){ %>
