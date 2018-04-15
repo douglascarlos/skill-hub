@@ -11,13 +11,7 @@
 <div class="section">
     <h5>Tags</h5>
 </div>
-
-<% if(successMessage instanceof String && !successMessage.equals("")){ %>
-<div class="row">
-    <div class="card-panel green lighten-4 green-text"><strong><%= successMessage %></strong></div>
-</div>
-<% } %>
-
+<jsp:include page="../layout/messages/messages.jsp" />
 <div class="row">
     <form action="/tag" method="get">
         <div class="row">

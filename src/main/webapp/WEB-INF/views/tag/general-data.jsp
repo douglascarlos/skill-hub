@@ -7,6 +7,7 @@
 <div class="section">
     <h5>Criar Tag</h5>
 </div>
+<jsp:include page="../layout/messages/messages.jsp" />
 <div class="row">
     <form action="/tag?action=Save" method="post">
         <input name="id" type="hidden" value="<%= tag.getId() == 0 ? "" : tag.getId() %>" />

@@ -4,20 +4,12 @@
 <%
     String name = (String) request.getAttribute("name");
     List<Person> people = (List<Person>) request.getAttribute("people");
-
-    String successMessage = (String) request.getAttribute("successMessage");
 %>
 <jsp:include page="../layout/header.jsp" />
 <div class="section">
     <h5>Pessoas</h5>
 </div>
-
-<% if(successMessage instanceof String && !successMessage.equals("")){ %>
-<div class="row">
-    <div class="card-panel green lighten-4 green-text"><strong><%= successMessage %></strong></div>
-</div>
-<% } %>
-
+<jsp:include page="../layout/messages/messages.jsp" />
 <div class="row">
     <form action="/person" method="get">
         <div class="row">

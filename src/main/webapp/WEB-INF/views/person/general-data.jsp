@@ -5,9 +5,6 @@
 <%
     Person person = (Person) request.getAttribute("person");
 
-    System.out.println("--general--input--"+request.getAttribute("input")+"--");
-    System.out.println("--general--errors--"+request.getAttribute("errors")+"--");
-
     Map<String, String> input = (Map) request.getAttribute("input");
     List<String> errors = (List) request.getAttribute("errors");
     boolean requestInvalid = errors != null && !errors.isEmpty();
@@ -16,7 +13,7 @@
 <div class="section">
     <h5>Criar Pessoa</h5>
 </div>
-<jsp:include page="../layout/errors.jsp" />
+<jsp:include page="../layout/messages/messages.jsp" />
 <div class="row">
     <form action="/person?action=Save" method="post">
         <input name="id" type="hidden" value="<%= person.getId() == 0 ? "" : person.getId() %>" />
