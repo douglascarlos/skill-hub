@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebFilter(filterName = "PersonFilter", urlPatterns = {"/person"})
-public class PersonFilter implements Filter {
+@WebFilter(filterName = "SavePersonFilter", urlPatterns = {"/person"})
+public class SavePersonFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -25,11 +25,8 @@ public class PersonFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         String action = servletRequest.getParameter("action");
-        if(action == null){
-            action = "Index";
-        }
-
-        if (action.equals("Save")) {
+        boolean isSavePersonAction = action instanceof String && action.equals("Save");
+        if (isSavePersonAction) {
             HttpServletRequest request = (HttpServletRequest) servletRequest;
             HttpServletResponse response = (HttpServletResponse) servletResponse;
 
