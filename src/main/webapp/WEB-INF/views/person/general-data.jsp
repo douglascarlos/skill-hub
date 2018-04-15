@@ -15,15 +15,8 @@
 <jsp:include page="../layout/header.jsp" />
 <div class="section">
     <h5>Criar Pessoa</h5>
-
-    <% if(requestInvalid){ %>
-    <ul>
-    <% for(String error:errors){ %>
-        <li><%= error %></li>
-    <% } %>
-    </ul>
-    <% } %>
 </div>
+<jsp:include page="../layout/errors.jsp" />
 <div class="row">
     <div class="card-panel">
         <form action="/person?action=Save" method="post">
