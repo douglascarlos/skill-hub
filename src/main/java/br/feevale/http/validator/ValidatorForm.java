@@ -1,13 +1,16 @@
-package br.feevale.http.filter;
+package br.feevale.http.validator;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public abstract class ValidatorForm {
 
     private ArrayList<String> errors;
+
+    public abstract boolean validate(Map<String, String> input);
 
     public boolean isNotValid(){
         return this.errors instanceof ArrayList && !this.errors.isEmpty();
@@ -20,7 +23,7 @@ public abstract class ValidatorForm {
         this.errors.add(error);
     }
 
-    protected ArrayList<String> getErrors(){
+    public ArrayList<String> getErrors(){
         ArrayList<String> errors = this.errors;
         this.errors = null;
         return errors;
