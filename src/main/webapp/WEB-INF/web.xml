@@ -4,11 +4,26 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
   <welcome-file-list>
     <welcome-file>/WEB-INF/views/index.jsp</welcome-file>
   </welcome-file-list>
+
   <error-page>
     <error-code>404</error-code>
     <location>/WEB-INF/views/error/404.jsp</location>
   </error-page>
+
+  <!--<filter>-->
+    <!--<filter-name>Router</filter-name>-->
+    <!--<filter-class>br.feevale.http.filter.SavePersonFilter</filter-class>-->
+    <!--<init-param>-->
+      <!--<param-name>id</param-name>-->
+      <!--<param-value>valueOfparam1</param-value>-->
+    <!--</init-param>-->
+  <!--</filter>-->
+  <!--<filter-mapping>-->
+    <!--<filter-name>Router</filter-name>-->
+    <!--<url-pattern>/*</url-pattern>-->
+  <!--</filter-mapping>-->
 </web-app>

@@ -8,12 +8,17 @@ import br.feevale.model.Person;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class Create implements Action {
 
     public Responder executa(Servlet controller, HttpServletRequest request, HttpServletResponse response) throws Exception {
         Person person = new Person();
         request.setAttribute("person", person);
+
+        controller.withSession(request, "errors");
+        controller.withSession(request, "name");
+
         return new Forward("/WEB-INF/views/person/general-data.jsp");
     }
 

@@ -15,6 +15,7 @@ public class PersonServlet extends Servlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+        System.out.println("-------------------"+action);
         if(action == null){
             action = "Index";
         }

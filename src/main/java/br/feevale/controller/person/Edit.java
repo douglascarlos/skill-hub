@@ -24,6 +24,9 @@ public class Edit implements Action {
 
         request.setAttribute("person", person);
 
+        controller.withSession(request, "errors");
+        controller.withSession(request, "name");
+
         return new Forward("/WEB-INF/views/person/general-data.jsp");
     }
 
