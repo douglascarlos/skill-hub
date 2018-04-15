@@ -1,20 +1,13 @@
 package br.feevale.dao;
 
-import br.feevale.connection.ConnectionFactory;
-import java.sql.Connection;
+import br.feevale.model.Person;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import br.feevale.model.Person;
 
-public class PersonDAO {
-
-    private Connection connection;
-
-    public PersonDAO() {
-        connection = ConnectionFactory.getConnection();
-    }
+public class PersonDAO extends DAO {
 
     public ArrayList<Person> list() {
         String sql = "SELECT id, name, email, enrollment_number FROM people WHERE deleted_at IS NULL";
@@ -46,10 +39,10 @@ public class PersonDAO {
 
     public ArrayList<Person> filterByName(String name) {
         String sql = "" +
-            "SELECT id, name, email, enrollment_number " +
-            "FROM people " +
-            "WHERE deleted_at IS NULL AND UPPER(name) like '%" + name.toUpperCase() + "%' " +
-            "ORDER BY name";
+                "SELECT id, name, email, enrollment_number " +
+                "FROM people " +
+                "WHERE deleted_at IS NULL AND UPPER(name) like '%" + name.toUpperCase() + "%' " +
+                "ORDER BY name";
         ArrayList<Person> people = new ArrayList<Person>();
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -76,15 +69,15 @@ public class PersonDAO {
         return people;
     }
 
-    public void save(Person person){
-        if(person.getId() > 0){
+    public void save(Person person) {
+        if (person.getId() > 0) {
             this.update(person);
-        }else{
+        } else {
             this.store(person);
         }
     }
 
-    public Person find(long id){
+    public Person find(long id) {
         String sql = "SELECT id, name, email, enrollment_number FROM people WHERE deleted_at IS NULL AND id = ?";
 
         Person person;
@@ -112,14 +105,14 @@ public class PersonDAO {
             throw new RuntimeException(exception);
         }
 
-        if(person.getId() == 0){
+        if (person.getId() == 0) {
             throw new RuntimeException("Pessoa não encontrada.");
         }
 
         return person;
     }
 
-    public void delete(Person person){
+    public void delete(Person person) {
         String sql = "" +
                 "UPDATE people SET " +
                 "deleted_at = CURRENT_TIMESTAMP " +
@@ -139,7 +132,7 @@ public class PersonDAO {
         }
     }
 
-    private void store(Person person){
+    private void store(Person person) {
         String sql = "INSERT INTO people (enrollment_number, name, email, created_at, updated_at) values (?,?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -158,13 +151,13 @@ public class PersonDAO {
         }
     }
 
-    private void update(Person person){
+    private void update(Person person) {
         String sql = "" +
                 "UPDATE people SET " +
-                    "enrollment_number = ?, " +
-                    "name = ?, " +
-                    "email = ?, " +
-                    "updated_at = CURRENT_TIMESTAMP " +
+                "enrollment_number = ?, " +
+                "name = ?, " +
+                "email = ?, " +
+                "updated_at = CURRENT_TIMESTAMP " +
                 "WHERE id = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);

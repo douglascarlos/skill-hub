@@ -1,21 +1,13 @@
 package br.feevale.dao;
 
-import br.feevale.connection.ConnectionFactory;
 import br.feevale.model.Tag;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class TagDAO {
-
-    private Connection connection;
-
-    public TagDAO() {
-        connection = ConnectionFactory.getConnection();
-    }
+public class TagDAO extends DAO{
 
     public ArrayList<Tag> list() {
         String sql = "SELECT id, name FROM tags WHERE deleted_at IS NULL";
