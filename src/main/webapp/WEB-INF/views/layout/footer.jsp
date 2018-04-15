@@ -1,3 +1,10 @@
+<%@ page import="java.util.List" %>
+<%
+    System.out.println("----footer---"+request.getAttribute("errors"));
+    List<String> errors = (List) request.getAttribute("errors");
+    boolean requestInvalid = errors != null && !errors.isEmpty();
+    System.out.println("----footer---"+requestInvalid);
+%>
     </div>
 </main>
 <footer class="page-footer">
@@ -29,5 +36,10 @@
     </div>
 </footer>
 <script type="text/javascript" src="js/app.min.js"></script>
+<% if(requestInvalid){ %>
+<script type="text/javascript">
+    ToastSH("Ocorreu um erro, preencha corretamente os campos");
+</script>
+<% } %>
 </body>
 </html>
