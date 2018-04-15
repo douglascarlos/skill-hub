@@ -13,7 +13,7 @@
 <div class="row">
     <form action="/person" method="get">
         <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col s12">
                 <input name="name" id="name" type="text" class="validate" value="<%= name %>">
                 <label for="name">Nome</label>
             </div>

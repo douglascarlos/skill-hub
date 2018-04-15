@@ -1,9 +1,7 @@
 <%@ page import="java.util.List" %>
 <%
-    System.out.println("----footer---"+request.getAttribute("errors"));
     List<String> errors = (List) request.getAttribute("errors");
     boolean requestInvalid = errors != null && !errors.isEmpty();
-    System.out.println("----footer---"+requestInvalid);
 %>
     </div>
 </main>
