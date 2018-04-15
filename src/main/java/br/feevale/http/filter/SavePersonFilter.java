@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
@@ -28,7 +30,7 @@ public class SavePersonFilter implements Filter {
         if(action == null){
             action = "Index";
         }
-        System.out.println("-------------");
+
         if (action.equals("Save")) {
 
             HttpServletRequest request = (HttpServletRequest) servletRequest;
@@ -90,13 +92,17 @@ public class SavePersonFilter implements Filter {
             boolean isInvalid = !errors.isEmpty();
 
             if (isInvalid) {
-                System.out.println("invalido");
+
+                Map<String, String> input = new HashMap();
+                input.put("id", inputId);
+                input.put("enrollment_number", inputEnrollmentNumber);
+                input.put("name", inputName);
+                input.put("email", inputEmail);
 
                 request.getSession().setAttribute("errors", errors);
-                request.getSession().setAttribute("name", inputName);
+                request.getSession().setAttribute("input", input);
 
                 String actionToRedirect = inputId.isEmpty() ? "Create" : "Edit&id=" + inputId;
-
                 Redirect redirect = new Redirect("/person?action=" + actionToRedirect);
 
                 redirect.setContextPath(servletRequest.getServletContext().getContextPath());
@@ -105,7 +111,6 @@ public class SavePersonFilter implements Filter {
             }
         }
         filterChain.doFilter(servletRequest, servletResponse);
-        System.out.println("-------------");
     }
 
     @Override

@@ -17,7 +17,7 @@ public class Create implements Action {
         request.setAttribute("person", person);
 
         controller.withSession(request, "errors");
-        controller.withSession(request, "name");
+        controller.withSession(request, "input");
 
         return new Forward("/WEB-INF/views/person/general-data.jsp");
     }
