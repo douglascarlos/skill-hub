@@ -3,7 +3,9 @@
     String successMessage = (String) request.getAttribute("successMessage");
 %>
 <% if(successMessage instanceof String && !successMessage.isEmpty()){ %>
-<div class="row">
-    <div class="card-panel green lighten-4 green-text"><strong><%= successMessage %></strong></div>
-</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        M.toast({html: "<%= successMessage %>", classes: 'green lighten-1 rounded'});
+    });
+</script>
 <% } %>

@@ -33,11 +33,5 @@
         </div>
     </div>
 </footer>
-<script type="text/javascript" src="js/app.min.js"></script>
-<% if(requestInvalid){ %>
-<script type="text/javascript">
-    ToastSH("Ocorreu um erro, preencha corretamente os campos");
-</script>
-<% } %>
 </body>
 </html>

@@ -13,4 +13,12 @@
         </ul>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        M.toast({
+            html: "Ocorreu um erro, preencha corretamente os campos",
+            classes: 'red lighten-1 rounded'
+        });
+    });
+</script>
 <% } %>
