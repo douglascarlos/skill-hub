@@ -1,5 +1,6 @@
 package br.feevale.dao;
 
+import br.feevale.http.validator.Unique;
 import br.feevale.model.Tag;
 
 import java.sql.PreparedStatement;
@@ -7,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class TagDAO extends DAO{
+public class TagDAO extends DAO implements Unique{
 
     public ArrayList<Tag> list() {
         String sql = "SELECT id, name FROM tags WHERE deleted_at IS NULL";
@@ -163,6 +164,38 @@ public class TagDAO extends DAO{
             System.out.println("-------");
             throw new RuntimeException(exception);
         }
+    }
+
+    @Override
+    public boolean unique(String value, String column) {
+        return this.unique(value, column, 0);
+    }
+
+    @Override
+    public boolean unique(String value, String column, long exceptId) {
+        String sql = "SELECT id FROM tags WHERE deleted_at IS NULL AND UPPER(" + column + ") = UPPER(?)";
+
+        Tag tag = new Tag();
+        tag.setId(exceptId);
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, value);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                tag.setId(rs.getLong("id"));
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException exception) {
+            System.out.println("-------");
+            System.out.println(exception.getMessage());
+            System.out.println("-------");
+            throw new RuntimeException(exception);
+        }
+        return tag.getId() == exceptId;
     }
 
 }

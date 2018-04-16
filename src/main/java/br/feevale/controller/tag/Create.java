@@ -14,6 +14,8 @@ public class Create implements Action {
     public Responder executa(Servlet controller, HttpServletRequest request, HttpServletResponse response) throws Exception {
         Tag tag = new Tag();
         request.setAttribute("tag", tag);
+        controller.withSession(request, "errors");
+        controller.withSession(request, "input");
         return new Forward("/WEB-INF/views/tag/general-data.jsp");
     }
 
