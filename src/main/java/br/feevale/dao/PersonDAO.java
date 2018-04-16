@@ -1,5 +1,6 @@
 package br.feevale.dao;
 
+import br.feevale.http.validator.Unique;
 import br.feevale.model.Person;
 
 import java.sql.PreparedStatement;
@@ -7,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class PersonDAO extends DAO {
+public class PersonDAO extends DAO implements Unique {
 
     public ArrayList<Person> list() {
         String sql = "SELECT id, name, email, enrollment_number FROM people WHERE deleted_at IS NULL";
@@ -177,4 +178,48 @@ public class PersonDAO extends DAO {
         }
     }
 
+    @Override
+    public boolean unique(String value, String column) {
+        return this.unique(value, column, 0);
+    }
+
+    @Override
+    public boolean unique(String value, String column, long exceptId) {
+        String sql = "SELECT id FROM people WHERE deleted_at IS NULL AND UPPER(" + column + ") = UPPER(?)";
+
+        if(column.equals("enrollment_number")) {
+            sql = "SELECT id FROM people WHERE deleted_at IS NULL AND " + column + " = ?";
+        }
+
+        Person person = new Person();
+        person.setId(exceptId);
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+
+            if(column.equals("enrollment_number")){
+                if(value.isEmpty()){
+                    return true;
+                }
+                stmt.setInt(1, Integer.parseInt(value));
+            }else{
+                stmt.setString(1, value);
+            }
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                person.setId(rs.getLong("id"));
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException exception) {
+            System.out.println("-------");
+            System.out.println(exception.getMessage());
+            System.out.println("-------");
+            throw new RuntimeException(exception);
+        }
+        return person.getId() == exceptId;
+    }
 }
