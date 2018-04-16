@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Create implements Action {
 
-    public Responder executa(Servlet controller, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public Responder execute(Servlet controller, HttpServletRequest request, HttpServletResponse response) throws Exception {
         Tag tag = new Tag();
         request.setAttribute("tag", tag);
         controller.withSession(request, "errors");

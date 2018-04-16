@@ -18,7 +18,7 @@ public class Redirect extends Responder{
     }
 
     @Override
-    public void executar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         response.sendRedirect(this.contextPath + this.destino);
     }
     

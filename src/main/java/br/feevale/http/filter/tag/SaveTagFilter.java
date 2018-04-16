@@ -43,7 +43,7 @@ public class SaveTagFilter implements Filter {
                 Redirect redirect = new Redirect("/tag?action=" + actionToRedirect);
 
                 redirect.setContextPath(servletRequest.getServletContext().getContextPath());
-                redirect.executar(request, response);
+                redirect.execute(request, response);
                 return;
             }
         }

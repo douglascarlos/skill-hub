@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Index implements Action {
 
-    public Responder executa(Servlet servlet, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public Responder execute(Servlet servlet, HttpServletRequest request, HttpServletResponse response) throws Exception {
         String name = request.getParameter("name");
         if(name == null){
             name = "";

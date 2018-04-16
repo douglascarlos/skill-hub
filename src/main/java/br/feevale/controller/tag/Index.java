@@ -13,7 +13,7 @@ import java.util.List;
 
 public class Index implements Action {
     @Override
-    public Responder executa(Servlet servlet, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public Responder execute(Servlet servlet, HttpServletRequest request, HttpServletResponse response) throws Exception {
         String inputName = request.getParameter("name");
         if(inputName == null){
             inputName = "";

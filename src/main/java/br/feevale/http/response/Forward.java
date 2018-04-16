@@ -14,7 +14,7 @@ public class Forward extends Responder{
     }
 
     @Override
-    public void executar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         request.getRequestDispatcher(this.destino).forward(request, response);
     }
     

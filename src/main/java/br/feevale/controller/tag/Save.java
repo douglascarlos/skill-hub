@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Save implements Action{
 
-    public Responder executa(Servlet controller, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public Responder execute(Servlet controller, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         String inputId = request.getParameter("id");
         long convertedInputId = 0;

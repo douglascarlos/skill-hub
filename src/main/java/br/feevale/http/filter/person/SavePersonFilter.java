@@ -3,7 +3,6 @@ package br.feevale.http.filter.person;
 import br.feevale.http.response.Redirect;
 import br.feevale.http.validator.ValidatorForm;
 import br.feevale.http.validator.person.SavePersonValidator;
-import br.feevale.mapper.Mapper;
 import br.feevale.mapper.RequestToMap;
 
 import javax.servlet.*;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 @WebFilter(filterName = "SavePersonFilter", urlPatterns = {"/person"})
@@ -47,7 +45,7 @@ public class SavePersonFilter implements Filter {
                 Redirect redirect = new Redirect("/person?action=" + actionToRedirect);
 
                 redirect.setContextPath(servletRequest.getServletContext().getContextPath());
-                redirect.executar(request, response);
+                redirect.execute(request, response);
                 return;
             }
         }

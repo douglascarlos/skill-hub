@@ -25,13 +25,13 @@ public class PersonServlet extends Servlet {
             Class classe = Class.forName(nomeDaClasse);
             Action logica = (Action) classe.newInstance();
             
-            Responder responder = logica.executa(this, request, response);
+            Responder responder = logica.execute(this, request, response);
             
             if(responder instanceof Redirect){
                 ((Redirect) responder).setContextPath(getServletContext().getContextPath());
             }
             
-            responder.executar(request, response);
+            responder.execute(request, response);
 
         } catch (Exception e) {
             throw new ServletException(this.getServletInfo() + " causou uma exceção: ", e);

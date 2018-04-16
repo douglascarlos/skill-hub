@@ -21,6 +21,6 @@ public abstract class Responder {
         this.destino = destino;
     }
 
-    public abstract void executar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+    public abstract void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 }

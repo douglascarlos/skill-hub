@@ -8,6 +8,6 @@ import javax.servlet.http.HttpSession;
 
 public interface Action {
     
-    public Responder executa(Servlet controller, HttpServletRequest request, HttpServletResponse response) throws Exception;
+    public Responder execute(Servlet controller, HttpServletRequest request, HttpServletResponse response) throws Exception;
     
 }

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Delete implements Action {
 
-    public Responder executa(Servlet controller, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public Responder execute(Servlet controller, HttpServletRequest request, HttpServletResponse response) throws Exception {
         String inputId = request.getParameter("id");
         if(inputId == null){
             throw new Exception("404");
