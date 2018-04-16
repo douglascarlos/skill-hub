@@ -11,12 +11,12 @@
 %>
 <jsp:include page="../layout/header.jsp" />
 <div class="section">
-    <h5>Criar Tag</h5>
+    <h5><%= tag.exists() ? "Editar" : "Criar" %> Tag</h5>
 </div>
 <jsp:include page="../layout/messages/messages.jsp" />
 <div class="row">
     <form action="/tag?action=Save" method="post">
-        <input name="id" type="hidden" value="<%= tag.getId() == 0 ? "" : tag.getId() %>" />
+        <input name="id" type="hidden" value="<%= tag.exists() ? tag.getId() : "" %>" />
         <div class="row">
             <div class="input-field col s12">
                 <input name="name" id="name" type="text" required minlength="3" maxlength="255" class="validate" value="<%= requestInvalid ? input.get("name") : tag.getName() == null ? "" : tag.getName() %>">

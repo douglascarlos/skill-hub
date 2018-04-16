@@ -11,12 +11,12 @@
 %>
 <jsp:include page="../layout/header.jsp" />
 <div class="section">
-    <h5>Criar Pessoa</h5>
+    <h5><%= person.exists() ? "Editar" : "Criar" %> Pessoa</h5>
 </div>
 <jsp:include page="../layout/messages/messages.jsp" />
 <div class="row">
     <form action="/person?action=Save" method="post">
-        <input name="id" type="hidden" value="<%= person.getId() == 0 ? "" : person.getId() %>" />
+        <input name="id" type="hidden" value="<%= person.exists() ? person.getId() : "" %>" />
         <div class="row">
             <div class="input-field col s12">
                 <input name="name" id="name" type="text" required minlength="3" maxlength="255" class="validate" value="<%= requestInvalid ? input.get("name") : person.getName() == null ? "" : person.getName() %>">

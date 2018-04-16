@@ -24,4 +24,8 @@ public abstract class Model {
     public void setName(String name) {
         this.name = name;
     }
+
+    public boolean exists(){
+        return this.id > 0;
+    }
 }
