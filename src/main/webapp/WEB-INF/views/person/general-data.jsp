@@ -18,17 +18,17 @@
     <form action="/person?action=Save" method="post">
         <input name="id" type="hidden" value="<%= person.exists() ? person.getId() : "" %>" />
         <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field col s12 m12">
                 <input name="name" id="name" type="text" required minlength="3" maxlength="255" class="validate" value="<%= requestInvalid ? input.get("name") : person.getName() == null ? "" : person.getName() %>">
                 <label for="name">Nome</label>
             </div>
         </div>
         <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col s12 m6">
                 <input name="enrollment_number" id="enrollment_number" type="number" required min="0" minlength="7" maxlength="7" class="validate" value="<%= requestInvalid ? input.get("enrollment_number") : person.getEnrollmentNumber() == 0 ? "" : person.getEnrollmentNumber() %>">
                 <label for="enrollment_number">Matrícula</label>
             </div>
-            <div class="input-field col s6">
+            <div class="input-field col s12 m6">
                 <input name="email" id="email" type="email" required minlength="3" maxlength="255" class="validate" value="<%= requestInvalid ? input.get("email") : person.getEmail() == null ? "" : person.getEmail() %>">
                 <label for="email">E-mail</label>
             </div>
