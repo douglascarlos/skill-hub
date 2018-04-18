@@ -46,7 +46,7 @@
         <tbody>
         <% for(Person person : people){ %>
             <tr>
-                <td><%= person.getEnrollmentNumber() %></td>
+                <td><%= person.getEnrollmentNumberFormatted() %></td>
                 <td><%= person.getName() %></td>
                 <td><%= person.getEmail() %></td>
                 <td class="center-align">

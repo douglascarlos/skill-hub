@@ -25,7 +25,7 @@
         </div>
         <div class="row">
             <div class="input-field col s12 m6">
-                <input name="enrollment_number" id="enrollment_number" type="number" required min="0" minlength="7" maxlength="7" class="validate" value="<%= requestInvalid ? input.get("enrollment_number") : person.getEnrollmentNumber() == 0 ? "" : person.getEnrollmentNumber() %>">
+                <input name="enrollment_number" id="enrollment_number" type="number" required min="0" minlength="7" maxlength="7" class="validate" value="<%= requestInvalid ? input.get("enrollment_number") : person.getEnrollmentNumber() == 0 ? "" : person.getEnrollmentNumberFormatted() %>">
                 <label for="enrollment_number">Matrícula</label>
             </div>
             <div class="input-field col s12 m6">

@@ -1,5 +1,7 @@
 package br.feevale.model;
 
+import br.feevale.helper.Formatter;
+
 public class Person extends Model {
 
     private String email;
@@ -22,5 +24,9 @@ public class Person extends Model {
 
     public void setEnrollmentNumber(int enrollmentNumber) {
         this.enrollmentNumber = enrollmentNumber;
+    }
+
+    public String getEnrollmentNumberFormatted(){
+        return Formatter.paddingLeft(this.enrollmentNumber, 7, "0");
     }
 }
