@@ -17,14 +17,14 @@
             <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="/person">Pessoas</a></li>
-                <li><a href="#">Projetos</a></li>
+                <li><a href="/project">Projetos</a></li>
                 <li><a href="/tag">Tags</a></li>
             </ul>
         </div>
     </nav>
     <ul class="sidenav" id="mobile-nav">
         <li><a href="/person">Pessoas</a></li>
-        <li><a href="#">Projetos</a></li>
+        <li><a href="/project">Projetos</a></li>
         <li><a href="/tag">Tags</a></li>
     </ul>
 </header>

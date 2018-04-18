@@ -8,6 +8,7 @@
     String successMessage = (String) request.getAttribute("successMessage");
 %>
 <jsp:include page="../layout/header.jsp" />
+<jsp:include page="../layout/add-button-fixed.jsp" />
 <div class="section">
     <h5>Tags</h5>
 </div>
@@ -26,9 +27,6 @@
             </button>
             <a href="/tag" class="btn waves-effect waves-light right btn-mr">
                 Limpar<i class="material-icons right">clear_all</i>
-            </a>
-            <a href="/tag?action=Create" class="btn waves-effect waves-light right btn-mr">
-                Criar Novo<i class="material-icons right">add</i>
             </a>
         </div>
     </form>

@@ -4,4 +4,5 @@ $(document).ready(function(){
     $('select').formSelect();
     $('.datepicker').datepicker();
     $('.modal').modal();
+    $('.fixed-action-btn').floatingActionButton();
 });
