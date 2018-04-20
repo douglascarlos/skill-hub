@@ -5,4 +5,5 @@ $(document).ready(function(){
     $('.datepicker').datepicker();
     $('.modal').modal();
     $('.fixed-action-btn').floatingActionButton();
+    $('.tooltipped').tooltip();
 });
