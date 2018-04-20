@@ -23,9 +23,9 @@ public class PersonServlet extends Servlet {
 
         try {
             Class classe = Class.forName(nomeDaClasse);
-            Action logica = (Action) classe.newInstance();
+            Action controller = (Action) classe.newInstance();
             
-            Responder responder = logica.execute(this, request, response);
+            Responder responder = controller.execute(this, request, response);
             
             if(responder instanceof Redirect){
                 ((Redirect) responder).setContextPath(getServletContext().getContextPath());

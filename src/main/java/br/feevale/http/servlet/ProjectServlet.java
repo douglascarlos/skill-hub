@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "TagServlet", urlPatterns = {"/tag"})
-public class TagServlet extends Servlet {
+@WebServlet(name = "ProjectServlet", urlPatterns = {"/project"})
+public class ProjectServlet extends Servlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -19,7 +19,7 @@ public class TagServlet extends Servlet {
             action = "Index";
         }
         
-        String nomeDaClasse = "br.feevale.controller.tag." + action;
+        String nomeDaClasse = "br.feevale.controller.project." + action;
 
         try {
             Class classe = Class.forName(nomeDaClasse);
