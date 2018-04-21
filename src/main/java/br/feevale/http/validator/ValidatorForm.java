@@ -70,7 +70,9 @@ public abstract class ValidatorForm {
 
     public boolean max(String attribute, String value, int amount) {
         if (value instanceof String && value.length() > amount) {
-            this.addError("O campo " + attribute + " deve conter pelo menos " + amount + " caracteres.");
+            System.out.println(value.length());
+            System.out.println(amount);
+            this.addError("O campo " + attribute + " deve conter até " + amount + " caracteres.");
             return false;
         }
         return true;

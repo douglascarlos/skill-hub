@@ -23,7 +23,7 @@ public class SaveProjectValidator extends ValidatorForm {
         this.max("Nome", input.get("name"));
         this.unique("Nome", input.get("name"), "name", input.get("id"), rule);
 
-        this.max("Decrição", input.get("decription"), 500);
+        this.max("Decrição", input.get("description"), 500);
         return this.isNotValid();
     }
 }
