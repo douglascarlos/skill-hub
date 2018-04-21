@@ -2,6 +2,7 @@ package br.feevale.controller.project;
 
 import br.feevale.controller.Action;
 import br.feevale.dao.ProjectDAO;
+import br.feevale.helper.Charset;
 import br.feevale.http.response.Redirect;
 import br.feevale.http.response.Responder;
 import br.feevale.http.servlet.Servlet;
@@ -19,8 +20,8 @@ public class Save implements Action{
         if(!inputId.equals("")){
             convertedInputId = Long.parseLong(inputId);
         }
-        String inputName = request.getParameter("name");
-        String inputDescription = request.getParameter("description");
+        String inputName = Charset.toIso88591(request.getParameter("name"));
+        String inputDescription = Charset.toIso88591(request.getParameter("description"));
 
         ProjectDAO dao = new ProjectDAO();
         Project project = new Project();

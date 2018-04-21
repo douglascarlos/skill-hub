@@ -2,6 +2,7 @@ package br.feevale.controller.person;
 
 import br.feevale.controller.Action;
 import br.feevale.dao.PersonDAO;
+import br.feevale.helper.Charset;
 import br.feevale.http.response.Redirect;
 import br.feevale.http.response.Responder;
 import br.feevale.http.servlet.Servlet;
@@ -21,8 +22,8 @@ public class Save implements Action{
         }
         String inputEnrollmentNumber = request.getParameter("enrollment_number");
         int convertedInputEnrollmentNumber = Integer.parseInt(inputEnrollmentNumber);
-        String inputName = request.getParameter("name");
-        String inputEmail = request.getParameter("email");
+        String inputName = Charset.toIso88591( request.getParameter("name"));
+        String inputEmail = Charset.toIso88591(request.getParameter("email"));
 
         PersonDAO dao = new PersonDAO();
         Person person = new Person();

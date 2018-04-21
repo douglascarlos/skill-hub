@@ -1,5 +1,7 @@
 package br.feevale.mapper;
 
+import br.feevale.helper.Charset;
+
 import javax.servlet.ServletRequest;
 import java.util.List;
 import java.util.HashMap;
@@ -15,7 +17,7 @@ public class RequestToMap implements Mapper {
         Map<String, String> input = new HashMap();
 
         for (int index=0; index<attributes.size(); index++){
-            input.put(attributes.get(index), request.getParameter(attributes.get(index)));
+            input.put(attributes.get(index), Charset.toIso88591(request.getParameter(attributes.get(index))));
         }
 
         return input;

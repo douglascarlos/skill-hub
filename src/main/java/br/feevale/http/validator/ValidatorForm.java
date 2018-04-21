@@ -2,6 +2,8 @@ package br.feevale.http.validator;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -70,8 +72,6 @@ public abstract class ValidatorForm {
 
     public boolean max(String attribute, String value, int amount) {
         if (value instanceof String && value.length() > amount) {
-            System.out.println(value.length());
-            System.out.println(amount);
             this.addError("O campo " + attribute + " deve conter até " + amount + " caracteres.");
             return false;
         }

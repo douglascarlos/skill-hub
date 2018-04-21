@@ -2,6 +2,7 @@ package br.feevale.controller.tag;
 
 import br.feevale.controller.Action;
 import br.feevale.dao.TagDAO;
+import br.feevale.helper.Charset;
 import br.feevale.http.response.Redirect;
 import br.feevale.http.response.Responder;
 import br.feevale.http.servlet.Servlet;
@@ -19,7 +20,7 @@ public class Save implements Action{
         if(!inputId.equals("")){
             convertedInputId = Long.parseLong(inputId);
         }
-        String inputName = request.getParameter("name");
+        String inputName = Charset.toIso88591(request.getParameter("name"));
 
         TagDAO dao = new TagDAO();
         Tag tag = new Tag();
