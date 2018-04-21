@@ -6,4 +6,5 @@ $(document).ready(function(){
     $('.modal').modal();
     $('.fixed-action-btn').floatingActionButton();
     $('.tooltipped').tooltip();
+    $('.character-counter').characterCounter();
 });
