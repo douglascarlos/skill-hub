@@ -13,61 +13,62 @@
 
 <% if(!tag.getChildren().isEmpty() || !tagsToAttach.isEmpty()){ %>
 <form action="/tag?action=AttachTags" method="post">
-<div class="row">
+    <input name="id" type="hidden" value="<%= tag.exists() ? tag.getId() : "" %>" />
     <div class="row">
-        <table class="responsive-table highlight">
-            <thead>
-            <tr>
-                <th>Nome</th>
-                <th class="center-align">Marque para incular</th>
-            </tr>
-            </thead>
-            <tbody>
-            <% for(Tag child : tag.getChildren()){ %>
-            <tr>
-                <td>
-                    <a href="/tag?action=Edit&id=<%= child.getId() %>">
-                        <%= child.getName() %>
-                    </a>
-                </td>
-                <td class="center-align">
-                    <label>
-                        <input name="attach[]" type="checkbox" value="<%= child.getId() %>" checked="checked" />
-                        <span></span>
-                    </label>
-                </td>
-            </tr>
-            <% } %>
-            <% for(Tag tagToAttach : tagsToAttach){ %>
-            <tr>
-                <td>
-                    <a href="/tag?action=Edit&id=<%= tagToAttach.getId() %>">
-                        <%= tagToAttach.getName() %>
-                    </a>
-                </td>
-                <td class="center-align">
-                    <label>
-                        <input name="attach[]" type="checkbox" value="<%= tagToAttach.getId() %>"  />
-                        <span></span>
-                    </label>
-                </td>
-            </tr>
-            <% } %>
-            </tbody>
-        </table>
+        <div class="row">
+            <table class="responsive-table highlight">
+                <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th class="center-align">Marque para incular</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% for(Tag child : tag.getChildren()){ %>
+                <tr>
+                    <td>
+                        <a href="/tag?action=Edit&id=<%= child.getId() %>">
+                            <%= child.getName() %>
+                        </a>
+                    </td>
+                    <td class="center-align">
+                        <label>
+                            <input name="children[]" type="checkbox" value="<%= child.getId() %>" checked="checked" />
+                            <span></span>
+                        </label>
+                    </td>
+                </tr>
+                <% } %>
+                <% for(Tag tagToAttach : tagsToAttach){ %>
+                <tr>
+                    <td>
+                        <a href="/tag?action=Edit&id=<%= tagToAttach.getId() %>">
+                            <%= tagToAttach.getName() %>
+                        </a>
+                    </td>
+                    <td class="center-align">
+                        <label>
+                            <input name="children[]" type="checkbox" value="<%= tagToAttach.getId() %>"  />
+                            <span></span>
+                        </label>
+                    </td>
+                </tr>
+                <% } %>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <button class="btn waves-effect waves-light right" type="submit">
+                Salvar<i class="material-icons right">send</i>
+            </button>
+            <a href="/tag" class="btn waves-effect waves-light right btn-mr">
+                Voltar<i class="material-icons right">arrow_back</i>
+            </a>
+        </div>
     </div>
-    <div class="row">
-        <button class="btn waves-effect waves-light right" type="submit">
-            Salvar<i class="material-icons right">send</i>
-        </button>
-        <a href="/tag" class="btn waves-effect waves-light right btn-mr">
-            Voltar<i class="material-icons right">arrow_back</i>
-        </a>
-    </div>
-</div>
+</form>
 <% }else{ %>
-<div class="roe">
+<div class="row">
     <div class="card-panel blue lighten-4 blue-text"><strong>Não há tags vinculadoas ou tags para vincular.</strong></div>
 </div>
 <% } %>
-</form>

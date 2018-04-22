@@ -13,7 +13,7 @@ import java.util.List;
 
 public class Index implements Action {
     @Override
-    public Responder execute(Servlet servlet, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public Responder execute(Servlet controller, HttpServletRequest request, HttpServletResponse response) throws Exception {
         String inputName = request.getParameter("name");
         if(inputName == null){
             inputName = "";
@@ -25,8 +25,9 @@ public class Index implements Action {
         request.setAttribute("name", inputName);
         request.setAttribute("tags", tags);
 
-        servlet.withSession(request, "successMessage");
-
+        controller.withSession(request, "successMessage");
+        controller.withSession(request, "errors");
+        controller.withSession(request, "input");
         return new Forward("/WEB-INF/views/tag/index.jsp");
     }
 }

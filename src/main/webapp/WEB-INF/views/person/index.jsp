@@ -70,7 +70,7 @@
     </table>
 </div>
 <% }else{ %>
-<div class="roe">
+<div class="row">
     <div class="card-panel blue lighten-4 blue-text"><strong>Não há resultados.</strong></div>
 </div>
 <% } %>

@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class TagDAO extends DAO implements Unique{
 
@@ -259,6 +260,43 @@ public class TagDAO extends DAO implements Unique{
             throw new RuntimeException(exception);
         }
         return tags;
+    }
+
+    public void updateChildrenTags(Tag tag){
+        try {
+            String ids = tag.getChildren().stream()
+                    .map(p -> String.valueOf(p.getId()))
+                    .collect(Collectors.joining(","));
+
+            String detachSql = "" +
+                    "UPDATE tags SET " +
+                    "tag_id = null " +
+                    "WHERE tag_id = ?";
+
+            String attachSql = "" +
+                    "UPDATE tags SET " +
+                    "tag_id = ? " +
+                    "WHERE id in (" + ids + ")";
+
+
+            PreparedStatement stmtDetach = connection.prepareStatement(detachSql);
+            stmtDetach.setLong(1, tag.getId());
+
+            PreparedStatement stmtAttach = connection.prepareStatement(attachSql);
+            stmtAttach.setLong(1, tag.getId());
+
+            stmtDetach.execute();
+            stmtAttach.execute();
+
+            stmtDetach.close();
+            stmtAttach.close();
+
+        } catch (SQLException exception) {
+            System.out.println("-------");
+            System.out.println(exception.getMessage());
+            System.out.println("-------");
+            throw new RuntimeException(exception);
+        }
     }
 
 }
