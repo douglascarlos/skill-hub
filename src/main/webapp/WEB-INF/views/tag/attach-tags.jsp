@@ -17,7 +17,7 @@
                 <thead>
                 <tr>
                     <th>Nome</th>
-                    <th class="center-align">Vincular</th>
+                    <th class="center-align">Marque para vincular</th>
                 </tr>
                 </thead>
                 <tbody>

@@ -4,11 +4,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Tag tag = (Tag) request.getAttribute("tag");
-
-    Map<String, String> input = (Map) request.getAttribute("input");
-    List<String> errors = (List) request.getAttribute("errors");
-    boolean requestInvalid = errors != null && !errors.isEmpty();
-
     boolean isCreate = !tag.exists();
 %>
 <jsp:include page="../layout/header.jsp" />
@@ -19,7 +14,7 @@
 <div class="row">
     <ul class="tabs">
         <li class="tab col s6"><a href="#general-data">Dados Gerais</a></li>
-        <li class="tab col s6 <%= isCreate ? "disabled" : "" %>"    ><a href="#attach-tags">Tags</a></li>
+        <li class="tab col s6 <%= isCreate ? "disabled" : "" %>"><a href="#attach-tags">Tags</a></li>
     </ul>
     <div id="general-data" class="col s12 tab-content">
         <jsp:include page="./general-data.jsp" />
