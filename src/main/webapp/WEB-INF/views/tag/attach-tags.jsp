@@ -25,7 +25,11 @@
             <tbody>
             <% for(Tag child : tag.getChildren()){ %>
             <tr>
-                <td><%= child.getName() %></td>
+                <td>
+                    <a href="/tag?action=Edit&id=<%= child.getId() %>">
+                        <%= child.getName() %>
+                    </a>
+                </td>
                 <td class="center-align">
                     <label>
                         <input name="attach[]" type="checkbox" value="<%= child.getId() %>" checked="checked" />
@@ -36,7 +40,11 @@
             <% } %>
             <% for(Tag tagToAttach : tagsToAttach){ %>
             <tr>
-                <td><%= tagToAttach.getName() %></td>
+                <td>
+                    <a href="/tag?action=Edit&id=<%= tagToAttach.getId() %>">
+                        <%= tagToAttach.getName() %>
+                    </a>
+                </td>
                 <td class="center-align">
                     <label>
                         <input name="attach[]" type="checkbox" value="<%= tagToAttach.getId() %>"  />
