@@ -7,4 +7,5 @@ $(document).ready(function(){
     $('.fixed-action-btn').floatingActionButton();
     $('.tooltipped').tooltip();
     $('.character-counter').characterCounter();
+    $('.tabs').tabs();
 });

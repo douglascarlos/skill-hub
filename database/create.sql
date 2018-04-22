@@ -104,4 +104,16 @@ CREATE TABLE member_skill (
       ON UPDATE NO ACTION
 );
 
-
+create or replace view tag_tree as
+with recursive tag_tree as (
+   select id, name, tag_id, 1 as level, array[id] as path
+   from tags 
+   where deleted_at is null and tag_id is null
+   union all
+   select c.id, c.name, c.tag_id, p.level + 1, p.path||c.id
+   from tags c
+     join tag_tree p on c.tag_id = p.id
+)
+select id, name, tag_id, level, path
+from tag_tree
+order by path, name;

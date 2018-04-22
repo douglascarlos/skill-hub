@@ -1,4 +1,10 @@
-$input-focus-color: color("shades", "black");
+$primary-color: color("amber", "base");
+$secondary-color: color("shades", "black");
+
+$input-focus-color: $secondary-color;
+$tabs-underline-color: $primary-color;
+$tabs-text-color: $primary-color;
+$tabs-bg-color: color("shades", "white");
 
 .nav-wrapper, .page-footer, .btn {
   @extend .amber;
@@ -60,9 +66,44 @@ textarea.materialize-textarea {
 
 .page-footer {
   background-color: #fff !important;
-  border-top: 1px solid rgba(0,0,0,.14);
+  border-top: 1px solid rgba($secondary-color,.14);
 
   .footer-copyright {
-    background-color: rgba(0,0,0,.05) !important;
+    background-color: rgba($secondary-color,.05) !important;
   }
 }
+
+// Tabs
+.tabs {
+  background-color: $tabs-bg-color !important;
+
+  .tab {
+    a {
+      &:focus,
+      &:focus.active {
+        background-color: $tabs-bg-color !important;
+      }
+
+      &.active {
+        color: $secondary-color !important;
+      }
+
+      &:hover {
+        color: $tabs-text-color !important;
+      }
+
+      color: $secondary-color !important;
+    }
+
+    &.disabled a,
+    &.disabled a:hover {
+      color: rgba($secondary-color, .4) !important;
+    }
+  }
+
+  .indicator {
+    background-color: $tabs-underline-color !important;
+  }
+}
+
+
