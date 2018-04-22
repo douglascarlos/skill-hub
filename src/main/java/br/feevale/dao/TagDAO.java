@@ -198,4 +198,31 @@ public class TagDAO extends DAO implements Unique{
         return tag.getId() == exceptId;
     }
 
+    public ArrayList<Tag> tagsToAttach(Tag tag){
+        String sql = "select id, name, tag_id, level, path from tag_tree where id not in (SELECT id FROM tag_tree WHERE path @> ARRAY[(select path[1] from tag_tree where id = ?)]) and tag_id is null";
+        ArrayList<Tag> tags = new ArrayList<Tag>();
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setLong(1, tag.getId());
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Tag tagResult = new Tag();
+                tagResult.setId(rs.getLong("id"));
+                tagResult.setName(rs.getString("name"));
+
+                tags.add(tagResult);
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException exception) {
+            System.out.println("-------");
+            System.out.println(exception.getMessage());
+            System.out.println("-------");
+            throw new RuntimeException(exception);
+        }
+        return tags;
+    }
+
 }

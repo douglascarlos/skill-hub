@@ -16,7 +16,7 @@ public class Create implements Action {
         request.setAttribute("tag", tag);
         controller.withSession(request, "errors");
         controller.withSession(request, "input");
-        return new Forward("/WEB-INF/views/tag/general-data.jsp");
+        return new Forward("/WEB-INF/views/tag/registration-tabs.jsp");
     }
 
 }

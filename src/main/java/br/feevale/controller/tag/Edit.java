@@ -9,6 +9,7 @@ import br.feevale.model.Tag;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 public class Edit implements Action {
 
@@ -22,11 +23,14 @@ public class Edit implements Action {
         TagDAO dao = new TagDAO();
         Tag tag = dao.find(convertedInputId);
 
+        List<Tag> tagsToAttach = dao.tagsToAttach(tag);
+
         request.setAttribute("tag", tag);
+        request.setAttribute("tagsToAttach", tagsToAttach);
 
         controller.withSession(request, "errors");
         controller.withSession(request, "input");
-        return new Forward("/WEB-INF/views/tag/general-data.jsp");
+        return new Forward("/WEB-INF/views/tag/registration-tabs.jsp");
     }
 
 }
