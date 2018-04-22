@@ -67,6 +67,10 @@ public class TagDAO extends DAO implements Unique{
     }
 
     public Tag find(long id){
+        return this.find(id, true);
+    }
+
+    private Tag find(long id, boolean withChildren){
         String sql = "SELECT id, name FROM tags WHERE deleted_at IS NULL AND id = ?";
 
         Tag tag;
@@ -81,6 +85,9 @@ public class TagDAO extends DAO implements Unique{
             while (rs.next()) {
                 tag.setId(rs.getLong("id"));
                 tag.setName(rs.getString("name"));
+                if(withChildren){
+                    tag.setChildren(this.tagsChildren(tag));
+                }
             }
 
             rs.close();
@@ -98,6 +105,8 @@ public class TagDAO extends DAO implements Unique{
 
         return tag;
     }
+
+
 
     public void save(Tag tag){
         if(tag.getId() > 0){
@@ -200,6 +209,33 @@ public class TagDAO extends DAO implements Unique{
 
     public ArrayList<Tag> tagsToAttach(Tag tag){
         String sql = "select id, name, tag_id, level, path from tag_tree where id not in (SELECT id FROM tag_tree WHERE path @> ARRAY[(select path[1] from tag_tree where id = ?)]) and tag_id is null";
+        ArrayList<Tag> tags = new ArrayList<Tag>();
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setLong(1, tag.getId());
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Tag tagResult = new Tag();
+                tagResult.setId(rs.getLong("id"));
+                tagResult.setName(rs.getString("name"));
+
+                tags.add(tagResult);
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException exception) {
+            System.out.println("-------");
+            System.out.println(exception.getMessage());
+            System.out.println("-------");
+            throw new RuntimeException(exception);
+        }
+        return tags;
+    }
+
+    public ArrayList<Tag> tagsChildren(Tag tag){
+        String sql = "SELECT id, name FROM tags WHERE deleted_at IS NULL AND tag_id = ?";
         ArrayList<Tag> tags = new ArrayList<Tag>();
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
