@@ -9,11 +9,6 @@
     List<String> errors = (List) request.getAttribute("errors");
     boolean requestInvalid = errors != null && !errors.isEmpty();
 %>
-<jsp:include page="../layout/header.jsp" />
-<div class="section">
-    <h5><%= person.exists() ? "Editar" : "Criar" %> Pessoa</h5>
-</div>
-<jsp:include page="../layout/messages/messages.jsp" />
 <div class="row">
     <form action="/person?action=Save" method="post">
         <input name="id" type="hidden" value="<%= person.exists() ? person.getId() : "" %>" />
@@ -43,4 +38,3 @@
         </div>
     </form>
 </div>
-<jsp:include page="../layout/footer.jsp" />

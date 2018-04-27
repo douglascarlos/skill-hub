@@ -26,6 +26,8 @@ public class Index implements Action {
         request.setAttribute("people", people);
 
         servlet.withSession(request, "successMessage");
+        servlet.withSession(request, "errors");
+        servlet.withSession(request, "input");
 
         return new Forward("/WEB-INF/views/person/index.jsp");
     }

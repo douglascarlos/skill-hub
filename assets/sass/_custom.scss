@@ -76,6 +76,7 @@ textarea.materialize-textarea {
 // Tabs
 .tabs {
   background-color: $tabs-bg-color !important;
+  overflow-x: hidden !important;
 
   .tab {
     a {

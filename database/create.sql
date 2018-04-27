@@ -44,7 +44,8 @@ CREATE TABLE tags (
 CREATE TABLE levels (
   id SERIAL NOT NULL,
   name VARCHAR NOT NULL,
-  number INTEGER NOT NULL,
+  ordination INTEGER NOT NULL,
+  weight INTEGER NOT NULL,
   PRIMARY KEY(id)
 );
 

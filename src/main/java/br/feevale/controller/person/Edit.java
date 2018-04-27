@@ -6,6 +6,7 @@ import br.feevale.http.response.Forward;
 import br.feevale.http.response.Responder;
 import br.feevale.http.servlet.Servlet;
 import br.feevale.model.Person;
+import br.feevale.model.Skill;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,12 +23,18 @@ public class Edit implements Action {
         PersonDAO dao = new PersonDAO();
         Person person = dao.find(convertedInputId);
 
+        Skill skill = new Skill();
+
         request.setAttribute("person", person);
+        request.setAttribute("skill", skill);
+        //set levels
+        //set tag to attach
+        //set person with skills
 
         controller.withSession(request, "errors");
         controller.withSession(request, "input");
 
-        return new Forward("/WEB-INF/views/person/general-data.jsp");
+        return new Forward("/WEB-INF/views/person/registration-tabs.jsp");
     }
 
 }
