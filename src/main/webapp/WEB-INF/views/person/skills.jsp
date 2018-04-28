@@ -2,9 +2,12 @@
 <%@ page import="br.feevale.model.Skill" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="br.feevale.model.Level" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Person person = (Person) request.getAttribute("person");
+    ArrayList<Level> levels = (ArrayList<Level>) request.getAttribute("levels");
     Skill skill = (Skill) request.getAttribute("skill");
 
     Map<String, String> input = (Map) request.getAttribute("input");
@@ -28,9 +31,9 @@
             <div class="input-field col s12 m6">
                 <select name="level">
                     <option value="" disabled selected>Selecione</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
+                    <% for(Level level : levels){ %>
+                    <option value="<%= level.getId() %>"><%= level.getName() %></option>
+                    <% } %>
                 </select>
                 <label for="level">Nível</label>
             </div>
