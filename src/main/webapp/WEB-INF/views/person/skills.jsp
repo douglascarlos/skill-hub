@@ -13,8 +13,6 @@
     ArrayList<Level> levels = (ArrayList<Level>) request.getAttribute("levels");
     Skill skill = (Skill) request.getAttribute("skill");
 
-    String jsonTagsToAttach = new Gson().toJson(tagsToAttach);
-
     Map<String, String> input = (Map) request.getAttribute("input");
     List<String> errors = (List) request.getAttribute("errors");
     boolean requestInvalid = errors != null && !errors.isEmpty();
@@ -60,15 +58,15 @@
 <script type="text/javascript">
     var tagName = $('#tag_name').val();
 
+    <% String jsonTagsToAttach = new Gson().toJson(tagsToAttach); %>
     var tags = <%= jsonTagsToAttach %>;
-    console.log(tags);
 
     var data = {
-        "Laravel": null,
-        "Phalcon": null,
-        "CakePHP": null,
-        "CodeIgniter": null,
+        <% for(Tag tag : tagsToAttach){ %>
+        "<%= tag.getName() %>": null,
+        <% } %>
     };
+    console.log(data)
 
     $('input.autocomplete').autocomplete({
         data: data,
