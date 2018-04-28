@@ -4,9 +4,11 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="br.feevale.model.Level" %>
+<%@ page import="br.feevale.model.Tag" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Person person = (Person) request.getAttribute("person");
+    ArrayList<Tag> tagsToAttach = (ArrayList<Tag>) request.getAttribute("tagsToAttach");
     ArrayList<Level> levels = (ArrayList<Level>) request.getAttribute("levels");
     Skill skill = (Skill) request.getAttribute("skill");
 
@@ -20,16 +22,16 @@
         <input name="person_id" type="hidden" value="<%= person.getId() %>" />
         <div class="row">
             <div class="input-field col s12 m6">
-                <select name="tag">
+                <select name="tag_id">
                     <option value="" disabled selected>Selecione</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
+                    <% for(Tag tag : tagsToAttach){ %>
+                    <option value="<%= tag.getId() %>"><%= tag.getName() %></option>
+                    <% } %>
                 </select>
                 <label for="tag">Tag</label>
             </div>
             <div class="input-field col s12 m6">
-                <select name="level">
+                <select name="level_id">
                     <option value="" disabled selected>Selecione</option>
                     <% for(Level level : levels){ %>
                     <option value="<%= level.getId() %>"><%= level.getName() %></option>

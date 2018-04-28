@@ -1,6 +1,7 @@
 package br.feevale.dao;
 
 import br.feevale.http.validator.Unique;
+import br.feevale.model.Person;
 import br.feevale.model.Tag;
 
 import java.sql.PreparedStatement;
@@ -297,6 +298,33 @@ public class TagDAO extends DAO implements Unique{
             System.out.println("-------");
             throw new RuntimeException(exception);
         }
+    }
+
+    public ArrayList<Tag> tagsToAttach(Person person){
+        String sql = "select id, name, tag_id, level, path from tag_tree where id not in (select tag_id from skills where person_id = ?)";
+        ArrayList<Tag> tags = new ArrayList<Tag>();
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setLong(1, person.getId());
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Tag tagResult = new Tag();
+                tagResult.setId(rs.getLong("id"));
+                tagResult.setName(rs.getString("name"));
+
+                tags.add(tagResult);
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException exception) {
+            System.out.println("-------");
+            System.out.println(exception.getMessage());
+            System.out.println("-------");
+            throw new RuntimeException(exception);
+        }
+        return tags;
     }
 
 }
