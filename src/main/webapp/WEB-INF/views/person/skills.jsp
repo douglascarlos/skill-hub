@@ -5,12 +5,15 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="br.feevale.model.Level" %>
 <%@ page import="br.feevale.model.Tag" %>
+<%@ page import="com.google.gson.Gson" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Person person = (Person) request.getAttribute("person");
     ArrayList<Tag> tagsToAttach = (ArrayList<Tag>) request.getAttribute("tagsToAttach");
     ArrayList<Level> levels = (ArrayList<Level>) request.getAttribute("levels");
     Skill skill = (Skill) request.getAttribute("skill");
+
+    String jsonTagsToAttach = new Gson().toJson(tagsToAttach);
 
     Map<String, String> input = (Map) request.getAttribute("input");
     List<String> errors = (List) request.getAttribute("errors");
@@ -21,24 +24,25 @@
         <input name="id" type="hidden" value="<%= skill.exists() ? skill.getId() : "" %>" />
         <input name="person_id" type="hidden" value="<%= person.getId() %>" />
         <div class="row">
-            <div class="input-field col s12 m6">
-                <select name="tag_id">
-                    <option value="" disabled selected>Selecione</option>
-                    <% for(Tag tag : tagsToAttach){ %>
-                    <option value="<%= tag.getId() %>"><%= tag.getName() %></option>
-                    <% } %>
-                </select>
-                <label for="tag">Tag</label>
+            <div class="input-field col s12 m9">
+                <input type="text" id="tag_name" class="autocomplete">
+                <label for="tag_name">Selecione uma tag</label>
             </div>
-            <div class="input-field col s12 m6">
-                <select name="level_id">
-                    <option value="" disabled selected>Selecione</option>
-                    <% for(Level level : levels){ %>
-                    <option value="<%= level.getId() %>"><%= level.getName() %></option>
-                    <% } %>
-                </select>
-                <label for="level">Nível</label>
+            <div class="input-field col s12 m3">
+                <input type="text" id="tag_id" value="">
+                <label for="tag_id">Tag ID</label>
             </div>
+            <div class="input-field col s12 m2">
+                <label>Selecione o nível</label>
+            </div>
+            <% for(Level level : levels){ %>
+            <div class="input-field col s12 m2">
+                <label>
+                    <input class="with-gap" name="level_id" type="radio" value="<%= level.getId() %>" checked="checked" />
+                    <span><%= level.getName() %></span>
+                </label>
+            </div>
+            <% } %>
         </div>
         <div class="row">
             <button class="btn waves-effect waves-light right" type="submit">
@@ -53,3 +57,41 @@
 <div class="row">
     lista de skills
 </div>
+<script type="text/javascript">
+    var tagName = $('#tag_name').val();
+
+    var tags = <%= jsonTagsToAttach %>;
+    console.log(tags);
+
+    var data = {
+        "Laravel": null,
+        "Phalcon": null,
+        "CakePHP": null,
+        "CodeIgniter": null,
+    };
+
+    $('input.autocomplete').autocomplete({
+        data: data,
+        onAutocomplete: function(selected){
+            tagName = selected;
+            selectTag(selected);
+        },
+        minLength: 2
+    });
+
+    $('input.autocomplete').focusout(function(){
+        if(this.value != tagName){
+            $('#tag_id').val('');
+            $('#tag_name').val('');
+        }
+    });
+
+    function selectTag(selected){
+        tags.forEach(function(current, index){
+            if(current.name == selected){
+                console.log(current);
+                $('#tag_id').val(current.id);
+            }
+        });
+    }
+</script>
