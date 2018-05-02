@@ -5,6 +5,9 @@ public abstract class Model {
     private long id;
     private String name;
 
+    /**
+     * TODO: extrair classe ModelWithName, pois há Model que não exige name. Ex: Skill
+     */
     public Model(){
 
     }

@@ -14,12 +14,12 @@
 <div class="row">
     <ul class="tabs">
         <li class="tab col s6"><a href="#general-data">Dados Gerais</a></li>
-        <li class="tab col s6 <%= isCreate ? "disabled" : "" %>"><a href="#attach-tags">Tags</a></li>
+        <li class="tab col s6 <%= isCreate ? "disabled" : "" %>"><a href="#skills">Competências</a></li>
     </ul>
     <div id="general-data" class="col s12 tab-content">
         <jsp:include page="./general-data.jsp" />
     </div>
-    <div id="attach-tags" class="col s12 tab-content">
+    <div id="skills" class="col s12 tab-content">
         <% if(!isCreate){ %>
         <jsp:include page="skills.jsp" />
         <% } %>

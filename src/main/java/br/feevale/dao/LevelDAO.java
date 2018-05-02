@@ -37,4 +37,39 @@ public class LevelDAO extends DAO {
         return levels;
     }
 
+    public Level find(long id){
+        String sql = "SELECT id, name, ordination, weight FROM levels WHERE id = ?";
+
+        Level level;
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setLong(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            level = new Level();
+
+            while (rs.next()) {
+                level.setId(rs.getLong("id"));
+                level.setName(rs.getString("name"));
+                level.setOrdination(rs.getInt("ordination"));
+                level.setWeight(rs.getInt("weight"));
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException exception) {
+            System.out.println("-------");
+            System.out.println(exception.getMessage());
+            System.out.println("-------");
+            throw new RuntimeException(exception);
+        }
+
+        if(level.getId() == 0){
+            throw new RuntimeException("Nível não encontrado.");
+        }
+
+        return level;
+    }
+
 }

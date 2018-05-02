@@ -19,7 +19,7 @@
 %>
 <div class="row">
     <form action="/skill?action=Save" method="post">
-        <input name="id" type="hidden" value="<%= skill.exists() ? skill.getId() : "" %>" />
+        <input name="skill_id" type="hidden" value="<%= skill.exists() ? skill.getId() : "" %>" />
         <input name="person_id" type="hidden" value="<%= person.getId() %>" />
         <div class="row">
             <div class="input-field col s12 m9">
@@ -27,7 +27,7 @@
                 <label for="tag_name">Selecione uma tag</label>
             </div>
             <div class="input-field col s12 m3">
-                <input type="text" id="tag_id" value="">
+                <input type="text" name="tag_id" id="tag_id" value="">
                 <label for="tag_id">Tag ID</label>
             </div>
             <div class="input-field col s12 m2">
