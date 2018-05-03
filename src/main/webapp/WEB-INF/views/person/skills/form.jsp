@@ -23,20 +23,36 @@
         <input name="person_id" type="hidden" value="<%= person.getId() %>" />
         <div class="row">
             <div class="input-field col s12 m9">
-                <input type="text" id="tag_name" class="autocomplete">
-                <label for="tag_name">Selecione uma tag</label>
+                <input required minlength="3" type="text" name="tag_name" id="tag_name" <%= skill.exists() ? "disabled='disabled'" : "class='validate autocomplete'"%> value="<%= requestInvalid ? input.get("tag_name") : skill.exists() ? skill.getTag().getName() : "" %>">
+                <label for="tag_name"><%= skill.exists() ? "Tag" : "Selecione uma tag" %></label>
             </div>
             <div class="input-field col s12 m3">
-                <input type="text" name="tag_id" id="tag_id" value="">
+                <input type="text" name="tag_id" id="tag_id" value="<%= requestInvalid ? input.get("tag_id") : skill.exists() ? skill.getTag().getId() : "" %>">
                 <label for="tag_id">Tag ID</label>
             </div>
             <div class="input-field col s12 m2">
                 <label>Selecione o nível</label>
             </div>
-            <% for(Level level : levels){ %>
+            <%
+            boolean firstChecked = true;
+            for(Level level : levels){
+                boolean isChecked = false;
+                if(requestInvalid){
+                    if(input.get("level_id").equals(level.getId())){
+                        isChecked = true;
+                    }
+                }else if(skill.exists()){
+                    if(skill.getLevel().getId() == level.getId()){
+                        isChecked = true;
+                    }
+                }else if(firstChecked){
+                    isChecked = true;
+                    firstChecked = false;
+                }
+            %>
             <div class="input-field col s12 m2">
                 <label>
-                    <input class="with-gap" name="level_id" type="radio" value="<%= level.getId() %>" checked="checked" />
+                    <input required class="with-gap" name="level_id" type="radio" value="<%= level.getId() %>" <%= isChecked ? "checked='checked'" : "" %> />
                     <span><%= level.getName() %></span>
                 </label>
             </div>
@@ -46,8 +62,8 @@
             <button class="btn waves-effect waves-light right" type="submit">
                 Salvar<i class="material-icons right">send</i>
             </button>
-            <a href="/person" class="btn waves-effect waves-light right btn-mr">
-                Voltar<i class="material-icons right">arrow_back</i>
+            <a href="/person?action=Edit&id=<%= person.getId() %>&cancel=true" class="btn waves-effect waves-light right btn-mr">
+                Cancelar<i class="material-icons right">cancel</i>
             </a>
         </div>
     </form>

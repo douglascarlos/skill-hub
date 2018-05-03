@@ -32,6 +32,7 @@ public class SaveSkillFilter implements Filter {
             attributes.add("skill_id");
             attributes.add("person_id");
             attributes.add("tag_id");
+            attributes.add("tag_name");
             attributes.add("level_id");
 
             Map<String, String> input = RequestToMap.getInstance().map(servletRequest, attributes);

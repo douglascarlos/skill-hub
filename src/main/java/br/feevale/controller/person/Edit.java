@@ -3,6 +3,7 @@ package br.feevale.controller.person;
 import br.feevale.controller.Action;
 import br.feevale.dao.LevelDAO;
 import br.feevale.dao.PersonDAO;
+import br.feevale.dao.SkillDAO;
 import br.feevale.dao.TagDAO;
 import br.feevale.http.response.Forward;
 import br.feevale.http.response.Responder;
@@ -25,6 +26,12 @@ public class Edit implements Action {
         }
         long convertedInputId = Long.parseLong(inputId);
 
+        String inputSkillId = request.getParameter("skill_id");
+        long convertedInputSkillId = 0;
+        if(inputSkillId != null){
+            convertedInputSkillId = Long.parseLong(inputSkillId);
+        }
+
         PersonDAO personDAO= new PersonDAO();
         Person person = personDAO.find(convertedInputId);
 
@@ -35,6 +42,15 @@ public class Edit implements Action {
         ArrayList<Level> levels = levelDAO.list();
 
         Skill skill = new Skill();
+        boolean isEditSkill = convertedInputSkillId > 0 && !person.getSkills().isEmpty();
+        if(isEditSkill){
+            for(Skill skillFromPerson : person.getSkills()){
+                if(skillFromPerson.getId() == convertedInputSkillId){
+                    skill = skillFromPerson;
+
+                }
+            }
+        }
 
         request.setAttribute("person", person);
         request.setAttribute("tagsToAttach", tagsToAttach);

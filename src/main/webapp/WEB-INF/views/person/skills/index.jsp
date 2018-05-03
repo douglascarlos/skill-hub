@@ -22,7 +22,7 @@
             <td class="center-align">
                 <i class="material-icons dropdown-trigger pointer" data-target='dropdown_action_<%= skill.getId() %>'>more_horiz</i>
                 <ul id='dropdown_action_<%= skill.getId() %>' class='dropdown-content'>
-                    <li><a href="/project?action=Edit&id=<%= skill.getId() %>">Editar</a></li>
+                    <li><a href="/person?action=Edit&id=<%= person.getId() %>&skill_id=<%= skill.getId() %>">Editar</a></li>
                     <li><a href="#modal_delete_<%= skill.getId() %>" class="modal-trigger">Excluir</a></li>
                 </ul>
             </td>
@@ -46,3 +46,8 @@
     <div class="card-panel blue lighten-4 blue-text"><strong>Não há competências.</strong></div>
 </div>
 <% } %>
+<div class="row">
+    <a href="/person" class="btn waves-effect waves-light right btn-mr">
+        Voltar<i class="material-icons right">arrow_back</i>
+    </a>
+</div>
