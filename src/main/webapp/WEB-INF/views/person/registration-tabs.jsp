@@ -17,11 +17,12 @@
         <li class="tab col s6 <%= isCreate ? "disabled" : "" %>"><a href="#skills">Competências</a></li>
     </ul>
     <div id="general-data" class="col s12 tab-content">
-        <jsp:include page="./general-data.jsp" />
+        <jsp:include page="./general-data/form.jsp" />
     </div>
     <div id="skills" class="col s12 tab-content">
         <% if(!isCreate){ %>
-        <jsp:include page="skills.jsp" />
+        <jsp:include page="./skills/form.jsp" />
+        <jsp:include page="./skills/index.jsp" />
         <% } %>
     </div>
 </div>

@@ -52,7 +52,6 @@
         </div>
     </form>
 </div>
-<jsp:include page="./skills/index.jsp" />
 <script type="text/javascript">
     var tagName = $('#tag_name').val();
 
