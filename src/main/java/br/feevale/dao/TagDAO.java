@@ -301,7 +301,7 @@ public class TagDAO extends DAO implements Unique{
     }
 
     public ArrayList<Tag> tagsToAttach(Person person){
-        String sql = "select id, name, tag_id, level, path from tag_tree where id not in (select tag_id from skills where person_id = ?)";
+        String sql = "select id, name, tag_id, level, path from tag_tree where id not in (select tag_id from skills where deleted_at is null and person_id = ?)";
         ArrayList<Tag> tags = new ArrayList<Tag>();
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);

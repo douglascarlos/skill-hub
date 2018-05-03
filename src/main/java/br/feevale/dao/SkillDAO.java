@@ -112,4 +112,24 @@ public class SkillDAO extends DAO {
         }
     }
 
+    public void delete(Skill skill) {
+        String sql = "" +
+                "UPDATE skills SET " +
+                "deleted_at = CURRENT_TIMESTAMP " +
+                "WHERE id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+
+            stmt.setLong(1, skill.getId());
+
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException exception) {
+            System.out.println("-------");
+            System.out.println(exception.getMessage());
+            System.out.println("-------");
+            throw new RuntimeException(exception);
+        }
+    }
+
 }

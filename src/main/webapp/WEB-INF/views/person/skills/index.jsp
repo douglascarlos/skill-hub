@@ -29,11 +29,11 @@
         </tr>
         <div id="modal_delete_<%= skill.getId() %>" class="modal">
             <div class="modal-content">
-                <p>Você tem certeza que deseja <strong>excluir</strong> este projeto do sistema?</p>
+                <p>Você tem certeza que deseja <strong>excluir</strong> esta competência da pessoa <%= person.getName() %>?</p>
             </div>
             <div class="modal-footer">
                 <button class="btn modal-action modal-close waves-effect waves-red btn-mr">Cancelar<i class="material-icons right">cancel</i></button>
-                <a href="/project?action=Delete&id=<%= skill.getId() %>" class="btn modal-action modal-close waves-effect waves-green">Confirmar<i class="material-icons right">check</i></a>
+                <a href="/skill?action=Delete&skill_id=<%= skill.getId() %>&person_id=<%= person.getId() %>" class="btn modal-action modal-close waves-effect waves-green">Confirmar<i class="material-icons right">check</i></a>
             </div>
         </div>
         <% } %>
