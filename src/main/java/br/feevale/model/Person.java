@@ -42,4 +42,14 @@ public class Person extends Model {
     public String getEnrollmentNumberFormatted(){
         return Formatter.paddingLeft(this.enrollmentNumber, 7, "0");
     }
+
+    public Skill getSkillById(long id){
+        Skill skill = null;
+        for(Skill skillFromPerson : this.getSkills()){
+            if(skillFromPerson.getId() == id){
+                skill = skillFromPerson;
+            }
+        }
+        return skill;
+    }
 }

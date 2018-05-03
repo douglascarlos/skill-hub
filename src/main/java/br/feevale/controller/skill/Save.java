@@ -45,9 +45,9 @@ public class Save implements Action{
         SkillDAO skillDAO = new SkillDAO();
         Skill skill = new Skill();
 
-//        if(convertedInputId > 0){
-//            skill = skillDAO.find(convertedInputId);
-//        }
+        if(convertedInputId > 0){
+            skill = person.getSkillById(convertedInputId);
+        }
 
         skill.setPerson(person);
         skill.setTag(tag);

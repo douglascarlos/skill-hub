@@ -44,12 +44,7 @@ public class Edit implements Action {
         Skill skill = new Skill();
         boolean isEditSkill = convertedInputSkillId > 0 && !person.getSkills().isEmpty();
         if(isEditSkill){
-            for(Skill skillFromPerson : person.getSkills()){
-                if(skillFromPerson.getId() == convertedInputSkillId){
-                    skill = skillFromPerson;
-
-                }
-            }
+            skill = person.getSkillById(convertedInputSkillId);
         }
 
         request.setAttribute("person", person);

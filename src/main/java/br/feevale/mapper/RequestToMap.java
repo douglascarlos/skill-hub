@@ -17,7 +17,11 @@ public class RequestToMap implements Mapper {
         Map<String, String> input = new HashMap();
 
         for (int index=0; index<attributes.size(); index++){
-            input.put(attributes.get(index), Charset.toIso88591(request.getParameter(attributes.get(index))));
+            if(request.getParameter(attributes.get(index)) instanceof String){
+                input.put(attributes.get(index), Charset.toIso88591(request.getParameter(attributes.get(index))));
+            }else{
+                input.put(attributes.get(index), "");
+            }
         }
 
         return input;
