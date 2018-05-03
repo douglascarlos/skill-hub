@@ -25,7 +25,6 @@ public class SaveSkillFilter implements Filter {
         String action = servletRequest.getParameter("action");
         boolean isSaveAction = action instanceof String && action.equals("Save");
         if (isSaveAction) {
-            System.out.println("1");
             HttpServletRequest request = (HttpServletRequest) servletRequest;
             HttpServletResponse response = (HttpServletResponse) servletResponse;
 
@@ -34,18 +33,17 @@ public class SaveSkillFilter implements Filter {
             attributes.add("person_id");
             attributes.add("tag_id");
             attributes.add("level_id");
-            System.out.println("2");
+
             Map<String, String> input = RequestToMap.getInstance().map(servletRequest, attributes);
             ValidatorForm validator = SaveSkillValidator.getInstance();
-            System.out.println("3");
+
             if (validator.validate(input)) {
-                System.out.println("4");
                 request.getSession().setAttribute("errors", validator.getErrors());
                 request.getSession().setAttribute("input", input);
 
                 String actionToRedirect = input.get("skill_id").isEmpty() ? "" : "&skill_id=" + input.get("skill_id");
                 Redirect redirect = new Redirect("/person?action=Edit&id=" + input.get("person_id") + actionToRedirect);
-                System.out.println("5");
+
                 redirect.setContextPath(servletRequest.getServletContext().getContextPath());
                 redirect.execute(request, response);
                 return;

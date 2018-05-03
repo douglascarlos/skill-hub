@@ -10,6 +10,13 @@ import java.util.ArrayList;
 
 public class PersonDAO extends DAO implements Unique {
 
+    private SkillDAO skillDAO;
+
+    public PersonDAO(){
+        super();
+        this.skillDAO = new SkillDAO();
+    }
+
     public ArrayList<Person> list() {
         String sql = "SELECT id, name, email, enrollment_number FROM people WHERE deleted_at IS NULL";
         ArrayList<Person> people = new ArrayList<Person>();
@@ -79,6 +86,10 @@ public class PersonDAO extends DAO implements Unique {
     }
 
     public Person find(long id) {
+        return this.find(id, true);
+    }
+
+    private Person find(long id, boolean withSkills) {
         String sql = "SELECT id, name, email, enrollment_number FROM people WHERE deleted_at IS NULL AND id = ?";
 
         Person person;
@@ -95,6 +106,9 @@ public class PersonDAO extends DAO implements Unique {
                 person.setName(rs.getString("name"));
                 person.setEmail(rs.getString("email"));
                 person.setEnrollmentNumber(rs.getInt("enrollment_number"));
+                if(withSkills){
+                    person.setSkills(this.skillDAO.listByPerson(person));
+                }
             }
 
             rs.close();

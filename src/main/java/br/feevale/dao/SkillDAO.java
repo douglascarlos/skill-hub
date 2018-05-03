@@ -9,9 +9,55 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class SkillDAO extends DAO {
+
+    public List<Skill> listByPerson(Person person){
+        String sql = "SELECT s.id, s.tag_id, t.name as tag_name, s.level_id, l.name as level_name, l.ordination, l.weight " +
+                "FROM skills s " +
+                "LEFT JOIN tags t ON t.id = s.tag_id " +
+                "LEFT JOIN levels l ON l.id = s.level_id " +
+                "WHERE s.deleted_at IS NULL AND s.person_id = ? " +
+                "ORDER BY l.weight desc";
+        ArrayList<Skill> skills = new ArrayList<Skill>();
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setLong(1, person.getId());
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Skill skill = new Skill();
+                skill.setId(rs.getLong("id"));
+
+                Tag tag = new Tag();
+                tag.setId(rs.getLong("tag_id"));
+                tag.setName(rs.getString("tag_name"));
+
+                Level level = new Level();
+                level.setId(rs.getLong("level_id"));
+                level.setName(rs.getString("level_name"));
+                level.setWeight(rs.getInt("weight"));
+                level.setOrdination(rs.getInt("ordination"));
+
+                skill.setTag(tag);
+                skill.setLevel(level);
+                skill.setPerson(person);
+
+                skills.add(skill);
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException exception) {
+            System.out.println("-------");
+            System.out.println(exception.getMessage());
+            System.out.println("-------");
+            throw new RuntimeException(exception);
+        }
+        return skills;
+    }
 
     public void save(Skill skill) {
         if (skill.getId() > 0) {

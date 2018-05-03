@@ -40,9 +40,6 @@ public class Edit implements Action {
         request.setAttribute("tagsToAttach", tagsToAttach);
         request.setAttribute("levels", levels);
         request.setAttribute("skill", skill);
-        //set levels
-        //set tag to attach
-        //set person with skills
 
         controller.withSession(request, "errors");
         controller.withSession(request, "input");

@@ -52,9 +52,7 @@
         </div>
     </form>
 </div>
-<div class="row">
-    lista de skills
-</div>
+<jsp:include page="./skills/index.jsp" />
 <script type="text/javascript">
     var tagName = $('#tag_name').val();
 
