@@ -57,7 +57,7 @@ public class Save implements Action{
 
         controller.setSession(request, "successMessage", "Competência salva com sucesso.");
 
-        return new Redirect("/person");
+        return new Redirect("/person?action=Edit&id=" + person.getId() + "&saveSkill=true");
     }
 
 }

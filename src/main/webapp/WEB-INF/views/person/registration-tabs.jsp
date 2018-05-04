@@ -9,7 +9,8 @@
     Skill skill = (Skill) request.getAttribute("skill");
     boolean isEditSkill = skill instanceof Skill && skill.exists();
     boolean cancelSkill = request.getParameter("cancel") instanceof String && request.getParameter("cancel").equals("true");
-    boolean shouldActiveSkills = isEditSkill || cancelSkill;
+    boolean saveSkill = request.getParameter("saveSkill") instanceof String && request.getParameter("saveSkill").equals("true");
+    boolean shouldActiveSkills = isEditSkill || cancelSkill || saveSkill;
 %>
 <jsp:include page="../layout/header.jsp" />
 <div class="section">

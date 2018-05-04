@@ -38,7 +38,7 @@ public class Delete implements Action {
         String message = "Competência excluída com sucesso.";
         controller.setSession(request, "successMessage", message);
 
-        return new Redirect("/person");
+        return new Redirect("/person?action=Edit&id=" + person.getId() + "&saveSkill=true");
     }
 
 }

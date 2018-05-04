@@ -54,6 +54,7 @@ public class Edit implements Action {
 
         controller.withSession(request, "errors");
         controller.withSession(request, "input");
+        controller.withSession(request, "successMessage");
 
         return new Forward("/WEB-INF/views/person/registration-tabs.jsp");
     }
