@@ -22,13 +22,10 @@
         <input name="skill_id" type="hidden" value="<%= skill.exists() ? skill.getId() : "" %>" />
         <input name="person_id" type="hidden" value="<%= person.getId() %>" />
         <div class="row">
-            <div class="input-field col s12 m9">
+            <div class="input-field col s12 m12">
                 <input required minlength="3" type="text" name="tag_name" id="tag_name" <%= skill.exists() ? "disabled='disabled'" : "class='validate autocomplete'"%> value="<%= requestInvalid ? input.get("tag_name") : skill.exists() ? skill.getTag().getName() : "" %>">
+                <input type="hidden" name="tag_id" id="tag_id" value="<%= requestInvalid ? input.get("tag_id") : skill.exists() ? skill.getTag().getId() : "" %>">
                 <label for="tag_name"><%= skill.exists() ? "Tag" : "Selecione uma tag" %></label>
-            </div>
-            <div class="input-field col s12 m3">
-                <input type="text" name="tag_id" id="tag_id" value="<%= requestInvalid ? input.get("tag_id") : skill.exists() ? skill.getTag().getId() : "" %>">
-                <label for="tag_id">Tag ID</label>
             </div>
             <div class="input-field col s12 m2">
                 <label>Selecione o nível</label>
