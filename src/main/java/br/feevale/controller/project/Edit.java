@@ -27,7 +27,7 @@ public class Edit implements Action {
         controller.withSession(request, "errors");
         controller.withSession(request, "input");
 
-        return new Forward("/WEB-INF/views/project/general-data.jsp");
+        return new Forward("/WEB-INF/views/project/registration-tabs.jsp");
     }
 
 }

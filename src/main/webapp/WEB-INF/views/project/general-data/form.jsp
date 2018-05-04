@@ -4,16 +4,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Project project = (Project) request.getAttribute("project");
-
+    
     Map<String, String> input = (Map) request.getAttribute("input");
     List<String> errors = (List) request.getAttribute("errors");
     boolean requestInvalid = errors != null && !errors.isEmpty();
 %>
-<jsp:include page="../layout/header.jsp" />
-<div class="section">
-    <h5><%= project.exists() ? "Editar" : "Criar" %> Projeto</h5>
-</div>
-<jsp:include page="../layout/messages/messages.jsp" />
 <div class="row">
     <form action="/project?action=Save" method="post">
         <input name="id" type="hidden" value="<%= project.exists() ? project.getId() : "" %>" />
@@ -39,4 +34,3 @@
         </div>
     </form>
 </div>
-<jsp:include page="../layout/footer.jsp" />
