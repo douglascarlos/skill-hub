@@ -76,7 +76,6 @@
         "<%= tag.getName() %>": null,
         <% } %>
     };
-    console.log(data)
 
     $('input.autocomplete').autocomplete({
         data: data,
@@ -97,7 +96,6 @@
     function selectTag(selected){
         tags.forEach(function(current, index){
             if(current.name == selected){
-                console.log(current);
                 $('#tag_id').val(current.id);
             }
         });
