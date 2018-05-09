@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Project project = (Project) request.getAttribute("project");
-    
+
     Map<String, String> input = (Map) request.getAttribute("input");
     List<String> errors = (List) request.getAttribute("errors");
     boolean requestInvalid = errors != null && !errors.isEmpty();

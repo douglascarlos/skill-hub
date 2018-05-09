@@ -10,6 +10,13 @@ import java.util.ArrayList;
 
 public class ProjectDAO extends DAO implements Unique {
 
+    private MemberDAO memberDAO;
+
+    public ProjectDAO(){
+        super();
+        this.memberDAO = new MemberDAO();
+    }
+
     public ArrayList<Project> list() {
         String sql = "SELECT id, name, description FROM projects WHERE deleted_at IS NULL";
         ArrayList<Project> projects = new ArrayList<Project>();
@@ -77,6 +84,10 @@ public class ProjectDAO extends DAO implements Unique {
     }
 
     public Project find(long id) {
+        return this.find(id, true);
+    }
+
+    public Project find(long id, boolean withMembers) {
         String sql = "SELECT id, name, description FROM projects WHERE deleted_at IS NULL AND id = ?";
 
         Project project;
@@ -92,6 +103,9 @@ public class ProjectDAO extends DAO implements Unique {
                 project.setId(rs.getLong("id"));
                 project.setName(rs.getString("name"));
                 project.setDescription(rs.getString("description"));
+                if(withMembers){
+                    project.setMembers(this.memberDAO.listByProject(project));
+                }
             }
 
             rs.close();

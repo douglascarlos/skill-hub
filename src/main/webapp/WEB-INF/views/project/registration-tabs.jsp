@@ -26,7 +26,7 @@
     </div>
     <div id="members" class="col s12 tab-content">
         <% if(!isCreate){ %>
-        lista de membros
+        <jsp:include page="./members/index.jsp" />
         <% } %>
     </div>
 </div>
