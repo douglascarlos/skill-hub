@@ -4,6 +4,11 @@
 <%
     Project project = (Project) request.getAttribute("project");
 %>
+<div class="row">
+    <a href="/member?action=Create&project_id=<%= project.getId() %>" class="btn waves-effect waves-light right btn-mr">
+        Novo Membro<i class="material-icons right">add</i>
+    </a>
+</div>
 <% if(!project.getMembers().isEmpty()){ %>
 <div class="row">
     <table class="responsive-table highlight">
