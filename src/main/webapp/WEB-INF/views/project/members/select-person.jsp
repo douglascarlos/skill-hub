@@ -33,43 +33,47 @@
         </div>
     </form>
 </div>
-<% if(!people.isEmpty()){ %>
-<div class="row">
-    <table class="responsive-table highlight">
-        <thead>
-        <tr>
-            <th>Matricula</th>
-            <th>Nome</th>
-            <th class="center-align">Selecionar</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% for(Person person : people){ %>
-        <tr>
-            <td><%= person.getEnrollmentNumberFormatted() %></td>
-            <td><%= person.getName() %></td>
-            <td class="center-align">
-                <label>
-                    <input class="with-gap" name="person_id" type="radio"  />
-                    <span></span>
-                </label>
-            </td>
-        </tr>
-        <% } %>
-        </tbody>
-    </table>
-</div>
-<% }else{ %>
-<div class="row">
-    <div class="card-panel blue lighten-4 blue-text"><strong>Não há pessoas para selecionar.</strong></div>
-</div>
-<% } %>
-<div class="row">
-    <button class="btn waves-effect waves-light right" type="submit">
-        Avançar<i class="material-icons right">send</i>
-    </button>
-    <a href="/project?action=Edit&id=<%= project.getId() %>#members" class="btn waves-effect waves-light right btn-mr">
-        Voltar<i class="material-icons right">arrow_back</i>
-    </a>
-</div>
+<form action="/member" method="get">
+    <input type="hidden" name="action" value="SelectPerson">
+    <input type="hidden" name="project_id" value="<%= project.getId() %>">
+    <% if(!people.isEmpty()){ %>
+    <div class="row">
+        <table class="responsive-table highlight">
+            <thead>
+            <tr>
+                <th>Matricula</th>
+                <th>Nome</th>
+                <th class="center-align">Selecionar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% for(Person person : people){ %>
+            <tr>
+                <td><%= person.getEnrollmentNumberFormatted() %></td>
+                <td><%= person.getName() %></td>
+                <td class="center-align">
+                    <label>
+                        <input class="with-gap" name="person_id" type="radio" value="<%= person.getId() %>"  />
+                        <span></span>
+                    </label>
+                </td>
+            </tr>
+            <% } %>
+            </tbody>
+        </table>
+    </div>
+    <% }else{ %>
+    <div class="row">
+        <div class="card-panel blue lighten-4 blue-text"><strong>Não há pessoas para selecionar.</strong></div>
+    </div>
+    <% } %>
+    <div class="row">
+        <button class="btn waves-effect waves-light right" type="submit">
+            Avançar<i class="material-icons right">send</i>
+        </button>
+        <a href="/project?action=Edit&id=<%= project.getId() %>#members" class="btn waves-effect waves-light right btn-mr">
+            Voltar<i class="material-icons right">arrow_back</i>
+        </a>
+    </div>
+</form>
 <jsp:include page="../../layout/footer.jsp" />
