@@ -49,7 +49,8 @@ public class PersonDAO extends DAO implements Unique {
         String sql = "" +
                 "SELECT id, name, email, enrollment_number " +
                 "FROM people " +
-                "WHERE deleted_at IS NULL AND UPPER(name) like '%" + name.toUpperCase() + "%' " +
+                "WHERE deleted_at IS NULL " +
+                "AND UPPER(name) like '%" + name.toUpperCase() + "%' " +
                 "ORDER BY name";
         ArrayList<Person> people = new ArrayList<Person>();
         try {

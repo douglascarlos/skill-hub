@@ -5,30 +5,49 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Project project = (Project) request.getAttribute("project");
-    ArrayList<Person> peopleToAttach = (ArrayList<Person>) request.getAttribute("peopleToAttach");
+    String name = (String) request.getAttribute("name");
+    ArrayList<Person> people = (ArrayList<Person>) request.getAttribute("people");
 %>
 <jsp:include page="../../layout/header.jsp" />
 <div class="section">
     <h5>Selecionar novo membro do projeto <%= project.getName() %></h5>
 </div>
 <jsp:include page="../../layout/messages/messages.jsp" />
-<% if(!peopleToAttach.isEmpty()){ %>
+<div class="row">
+    <form action="/member" method="get">
+        <input type="hidden" name="action" value="Create">
+        <input type="hidden" name="project_id" value="<%= project.getId() %>">
+        <div class="row">
+            <div class="input-field col s12">
+                <input name="name" id="name" type="text" class="validate" value="<%= name %>">
+                <label for="name">Nome</label>
+            </div>
+        </div>
+        <div class="row">
+            <button class="btn waves-effect waves-light right" type="submit">
+                Buscar<i class="material-icons right">search</i>
+            </button>
+            <a href="/member?action=Create&project_id=<%= project.getId() %>" class="btn waves-effect waves-light right btn-mr">
+                Limpar<i class="material-icons right">clear_all</i>
+            </a>
+        </div>
+    </form>
+</div>
+<% if(!people.isEmpty()){ %>
 <div class="row">
     <table class="responsive-table highlight">
         <thead>
         <tr>
             <th>Matricula</th>
             <th>Nome</th>
-            <th>E-mail</th>
             <th class="center-align">Selecionar</th>
         </tr>
         </thead>
         <tbody>
-        <% for(Person person : peopleToAttach){ %>
+        <% for(Person person : people){ %>
         <tr>
             <td><%= person.getEnrollmentNumberFormatted() %></td>
             <td><%= person.getName() %></td>
-            <td><%= person.getEmail() %></td>
             <td class="center-align">
                 <label>
                     <input class="with-gap" name="person_id" type="radio"  />

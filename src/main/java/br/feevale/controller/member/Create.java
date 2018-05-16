@@ -24,14 +24,20 @@ public class Create implements Action {
         }
         long convertedInputId = Long.parseLong(inputId);
 
+        String name = request.getParameter("name");
+        if(name == null){
+            name = "";
+        }
+
         ProjectDAO dao = new ProjectDAO();
         Project project = dao.find(convertedInputId);
 
         PersonDAO personDAO = new PersonDAO();
-        ArrayList<Person> peopleToAttach = personDAO.list();
+        ArrayList<Person> people = personDAO.filterByName(name);
 
         request.setAttribute("project", project);
-        request.setAttribute("peopleToAttach", peopleToAttach);
+        request.setAttribute("name", name);
+        request.setAttribute("people", people);
 
         controller.withSession(request, "errors");
         controller.withSession(request, "input");
