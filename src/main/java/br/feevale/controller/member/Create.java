@@ -3,6 +3,7 @@ package br.feevale.controller.member;
 import br.feevale.controller.Action;
 import br.feevale.dao.PersonDAO;
 import br.feevale.dao.ProjectDAO;
+import br.feevale.helper.Charset;
 import br.feevale.http.response.Forward;
 import br.feevale.http.response.Responder;
 import br.feevale.http.servlet.Servlet;
@@ -13,6 +14,7 @@ import br.feevale.model.Project;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Create implements Action {
@@ -24,11 +26,22 @@ public class Create implements Action {
         }
         long convertedInputProjectId = Long.parseLong(inputProjectId);
 
+        String inputRole = Charset.toIso88591(request.getParameter("role"));
+
+        String inputStartDate = Charset.toIso88591(request.getParameter("start_date"));
+        LocalDate convertedStartDate = LocalDate.now();
+
+        String inputEndDate = Charset.toIso88591(request.getParameter("end_date"));
+        LocalDate convertedEndDate = LocalDate.now();
+
         ProjectDAO projectDAO = new ProjectDAO();
         Project project = projectDAO.find(convertedInputProjectId);
 
         Member member = new Member();
         member.setProject(project);
+        member.setRole(inputRole);
+        member.setStartDate(convertedStartDate);
+        member.setEndDate(convertedEndDate);
 
         request.setAttribute("member", member);
 

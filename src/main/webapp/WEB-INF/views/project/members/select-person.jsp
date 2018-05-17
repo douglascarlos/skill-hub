@@ -78,7 +78,7 @@
         <button class="btn waves-effect waves-light right" type="submit">
             Salvar<i class="material-icons right">send</i>
         </button>
-        <a href="/member?action=Create&project_id=<%= member.getProject().getId() %>" class="btn waves-effect waves-light right btn-mr">
+        <a href="/member?action=Create&project_id=<%= member.getProject().getId() %>&role=<%= member.getRole() %>&start_date=<%= member.getStartDateFormattedUrl() %>&end_date=<%= member.getEndDateFormattedUrl() %>" class="btn waves-effect waves-light right btn-mr">
             Voltar<i class="material-icons right">arrow_back</i>
         </a>
         <a href="/project?action=Edit&id=<%= member.getProject().getId() %>#members" class="btn waves-effect waves-light right btn-mr">
