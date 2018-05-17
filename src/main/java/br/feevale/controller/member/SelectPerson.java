@@ -35,12 +35,8 @@ public class SelectPerson implements Action {
         long convertedInputProjectId = Long.parseLong(inputProjectId);
 
         String inputRole = Charset.toIso88591( request.getParameter("role"));
-
         String inputStartDate = Charset.toIso88591(request.getParameter("start_date"));
-        LocalDate convertedStartDate = LocalDate.now();
-
         String inputEndDate = Charset.toIso88591(request.getParameter("end_date"));
-        LocalDate convertedEndDate = LocalDate.now();
 
         MemberDAO memberDAO = new MemberDAO();
         Member member = new Member();
@@ -55,8 +51,8 @@ public class SelectPerson implements Action {
 
         member.setProject(project);
         member.setRole(inputRole);
-        member.setStartDate(convertedStartDate);
-        member.setEndDate(convertedEndDate);
+        member.setStartDate(inputStartDate);
+        member.setEndDate(inputEndDate);
 
         if(member.exists()){
             System.out.println("==== ta editando");

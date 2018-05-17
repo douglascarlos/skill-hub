@@ -51,6 +51,13 @@ public class Member extends Model {
         this.startDate = LocalDate.of(startDate.getYear()+1900, startDate.getMonth()+1, startDate.getDate());
     }
 
+    public void setStartDate(String startDate) {
+        if(!startDate.isEmpty()){
+            DateTimeFormatter mask = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            this.startDate = LocalDate.parse(startDate, mask);
+        }
+    }
+
     public LocalDate getEndDate() {
         return endDate;
     }
@@ -61,6 +68,13 @@ public class Member extends Model {
 
     public void setEndDate(Date endDate) {
         this.endDate = LocalDate.of(endDate.getYear()+1900, endDate.getMonth()+1, endDate.getDate());
+    }
+
+    public void setEndDate(String endDate) {
+        if(!endDate.isEmpty()){
+            DateTimeFormatter mask = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            this.endDate = LocalDate.parse(endDate, mask);
+        }
     }
 
     public String getStartDateFormatted(){
