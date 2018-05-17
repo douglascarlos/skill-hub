@@ -18,31 +18,24 @@ import java.util.ArrayList;
 public class Create implements Action {
 
     public Responder execute(Servlet controller, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String inputId = request.getParameter("project_id");
-        if(inputId == null){
+        String inputProjectId = request.getParameter("project_id");
+        if(inputProjectId == null){
             throw new Exception("404");
         }
-        long convertedInputId = Long.parseLong(inputId);
+        long convertedInputProjectId = Long.parseLong(inputProjectId);
 
-        String name = request.getParameter("name");
-        if(name == null){
-            name = "";
-        }
+        ProjectDAO projectDAO = new ProjectDAO();
+        Project project = projectDAO.find(convertedInputProjectId);
 
-        ProjectDAO dao = new ProjectDAO();
-        Project project = dao.find(convertedInputId);
+        Member member = new Member();
+        member.setProject(project);
 
-        PersonDAO personDAO = new PersonDAO();
-        ArrayList<Person> people = personDAO.filterByName(name);
-
-        request.setAttribute("project", project);
-        request.setAttribute("name", name);
-        request.setAttribute("people", people);
+        request.setAttribute("member", member);
 
         controller.withSession(request, "errors");
         controller.withSession(request, "input");
 
-        return new Forward("/WEB-INF/views/project/members/select-person.jsp");
+        return new Forward("/WEB-INF/views/project/members/form.jsp");
     }
 
 }

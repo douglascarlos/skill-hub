@@ -17,20 +17,14 @@
 </div>
 <jsp:include page="../../layout/messages/messages.jsp" />
 <div class="row">
-    <form action="/member?action=Save" method="post">
+    <form action="/member" method="get">
+        <input type="hidden" name="action" value="SelectPerson">
         <input name="id" type="hidden" value="<%= member.exists() ? member.getId() : "" %>" />
         <input name="project_id" type="hidden" value="<%= member.getProject().exists() ? member.getProject().getId() : "" %>" />
-        <input name="person_id" type="hidden" value="<%= member.getPerson().exists() ? member.getPerson().getId() : "" %>" />
         <div class="row">
             <div class="input-field col s12 m12">
                 <input disabled id="project_name" type="text" value="<%= member.getProject().getName() %>">
                 <label for="project_name">Projeto</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12 m12">
-                <input disabled id="person_name" type="text" value="<%= member.getPerson().getName() %>">
-                <label for="person_name">Pessoa</label>
             </div>
         </div>
         <div class="row">
@@ -51,12 +45,13 @@
         </div>
         <div class="row">
             <button class="btn waves-effect waves-light right" type="submit">
-                Salvar<i class="material-icons right">send</i>
+                <% if(member.exists()) { %>
+                    Salvar<i class="material-icons right">send</i>
+                <% } else { %>
+                    Avançar<i class="material-icons right">send</i>
+                <% } %>
             </button>
-            <a href="#" class="btn waves-effect waves-light right btn-mr">
-                Cancelar<i class="material-icons right">cancel</i>
-            </a>
-            <a href="#" class="btn waves-effect waves-light right btn-mr">
+            <a href="/project?action=Edit&id=<%= member.getProject().getId() %>#members" class="btn waves-effect waves-light right btn-mr">
                 Voltar<i class="material-icons right">arrow_back</i>
             </a>
         </div>
