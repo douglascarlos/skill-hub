@@ -35,11 +35,11 @@
         </div>
         <div class="row">
             <div class="input-field col s12 m6">
-                <input name="start_date" id="start_date" type="text" required minlength="3" maxlength="255" class="validate" value="<%= requestInvalid ? input.get("start_date") : member.getStartDate() == null ? "" : member.getStartDateFormatted() %>">
+                <input name="start_date" id="start_date" type="text" required class="validate datepicker" value="<%= requestInvalid ? input.get("start_date") : member.getStartDate() == null ? "" : member.getStartDateFormatted() %>">
                 <label for="start_date">Início da participação</label>
             </div>
             <div class="input-field col s12 m6">
-                <input name="end_date" id="end_date" type="text" required minlength="3" maxlength="255" class="validate" value="<%= requestInvalid ? input.get("end_date") : member.getEndDate() == null ? "" : member.getEndDateFormatted() %>">
+                <input name="end_date" id="end_date" type="text" required class="validate datepicker" value="<%= requestInvalid ? input.get("end_date") : member.getEndDate() == null ? "" : member.getEndDateFormatted() %>">
                 <label for="end_date">Fim da participação</label>
             </div>
         </div>

@@ -2,7 +2,9 @@ $(document).ready(function(){
     $('.sidenav').sidenav();
     $('.dropdown-trigger').dropdown();
     $('select').formSelect();
-    $('.datepicker').datepicker();
+    $('.datepicker').datepicker({
+        format: "dd/mm/yyyy"
+    });
     $('.modal').modal();
     $('.fixed-action-btn').floatingActionButton();
     $('.tooltipped').tooltip();

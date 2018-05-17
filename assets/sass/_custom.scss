@@ -108,3 +108,62 @@ textarea.materialize-textarea {
 }
 
 
+
+//$datepicker-calendar-header-color: #999;
+//$datepicker-weekday-color: rgba(0, 0, 0, .87) !default;
+//$datepicker-weekday-bg: darken($secondary-color, 7%) !default;
+$datepicker-date-bg: $primary-color !default;
+//$datepicker-year: rgba(255, 255, 255, .7) !default;
+//$datepicker-focus: rgba(0,0,0, .05) !default;
+$datepicker-selected: $primary-color !default;
+$datepicker-selected-outfocus: desaturate(lighten($primary-color, 35%), 15%);
+$datepicker-day-focus: transparentize(desaturate($primary-color, 5%), .75);
+//$datepicker-disabled-day-color: rgba(0, 0, 0, .3) !default;
+
+//$timepicker-clock-color: rgba(0, 0, 0, .87) !default;
+//$timepicker-clock-plate-bg: #eee !default;
+
+/* Date Display */
+.datepicker-date-display {
+  background-color: $primary-color !important;
+
+  //.year-text {
+  //  color: $datepicker-year;
+  //}
+}
+
+.datepicker-table {
+  //abbr {
+  //  color: $datepicker-calendar-header-color;
+  //}
+
+  td {
+    &.is-today {
+      color: $primary-color !important;
+    }
+
+    &.is-selected {
+      background-color: $primary-color !important;
+      color: $secondary-color !important;
+    }
+
+    //&.is-outside-current-month,
+    //&.is-disabled {
+    //  color: $datepicker-disabled-day-color;
+    //}
+  }
+}
+
+.datepicker-day-button {
+  &:focus {
+    background-color: $datepicker-day-focus !important;
+    //background-color: $primary-color !important;
+  }
+}
+
+.datepicker-cancel,
+.datepicker-clear,
+.datepicker-today,
+.datepicker-done {
+  color: $secondary-color !important;
+}
