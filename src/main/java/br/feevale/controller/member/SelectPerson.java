@@ -58,7 +58,7 @@ public class SelectPerson implements Action {
             System.out.println("==== ta editando");
 //            memberDAO.save(member);
             controller.setSession(request, "successMessage", "Membro salvo com sucesso. (501)");
-            return new Redirect("/project?action=Edit&id=" + member.getProject().getId());
+            return new Redirect("/project?action=Edit&id=" + member.getProject().getId() + "#members");
         }else{
             String name = request.getParameter("name");
             if(name == null){

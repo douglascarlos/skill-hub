@@ -1,12 +1,16 @@
 package br.feevale.controller.member;
 
 import br.feevale.controller.Action;
+import br.feevale.dao.MemberDAO;
 import br.feevale.dao.PersonDAO;
+import br.feevale.dao.ProjectDAO;
 import br.feevale.helper.Charset;
 import br.feevale.http.response.Redirect;
 import br.feevale.http.response.Responder;
 import br.feevale.http.servlet.Servlet;
+import br.feevale.model.Member;
 import br.feevale.model.Person;
+import br.feevale.model.Project;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,8 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 public class Save implements Action{
 
     public Responder execute(Servlet controller, HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-        System.out.println("---- vamos salvar");
 
         String inputProjectId = request.getParameter("project_id");
         if(inputProjectId == null){
@@ -33,38 +35,25 @@ public class Save implements Action{
         }
         long convertedInputPersonId = Long.parseLong(inputPersonId);
 
-        System.out.println(convertedInputProjectId);
-        System.out.println(inputRole);
-        System.out.println(inputStartDate);
-        System.out.println(inputEndDate);
-        System.out.println(convertedInputPersonId);
+        MemberDAO memberDAO = new MemberDAO();
+        Member member = new Member();
 
-//        String inputId = request.getParameter("id");
-//        long convertedInputId = 0;
-//        if(!inputId.equals("")){
-//            convertedInputId = Long.parseLong(inputId);
-//        }
-//        String inputEnrollmentNumber = request.getParameter("enrollment_number");
-//        int convertedInputEnrollmentNumber = Integer.parseInt(inputEnrollmentNumber);
-//        String inputName = Charset.toIso88591( request.getParameter("name"));
-//        String inputEmail = Charset.toIso88591(request.getParameter("email"));
-//
-//        PersonDAO dao = new PersonDAO();
-//        Person person = new Person();
-//
-//        if(convertedInputId > 0){
-//            person = dao.find(convertedInputId);
-//        }
-//
-//        person.setEnrollmentNumber(convertedInputEnrollmentNumber);
-//        person.setName(inputName);
-//        person.setEmail(inputEmail);
-//
-//        dao.save(person);
-//
-//        controller.setSession(request, "successMessage", "Pessoa salva com sucesso.");
-//
-        return new Redirect("/project");
+        ProjectDAO projectDAO = new ProjectDAO();
+        Project project = projectDAO.find(convertedInputProjectId);
+
+        PersonDAO personDAO = new PersonDAO();
+        Person person = personDAO.find(convertedInputPersonId);
+
+        member.setProject(project);
+        member.setRole(inputRole);
+        member.setStartDate(inputStartDate);
+        member.setEndDate(inputEndDate);
+        member.setPerson(person);
+
+//        memberDAO.save(member);
+        controller.setSession(request, "successMessage", "Membro salvo com sucesso. (501)");
+
+        return new Redirect("/project?action=Edit&id=" + member.getProject().getId() + "#members");
     }
 
 }
