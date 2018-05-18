@@ -46,6 +46,9 @@ public class Save implements Action{
 
         ArrayList<Skill> skillsToAttach = new ArrayList<Skill>();
         String[] skillsInput = request.getParameterValues("skill_id[]");
+        if(skillsInput == null || skillsInput.length == 0){
+            throw new Exception("Deve ser selecionado um ou mais competências.");
+        }
         for(int index = 0; index < skillsInput.length; index++) {
             long convertedSkillId = Long.parseLong(skillsInput[index]);
             skillsToAttach.add(person.getSkillById(convertedSkillId));

@@ -29,20 +29,10 @@
             <td class="center-align">
                 <i class="material-icons dropdown-trigger pointer" data-target='dropdown_action_<%= member.getId() %>'>more_horiz</i>
                 <ul id='dropdown_action_<%= member.getId() %>' class='dropdown-content'>
-                    <li><a href="/member?action=Edit&id=<%= project.getId() %>&member_id=<%= member.getId() %>">Editar</a></li>
-                    <li><a href="#modal_delete_<%= member.getId() %>" class="modal-trigger">Excluir</a></li>
+                    <li><a href="/member?action=Edit&id=<%= member.getId() %>">Editar</a></li>
                 </ul>
             </td>
         </tr>
-        <div id="modal_delete_<%= member.getId() %>" class="modal">
-            <div class="modal-content">
-                <p>Você tem certeza que deseja <strong>excluir</strong> este membro?</p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn modal-action modal-close waves-effect waves-red btn-mr">Cancelar<i class="material-icons right">cancel</i></button>
-                <a href="/member?action=Delete&member_id=<%= member.getId() %>&project_id=<%= project.getId() %>" class="btn modal-action modal-close waves-effect waves-green">Confirmar<i class="material-icons right">check</i></a>
-            </div>
-        </div>
         <% } %>
 
         </tbody>
