@@ -3,6 +3,7 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="br.feevale.model.Person" %>
 <%@ page import="br.feevale.model.Member" %>
+<%@ page import="br.feevale.model.Skill" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Member member = (Member) request.getAttribute("member");
@@ -27,6 +28,26 @@
                 <label for="project_name">Projeto</label>
             </div>
         </div>
+        <% if(member.exists()){ %>
+        <div class="row">
+            <div class="input-field col s12 m12">
+                <input disabled id="person_name" type="text" value="<%= member.getPerson().getName() %>">
+                <label for="person_name">Pessoa</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12 m12">
+                <label for="role" class="active">Competências</label>
+                <div class="chips chips-initial input-field">
+                <% for(Skill skill : member.getSkills()){ %>
+                    <div class="chip" tabindex="0">
+                        <%= skill.getTag().getName() + " - " + skill.getLevel().getName() %>
+                    </div>
+                <% } %>
+                </div>
+            </div>
+        </div>
+        <% } %>
         <div class="row">
             <div class="input-field col s12 m12">
                 <input name="role" id="role" type="text" required minlength="3" maxlength="255" class="validate" value="<%= requestInvalid ? input.get("role") : member.getRole() == null ? "" : member.getRole() %>">

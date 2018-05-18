@@ -1,9 +1,6 @@
 package br.feevale.dao;
 
-import br.feevale.model.Skill;
-import br.feevale.model.Person;
-import br.feevale.model.Tag;
-import br.feevale.model.Level;
+import br.feevale.model.*;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -130,6 +127,99 @@ public class SkillDAO extends DAO {
             System.out.println("-------");
             throw new RuntimeException(exception);
         }
+    }
+
+    public List<Skill> listByProject(Project project){
+        String sql = "SELECT s.id, s.tag_id, t.name as tag_name, s.level_id, l.name as level_name, l.ordination, l.weight " +
+                "FROM skills s " +
+                "JOIN tags t ON t.id = s.tag_id " +
+                "JOIN levels l ON l.id = s.level_id " +
+                "JOIN member_skill ms ON ms.skill_id = s.id " +
+                "JOIN members m ON m.id = ms.member_id " +
+                "WHERE s.deleted_at IS NULL AND m.project_id = ? " +
+                "ORDER BY l.weight desc";
+        ArrayList<Skill> skills = new ArrayList<Skill>();
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setLong(1, project.getId());
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Skill skill = new Skill();
+                skill.setId(rs.getLong("id"));
+
+                Tag tag = new Tag();
+                tag.setId(rs.getLong("tag_id"));
+                tag.setName(rs.getString("tag_name"));
+
+                Level level = new Level();
+                level.setId(rs.getLong("level_id"));
+                level.setName(rs.getString("level_name"));
+                level.setWeight(rs.getInt("weight"));
+                level.setOrdination(rs.getInt("ordination"));
+
+                skill.setTag(tag);
+                skill.setLevel(level);
+                //skill.setPerson(person);
+
+                skills.add(skill);
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException exception) {
+            System.out.println("-------");
+            System.out.println(exception.getMessage());
+            System.out.println("-------");
+            throw new RuntimeException(exception);
+        }
+        return skills;
+    }
+
+    public List<Skill> listByMember(Member member){
+        String sql = "SELECT s.id, s.tag_id, t.name as tag_name, s.level_id, l.name as level_name, l.ordination, l.weight " +
+                "FROM skills s " +
+                "JOIN tags t ON t.id = s.tag_id " +
+                "JOIN levels l ON l.id = s.level_id " +
+                "JOIN member_skill ms ON ms.skill_id = s.id " +
+                "WHERE s.deleted_at IS NULL AND ms.member_id = ? " +
+                "ORDER BY l.weight desc";
+        ArrayList<Skill> skills = new ArrayList<Skill>();
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setLong(1, member.getId());
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Skill skill = new Skill();
+                skill.setId(rs.getLong("id"));
+
+                Tag tag = new Tag();
+                tag.setId(rs.getLong("tag_id"));
+                tag.setName(rs.getString("tag_name"));
+
+                Level level = new Level();
+                level.setId(rs.getLong("level_id"));
+                level.setName(rs.getString("level_name"));
+                level.setWeight(rs.getInt("weight"));
+                level.setOrdination(rs.getInt("ordination"));
+
+                skill.setTag(tag);
+                skill.setLevel(level);
+                //skill.setPerson(person);
+
+                skills.add(skill);
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException exception) {
+            System.out.println("-------");
+            System.out.println(exception.getMessage());
+            System.out.println("-------");
+            throw new RuntimeException(exception);
+        }
+        return skills;
     }
 
 }

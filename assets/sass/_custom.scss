@@ -167,3 +167,17 @@ $datepicker-day-focus: transparentize(desaturate($primary-color, 5%), .75);
 .datepicker-done {
   color: $secondary-color !important;
 }
+
+.chip {
+  &:focus {
+    background-color: $primary-color !important;
+    color: $secondary-color !important;
+  }
+}
+
+.chips {
+  &.focus {
+    border-bottom: 1px solid $primary-color !important;
+    box-shadow: 0 1px 0 0 $primary-color !important;
+  }
+}

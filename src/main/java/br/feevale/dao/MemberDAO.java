@@ -11,6 +11,13 @@ import java.util.stream.Collectors;
 
 public class MemberDAO extends DAO {
 
+    private SkillDAO skillDAO;
+
+    public MemberDAO(){
+        super();
+        this.skillDAO = new SkillDAO();
+    }
+
     public List<Member> listByProject(Project projectFilter){
         String sql = "SELECT " +
                 "m.id, m.role, m.start_date, m.end_date, " +
@@ -147,7 +154,7 @@ public class MemberDAO extends DAO {
     }
 
     public Member find(long id){
-        return this.find(id, false);
+        return this.find(id, true);
     }
 
     private Member find(long id, boolean withSkills){
@@ -190,7 +197,7 @@ public class MemberDAO extends DAO {
                 member.setPerson(person);
 
                 if(withSkills){
-                    //TODO pegar skills
+                    member.setSkills(this.skillDAO.listByMember(member));
                 }
             }
 
