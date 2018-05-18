@@ -50,7 +50,8 @@
                 <td class="center-align">
                     <i class="material-icons dropdown-trigger pointer" data-target='dropdown_action_<%= person.getId() %>'>more_horiz</i>
                     <ul id='dropdown_action_<%= person.getId() %>' class='dropdown-content'>
-                        <li><a href="/person?action=Edit&id=<%= person.getId() %>">Editar</a></li>
+                        <li><a href="/person?action=Edit&id=<%= person.getId() %>#general-data">Dados Gerais</a></li>
+                        <li><a href="/person?action=Edit&id=<%= person.getId() %>#skills">Competências</a></li>
                         <li><a href="#modal_delete_<%= person.getId() %>" class="modal-trigger">Excluir</a></li>
                     </ul>
                 </td>

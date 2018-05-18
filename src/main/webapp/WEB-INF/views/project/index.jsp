@@ -45,8 +45,10 @@
                 <td><%= project.getName() %></td>
                 <td class="center-align">
                     <i class="material-icons dropdown-trigger pointer" data-target='dropdown_action_<%= project.getId() %>'>more_horiz</i>
-                    <ul id='dropdown_action_<%= project.getId() %>' class='dropdown-content'>
-                        <li><a href="/project?action=Edit&id=<%= project.getId() %>">Editar</a></li>
+                    <ul id='dropdown_action_<%= project.getId() %>' class='dropdown-content-index-project'>
+                        <li><a href="/project?action=Edit&id=<%= project.getId() %>#general-data">Dados Gerais</a></li>
+                        <li><a href="/project?action=Edit&id=<%= project.getId() %>#members">Membros</a></li>
+                        <li><a href="/member?action=Create&project_id=<%= project.getId() %>">Adicionar Membro</a></li>
                         <li><a href="#modal_delete_<%= project.getId() %>" class="modal-trigger">Excluir</a></li>
                     </ul>
                 </td>

@@ -32,3 +32,8 @@ footer ul li {
 .underline {
   text-decoration: underline;
 }
+
+.dropdown-content-index-project {
+  @extend .dropdown-content;
+  width: 170px !important;
+}
