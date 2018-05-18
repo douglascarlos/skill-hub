@@ -14,7 +14,7 @@
 %>
 <jsp:include page="../../layout/header.jsp" />
 <div class="section">
-    <h5>Novo membro</h5>
+    <h5><%= member.exists() ? "Editar" : "Criar" %> Membro</h5>
 </div>
 <jsp:include page="../../layout/messages/messages.jsp" />
 <div class="row">

@@ -8,7 +8,7 @@
 %>
 <jsp:include page="../../layout/header.jsp" />
 <div class="section">
-    <h5>Selecionar competências aplicadas pelo(a) <%= member.getPerson().getName() %></h5>
+    <h5>Selecionar competências que serão aplicadas pelo(a) <%= member.getPerson().getName() %></h5>
 </div>
 <jsp:include page="../../layout/messages/messages.jsp" />
 <form action="/member" method="post">
