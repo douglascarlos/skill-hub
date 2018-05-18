@@ -60,7 +60,7 @@
                 <td><%= person.getName() %></td>
                 <td class="center-align">
                     <label>
-                        <input class="with-gap" name="person_id" type="radio" value="<%= person.getId() %>"  />
+                        <input required class="with-gap" name="person_id" type="radio" value="<%= person.getId() %>"  />
                         <span></span>
                     </label>
                 </td>
