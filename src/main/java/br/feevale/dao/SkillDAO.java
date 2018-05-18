@@ -17,8 +17,8 @@ public class SkillDAO extends DAO {
     public List<Skill> listByPerson(Person person){
         String sql = "SELECT s.id, s.tag_id, t.name as tag_name, s.level_id, l.name as level_name, l.ordination, l.weight " +
                 "FROM skills s " +
-                "LEFT JOIN tags t ON t.id = s.tag_id " +
-                "LEFT JOIN levels l ON l.id = s.level_id " +
+                "JOIN tags t ON t.id = s.tag_id " +
+                "JOIN levels l ON l.id = s.level_id " +
                 "WHERE s.deleted_at IS NULL AND s.person_id = ? " +
                 "ORDER BY l.weight desc";
         ArrayList<Skill> skills = new ArrayList<Skill>();
