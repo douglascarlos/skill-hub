@@ -20,7 +20,7 @@
                 <thead>
                 <tr>
                     <th>Nome</th>
-                    <th class="center-align">Marque para incular</th>
+                    <th class="center-align">Selecionar</th>
                 </tr>
                 </thead>
                 <tbody>
