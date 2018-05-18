@@ -42,22 +42,20 @@ public class SelectPerson implements Action {
         Member member = new Member();
 
         if(convertedInputId > 0){
-            System.out.println("--- find");
-//            member = memberDAO.find(convertedInputId);
+            member = memberDAO.find(convertedInputId);
+        }else{
+            ProjectDAO projectDAO = new ProjectDAO();
+            Project project = projectDAO.find(convertedInputProjectId);
+            member.setProject(project);
         }
 
-        ProjectDAO projectDAO = new ProjectDAO();
-        Project project = projectDAO.find(convertedInputProjectId);
-
-        member.setProject(project);
         member.setRole(inputRole);
         member.setStartDate(inputStartDate);
         member.setEndDate(inputEndDate);
 
         if(member.exists()){
-            System.out.println("==== ta editando");
-//            memberDAO.save(member);
-            controller.setSession(request, "successMessage", "Membro do projeto salvo com sucesso. (501)");
+            memberDAO.save(member);
+            controller.setSession(request, "successMessage", "Membro do projeto salvo com sucesso.");
             return new Redirect("/project?action=Edit&id=" + member.getProject().getId() + "#members");
         }else{
             String name = request.getParameter("name");

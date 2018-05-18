@@ -72,7 +72,7 @@ public class MemberDAO extends DAO {
 
     public void save(Member member){
         if(member.getId() > 0){
-//            this.update(member);
+            this.update(member);
         }else{
             this.store(member);
         }
@@ -215,6 +215,31 @@ public class MemberDAO extends DAO {
         }
 
         return member;
+    }
+
+    private void update(Member member) {
+        String sql = "" +
+                "UPDATE members SET " +
+                "role = ?, " +
+                "start_date = ?, " +
+                "end_date = ? " +
+                "WHERE id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+
+            stmt.setString(1, member.getRole());
+            stmt.setDate(2, java.sql.Date.valueOf(member.getStartDate()));
+            stmt.setDate(3, java.sql.Date.valueOf(member.getEndDate()));
+            stmt.setLong(4, member.getId());
+
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException exception) {
+            System.out.println("-------");
+            System.out.println(exception.getMessage());
+            System.out.println("-------");
+            throw new RuntimeException(exception);
+        }
     }
 
 }
