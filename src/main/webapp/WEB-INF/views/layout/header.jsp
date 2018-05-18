@@ -16,15 +16,15 @@
             <a href="/" class="brand-logo"><img height="64" src="/images/logo.png" alt="Skill Hub"></a>
             <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="/person">Pessoas</a></li>
                 <li><a href="/tag">Tags</a></li>
+                <li><a href="/person">Pessoas</a></li>
                 <li><a href="/project">Projetos</a></li>
             </ul>
         </div>
     </nav>
     <ul class="sidenav" id="mobile-nav">
-        <li><a href="/person">Pessoas</a></li>
         <li><a href="/tag">Tags</a></li>
+        <li><a href="/person">Pessoas</a></li>
         <li><a href="/project">Projetos</a></li>
     </ul>
 </header>
