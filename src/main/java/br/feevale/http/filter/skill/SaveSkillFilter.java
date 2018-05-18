@@ -43,7 +43,7 @@ public class SaveSkillFilter implements Filter {
                 request.getSession().setAttribute("input", input);
 
                 String actionToRedirect = input.get("skill_id").isEmpty() ? "" : "&skill_id=" + input.get("skill_id");
-                Redirect redirect = new Redirect("/person?action=Edit&id=" + input.get("person_id") + actionToRedirect);
+                Redirect redirect = new Redirect("/person?action=Edit&id=" + input.get("person_id") + actionToRedirect + "#skills");
 
                 redirect.setContextPath(servletRequest.getServletContext().getContextPath());
                 redirect.execute(request, response);
