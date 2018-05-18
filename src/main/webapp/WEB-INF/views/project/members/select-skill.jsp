@@ -12,7 +12,7 @@
 </div>
 <jsp:include page="../../layout/messages/messages.jsp" />
 <form action="/member" method="post">
-    <input type="hidden" name="action" value="SelectSkill">
+    <input type="hidden" name="action" value="Save">
     <input type="hidden" name="project_id" value="<%= member.getProject().getId() %>">
     <input type="hidden" name="role" value="<%= member.getRole() %>">
     <input type="hidden" name="start_date" value="<%= member.getStartDateFormatted() %>">

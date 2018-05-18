@@ -5,7 +5,9 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Member extends Model {
 
@@ -14,6 +16,19 @@ public class Member extends Model {
     private String role;
     private LocalDate startDate;
     private LocalDate endDate;
+    private List<Skill> skills;
+
+    public Member(){
+        this.skills = new ArrayList<>();
+    }
+
+    public List<Skill> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
+    }
 
     public Person getPerson() {
         return person;

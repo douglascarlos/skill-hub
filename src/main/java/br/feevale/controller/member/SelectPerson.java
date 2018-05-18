@@ -57,7 +57,7 @@ public class SelectPerson implements Action {
         if(member.exists()){
             System.out.println("==== ta editando");
 //            memberDAO.save(member);
-            controller.setSession(request, "successMessage", "Membro salvo com sucesso. (501)");
+            controller.setSession(request, "successMessage", "Membro do projeto salvo com sucesso. (501)");
             return new Redirect("/project?action=Edit&id=" + member.getProject().getId() + "#members");
         }else{
             String name = request.getParameter("name");

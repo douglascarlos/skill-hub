@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MemberDAO extends DAO {
 
@@ -60,6 +61,89 @@ public class MemberDAO extends DAO {
             throw new RuntimeException(exception);
         }
         return members;
+    }
+
+    public void save(Member member){
+        if(member.getId() > 0){
+//            this.update(member);
+        }else{
+            this.store(member);
+        }
+    }
+
+    private void store(Member member){
+        String sql = "INSERT INTO members (person_id, project_id, role, start_date, end_date) values (?,?,?,?,?)";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+
+            stmt.setLong(1, member.getPerson().getId());
+            stmt.setLong(2, member.getProject().getId());
+            stmt.setString(3, member.getRole());
+            stmt.setDate(4, java.sql.Date.valueOf(member.getStartDate()));
+            stmt.setDate(5, java.sql.Date.valueOf(member.getEndDate()));
+
+            stmt.execute();
+            stmt.close();
+
+            member.setId(this.lastId());
+            this.savaSkills(member);
+
+        } catch (SQLException exception) {
+            System.out.println("-------");
+            System.out.println(exception.getMessage());
+            System.out.println("-------");
+            throw new RuntimeException(exception);
+        }
+    }
+
+    public long lastId(){
+        String sql = "SELECT lastval() as id";
+
+        long lastId = 0;
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next()) {
+                lastId = rs.getLong("id");
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException exception) {
+            System.out.println("-------");
+            System.out.println(exception.getMessage());
+            System.out.println("-------");
+            throw new RuntimeException(exception);
+        }
+
+        if(lastId == 0){
+            throw new RuntimeException("Erro ao salvar novo membro do projeto.");
+        }
+
+        return lastId;
+    }
+
+    public void savaSkills(Member member){
+        for (Skill skill : member.getSkills()){
+            try {
+                String sql = "INSERT INTO member_skill (skill_id, member_id) VALUES (?,?)";
+
+                PreparedStatement stmt = connection.prepareStatement(sql);
+                stmt.setLong(1, skill.getId());
+                stmt.setLong(2, member.getId());
+
+                stmt.execute();
+                stmt.close();
+
+            } catch (SQLException exception) {
+                System.out.println("-------");
+                System.out.println(exception.getMessage());
+                System.out.println("-------");
+                throw new RuntimeException(exception);
+            }
+        }
     }
 
 }
