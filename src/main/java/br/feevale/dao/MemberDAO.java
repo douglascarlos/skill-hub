@@ -146,4 +146,68 @@ public class MemberDAO extends DAO {
         }
     }
 
+    public Member find(long id){
+        return this.find(id, false);
+    }
+
+    private Member find(long id, boolean withSkills){
+        String sql =
+                "SELECT " +
+                "m.id, m.role, m.start_date, m.end_date, " +
+                "m.project_id, pj.name as project_name, pj.description, " +
+                "m.person_id, ps.name as person_name, ps.email, ps.enrollment_number " +
+                "FROM members m " +
+                "JOIN projects pj ON pj.id = m.project_id " +
+                "JOIN people ps ON ps.id = m.person_id " +
+                "WHERE m.id = ?";
+
+        Member member;
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setLong(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            member = new Member();
+
+            while (rs.next()) {
+                Project project = new Project();
+                project.setId(rs.getLong("project_id"));
+                project.setName(rs.getString("project_name"));
+                project.setDescription(rs.getString("description"));
+
+                Person person = new Person();
+                person.setId(rs.getLong("person_id"));
+                person.setName(rs.getString("person_name"));
+                person.setEmail(rs.getString("email"));
+                person.setEnrollmentNumber(rs.getInt("enrollment_number"));
+
+                member.setId(rs.getLong("id"));
+                member.setRole(rs.getString("role"));
+                member.setStartDate(rs.getDate("start_date"));
+                member.setEndDate(rs.getDate("end_date"));
+                member.setProject(project);
+                member.setPerson(person);
+
+                if(withSkills){
+                    //TODO pegar skills
+                }
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException exception) {
+            System.out.println("-------");
+            System.out.println(exception.getMessage());
+            System.out.println("-------");
+            throw new RuntimeException(exception);
+        }
+
+        if(member.getId() == 0){
+            throw new RuntimeException("Membro não encontrado.");
+        }
+
+        return member;
+    }
+
 }
