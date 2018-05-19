@@ -4,6 +4,8 @@ import org.apache.commons.validator.routines.EmailValidator;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -107,5 +109,22 @@ public abstract class ValidatorForm {
         return true;
     }
 
+    public boolean dateGreaterThanOrEqualTo(String attributeGreater, String valueGreater, String attributeOther, String valueOther) {
+        try {
+            if (!valueGreater.isEmpty() && !valueOther.isEmpty()) {
+                DateTimeFormatter mask = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                LocalDate dateGreater = LocalDate.parse(valueGreater, mask);
+                LocalDate dateOther = LocalDate.parse(valueOther, mask);
+                if(dateGreater.isBefore(dateOther)){
+                    this.addError("A data " + attributeGreater + " deve maior ou igual que " + attributeOther + ".");
+                    return false;
+                }
+            }
+        } catch (Exception exception) {
+            this.addError("As data " + attributeGreater + " e " + attributeOther + " não são válidas.");
+            return false;
+        }
+        return true;
+    }
 
 }
