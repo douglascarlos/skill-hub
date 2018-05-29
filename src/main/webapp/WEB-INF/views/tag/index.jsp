@@ -68,6 +68,44 @@
         </tbody>
     </table>
 </div>
+<div class="row">
+    <div id="tree"></div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var tree = [
+            <% for(Tag tag : tags){ %>
+            // {
+                <%--text: "<%= tag.getName() %>",--%>
+                <%--<% if(!tag.getChildren().isEmpty()){ %>--%>
+                // nodes: [
+                //     {
+                //         text: "tem filho(s)"
+                //     },
+                // ],
+                <%--tags: ['<span class="new badge amber" data-badge-caption=""><%= tag.getChildren().size() %></span>'],--%>
+                <%--<% } %>--%>
+            // },
+            <%= tag.toItemTreeView() %>
+            <% } %>
+        ];
+        $('#tree').treeview({
+            data: tree,
+            levels: 1,
+            showTags: true,
+            enableLinks: false,
+            // expandIcon: 'pointer glyphicon glyphicon-plus',
+            // collapseIcon: 'pointer glyphicon glyphicon-minus',
+            // onNodeSelected: function(event, node){
+            //     $('#modal_options').modal('open');
+            // },
+        });
+
+        // $('#btn_delete').on('click', function(){
+        //     setTimeout(function(){ $('#modal_delete').modal('open'); }, 350);
+        // });
+    });
+</script>
 <% }else{ %>
 <div class="row">
     <div class="card-panel blue lighten-4 blue-text"><strong>Não há resultados.</strong></div>

@@ -17,4 +17,19 @@ public class Tag extends Model {
     public void setChildren(ArrayList<Tag> children) {
         this.children = children;
     }
+
+    public String toItemTreeView(){
+        String item = "{";
+        item += "text: '" + this.getName() + "',";
+        if(!this.getChildren().isEmpty()){
+            item += "nodes: [";
+            for(Tag tag : this.getChildren()){
+                item += tag.toItemTreeView();
+            }
+            item += "],";
+            item += "tags: ['<span class=\"new badge amber\" data-badge-caption=\"\">" + this.getChildren().size() + "</span>'],";
+        }
+        item += "},";
+        return item;
+    }
 }
