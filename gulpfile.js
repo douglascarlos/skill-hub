@@ -23,7 +23,8 @@ gulp.task('sass', function () {
 gulp.task('js', function() {
   	return gulp.src([
           './node_modules/jquery/dist/jquery.min.js',
-          './node_modules/materialize-css/dist/js/materialize.min.js', 
+          './node_modules/materialize-css/dist/js/materialize.min.js',
+          './node_modules/bootstrap-treeview/dist/bootstrap-treeview.min.js',
           './assets/js/**/*.js'
       ])
     	.pipe(concat('app.js'))
