@@ -41,8 +41,8 @@ public class TagDAO extends DAO implements Unique{
     public ArrayList<Tag> filterByName(String name) {
         String sql = "" +
                 "SELECT id, name " +
-                "FROM tags " +
-                "WHERE deleted_at IS NULL AND UPPER(name) like '%" + name.toUpperCase() + "%' " +
+                "FROM tag_tree " +
+                "WHERE id IN (SELECT path[1] FROM tag_tree WHERE UPPER(name) LIKE '%" + name.toUpperCase() + "%') " +
                 "ORDER BY name";
         ArrayList<Tag> tags = new ArrayList<Tag>();
         try {
@@ -53,6 +53,7 @@ public class TagDAO extends DAO implements Unique{
                 Tag tag = new Tag();
                 tag.setId(rs.getLong("id"));
                 tag.setName(rs.getString("name"));
+                tag.setChildren(this.tagsChildren(tag, true));
 
                 tags.add(tag);
             }
@@ -237,6 +238,10 @@ public class TagDAO extends DAO implements Unique{
     }
 
     public ArrayList<Tag> tagsChildren(Tag tag){
+        return this.tagsChildren(tag, false);
+    }
+
+    public ArrayList<Tag> tagsChildren(Tag tag, boolean withChildren){
         String sql = "SELECT id, name FROM tags WHERE deleted_at IS NULL AND tag_id = ?";
         ArrayList<Tag> tags = new ArrayList<Tag>();
         try {
@@ -248,6 +253,9 @@ public class TagDAO extends DAO implements Unique{
                 Tag tagResult = new Tag();
                 tagResult.setId(rs.getLong("id"));
                 tagResult.setName(rs.getString("name"));
+                if(withChildren){
+                    tagResult.setChildren(this.tagsChildren(tagResult, withChildren));
+                }
 
                 tags.add(tagResult);
             }
