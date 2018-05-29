@@ -37,3 +37,20 @@ footer ul li {
   @extend .dropdown-content;
   width: 170px !important;
 }
+
+@import '_list-group';
+
+.glyphicon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.glyphicon-minus                  { &:before { content: "\2212"; } }
+.glyphicon-plus                   { &:before { content: "\002b"; } }
