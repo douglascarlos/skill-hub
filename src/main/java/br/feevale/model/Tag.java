@@ -28,7 +28,7 @@ public class Tag extends Model {
                 item += tag.toItemTreeView();
             }
             item += "],";
-            item += "tags: ['<span class=\"new badge amber\" data-badge-caption=\"\">" + this.getChildren().size() + "</span>'],";
+//            item += "tags: ['<span class=\"new badge amber\" data-badge-caption=\"\">" + this.getChildren().size() + "</span>'],";
         }
         item += "},";
         return item;
