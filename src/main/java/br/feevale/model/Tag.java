@@ -20,6 +20,7 @@ public class Tag extends Model {
 
     public String toItemTreeView(){
         String item = "{";
+        item += "id: '" + this.getId() + "',";
         item += "text: '" + this.getName() + "',";
         if(!this.getChildren().isEmpty()){
             item += "nodes: [";

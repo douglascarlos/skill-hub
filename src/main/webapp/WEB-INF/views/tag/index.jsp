@@ -34,76 +34,54 @@
 
 <% if(!tags.isEmpty()){ %>
 <div class="row">
-    <table class="responsive-table highlight">
-        <thead>
-        <tr>
-            <th>Nome</th>
-            <th class="center-align">Ações</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% for(Tag tag : tags){ %>
-        <tr>
-            <td><%= tag.getName() %></td>
-            <td class="center-align">
-                <i class="material-icons dropdown-trigger pointer" data-target='dropdown_action_<%= tag.getId() %>'>more_horiz</i>
-                <ul id='dropdown_action_<%= tag.getId() %>' class='dropdown-content'>
-                    <li><a href="/tag?action=Edit&id=<%= tag.getId() %>#general-data">Dados Gerais</a></li>
-                    <li><a href="/tag?action=Edit&id=<%= tag.getId() %>#attach-tags">Sub-Tags</a></li>
-                    <li><a href="#modal_delete_<%= tag.getId() %>" class="modal-trigger">Excluir</a></li>
-                </ul>
-            </td>
-        </tr>
-        <div id="modal_delete_<%= tag.getId() %>" class="modal">
-            <div class="modal-content">
-                <p>Você tem certeza que deseja <strong>excluir</strong> esta tag do sistema?</p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn modal-action modal-close waves-effect waves-red btn-mr">Cancelar<i class="material-icons right">cancel</i></button>
-                <a href="/tag?action=Delete&id=<%= tag.getId() %>" class="btn modal-action modal-close waves-effect waves-green">Confirmar<i class="material-icons right">check</i></a>
-            </div>
-        </div>
-        <% } %>
-
-        </tbody>
-    </table>
-</div>
-<div class="row">
     <div id="tree"></div>
+    <% for(Tag tag : tags){ %>
+    <div id="modal_options_<%= tag.getId() %>" class="modal">
+        <div class="modal-content">
+            <p>O que você deseja fazer?</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn modal-action modal-close waves-effect waves-red btn-mr">Cancelar<i class="material-icons right">cancel</i></button>
+            <button class="btn modal-action modal-close waves-effect waves-red btn-mr btn_delete" data-modal="modal_delete_<%= tag.getId() %>">Excluir<i class="material-icons right">delete</i></button>
+            <a href="/tag?action=Edit&id=<%= tag.getId() %>#attach-tags" class="btn modal-action modal-close waves-effect waves-green">Sub-Tags<i class="material-icons right">label</i></a>
+            <a href="/tag?action=Edit&id=<%= tag.getId() %>#general-data" class="btn modal-action modal-close waves-effect waves-green">Dados Gerais<i class="material-icons right">subject</i></a>
+        </div>
+    </div>
+    <div id="modal_delete_<%= tag.getId() %>" class="modal">
+        <div class="modal-content">
+            <p>Você tem certeza que deseja <strong>excluir</strong> esta tag do sistema?</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn modal-action modal-close waves-effect waves-red btn-mr">Cancelar<i class="material-icons right">cancel</i></button>
+            <a href="/tag?action=Delete&id=<%= tag.getId() %>" class="btn modal-action modal-close waves-effect waves-green">Confirmar<i class="material-icons right">check</i></a>
+        </div>
+    </div>
+    <% } %>
 </div>
 <script type="text/javascript">
     $(document).ready(function(){
         var tree = [
             <% for(Tag tag : tags){ %>
-            // {
-                <%--text: "<%= tag.getName() %>",--%>
-                <%--<% if(!tag.getChildren().isEmpty()){ %>--%>
-                // nodes: [
-                //     {
-                //         text: "tem filho(s)"
-                //     },
-                // ],
-                <%--tags: ['<span class="new badge amber" data-badge-caption=""><%= tag.getChildren().size() %></span>'],--%>
-                <%--<% } %>--%>
-            // },
             <%= tag.toItemTreeView() %>
             <% } %>
         ];
+
         $('#tree').treeview({
             data: tree,
             levels: 1,
             showTags: true,
             enableLinks: false,
-            // expandIcon: 'pointer glyphicon glyphicon-plus',
-            // collapseIcon: 'pointer glyphicon glyphicon-minus',
-            // onNodeSelected: function(event, node){
-            //     $('#modal_options').modal('open');
-            // },
+            onNodeSelected: function(event, node){
+                $('#modal_options_' + node.id).modal('open');
+            },
         });
 
-        // $('#btn_delete').on('click', function(){
-        //     setTimeout(function(){ $('#modal_delete').modal('open'); }, 350);
-        // });
+        $('.btn_delete').on('click', function(event){
+            var modalDelete = $(this).data('modal');
+            setTimeout(function(){
+                $('#'+modalDelete).modal('open');
+            }, 350);
+        });
     });
 </script>
 <% }else{ %>
