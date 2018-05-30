@@ -36,26 +36,8 @@
 <div class="row">
     <div id="tree"></div>
     <% for(Tag tag : tags){ %>
-    <div id="modal_options_<%= tag.getId() %>" class="modal">
-        <div class="modal-content">
-            <p>O que você deseja fazer?</p>
-        </div>
-        <div class="modal-footer">
-            <button class="btn modal-action modal-close waves-effect waves-red btn-mr">Cancelar<i class="material-icons right">cancel</i></button>
-            <button class="btn modal-action modal-close waves-effect waves-red btn-mr btn_delete" data-modal="modal_delete_<%= tag.getId() %>">Excluir<i class="material-icons right">delete</i></button>
-            <a href="/tag?action=Edit&id=<%= tag.getId() %>#attach-tags" class="btn modal-action modal-close waves-effect waves-green">Sub-Tags<i class="material-icons right">label</i></a>
-            <a href="/tag?action=Edit&id=<%= tag.getId() %>#general-data" class="btn modal-action modal-close waves-effect waves-green">Dados Gerais<i class="material-icons right">subject</i></a>
-        </div>
-    </div>
-    <div id="modal_delete_<%= tag.getId() %>" class="modal">
-        <div class="modal-content">
-            <p>Você tem certeza que deseja <strong>excluir</strong> esta tag do sistema?</p>
-        </div>
-        <div class="modal-footer">
-            <button class="btn modal-action modal-close waves-effect waves-red btn-mr">Cancelar<i class="material-icons right">cancel</i></button>
-            <a href="/tag?action=Delete&id=<%= tag.getId() %>" class="btn modal-action modal-close waves-effect waves-green">Confirmar<i class="material-icons right">check</i></a>
-        </div>
-    </div>
+        <%= tag.toModalOptions() %>
+        <%= tag.toModalDelete() %>
     <% } %>
 </div>
 <script type="text/javascript">
