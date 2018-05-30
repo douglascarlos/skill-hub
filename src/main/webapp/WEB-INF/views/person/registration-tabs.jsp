@@ -11,6 +11,7 @@
     boolean cancelSkill = request.getParameter("cancel") instanceof String && request.getParameter("cancel").equals("true");
     boolean saveSkill = request.getParameter("saveSkill") instanceof String && request.getParameter("saveSkill").equals("true");
     boolean shouldActiveSkills = isEditSkill || cancelSkill || saveSkill;
+    boolean shouldActiveReport = isEditSkill;
 %>
 <jsp:include page="../layout/header.jsp" />
 <div class="section">
@@ -19,8 +20,9 @@
 <jsp:include page="../layout/messages/messages.jsp" />
 <div class="row">
     <ul class="tabs">
-        <li class="tab col s6"><a href="#general-data">Dados Gerais</a></li>
-        <li class="tab col s6 <%= isCreate ? "disabled" : "" %>"><a class="<%= shouldActiveSkills ? "active" : "" %>" href="#skills">Competências</a></li>
+        <li class="tab col s4"><a href="#general-data">Dados Gerais</a></li>
+        <li class="tab col s4 <%= isCreate ? "disabled" : "" %>"><a class="<%= shouldActiveSkills ? "active" : "" %>" href="#skills">Competências</a></li>
+        <li class="tab col s4 <%= isCreate ? "disabled" : "" %>"><a class="<%= shouldActiveReport ? "active" : "" %>" href="#report">Relatório Gráfico</a></li>
     </ul>
     <div id="general-data" class="col s12 tab-content">
         <jsp:include page="./general-data/form.jsp" />
@@ -30,6 +32,9 @@
         <jsp:include page="./skills/form.jsp" />
         <jsp:include page="./skills/index.jsp" />
         <% } %>
+    </div>
+    <div id="report" class="col s12 tab-content">
+        <jsp:include page="./report/report.jsp" />
     </div>
 </div>
 <jsp:include page="../layout/footer.jsp" />

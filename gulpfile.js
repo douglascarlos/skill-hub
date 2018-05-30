@@ -11,9 +11,9 @@ var uglify = require('gulp-uglify');
 
 
 gulp.task('sass', function () {
-  	return gulp.src([
-          './assets/sass/app.scss'
-      ])
+    return gulp.src([
+        './assets/sass/app.scss'
+    ])
 	    .pipe(sass.sync().on('error', sass.logError))
 	    .pipe(cleanCSS())
 	    .pipe(rename('app.min.css'))
@@ -22,11 +22,12 @@ gulp.task('sass', function () {
 
 gulp.task('js', function() {
   	return gulp.src([
-          './node_modules/jquery/dist/jquery.min.js',
-          './node_modules/materialize-css/dist/js/materialize.min.js',
-          './node_modules/bootstrap-treeview/dist/bootstrap-treeview.min.js',
-          './assets/js/**/*.js'
-      ])
+        './node_modules/jquery/dist/jquery.min.js',
+        './node_modules/materialize-css/dist/js/materialize.min.js',
+        './node_modules/bootstrap-treeview/dist/bootstrap-treeview.min.js',
+        './node_modules/chart.js/dist/Chart.bundle.min.js',
+        './assets/js/**/*.js'
+    ])
     	.pipe(concat('app.js'))
     	.pipe(uglify())
     	.pipe(rename('app.min.js'))
@@ -35,8 +36,8 @@ gulp.task('js', function() {
 
 gulp.task('fonts', function () {
     return gulp.src([
-            './node_modules/material-design-icons/iconfont/MaterialIcons-Regular.*'
-        ])
+        './node_modules/material-design-icons/iconfont/MaterialIcons-Regular.*'
+    ])
         .pipe(gulp.dest('./src/main/webapp/fonts'));
 });
 
