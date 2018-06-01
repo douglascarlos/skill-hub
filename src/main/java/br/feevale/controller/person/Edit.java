@@ -12,6 +12,7 @@ import br.feevale.model.Level;
 import br.feevale.model.Person;
 import br.feevale.model.Skill;
 import br.feevale.model.Tag;
+import br.feevale.service.ConvertToRadarReport;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -47,10 +48,14 @@ public class Edit implements Action {
             skill = person.getSkillById(convertedInputSkillId);
         }
 
+        ConvertToRadarReport serviceRadarReport = new ConvertToRadarReport();
+        String radarReportData = serviceRadarReport.generate(person);
+
         request.setAttribute("person", person);
         request.setAttribute("tagsToAttach", tagsToAttach);
         request.setAttribute("levels", levels);
         request.setAttribute("skill", skill);
+        request.setAttribute("radarReportData", radarReportData);
 
         controller.withSession(request, "errors");
         controller.withSession(request, "input");

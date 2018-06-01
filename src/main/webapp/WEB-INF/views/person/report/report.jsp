@@ -4,6 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Person person = (Person) request.getAttribute("person");
+    String radarReportData = (String) request.getAttribute("radarReportData");
 
     Map<String, String> input = (Map) request.getAttribute("input");
     List<String> errors = (List) request.getAttribute("errors");
@@ -16,50 +17,7 @@
 </div>
 <script type="text/javascript">
     var ctx = $('#canvas_report');
-    var chart = new Chart(ctx, {
-        type: 'radar',
-        data: {
-            //tags
-            labels:[
-                "Eating", //nome da tag 1
-                "Drinking",
-                "Sleeping",
-                "Designing",
-                "Coding",
-                "Cycling",
-                "Running"
-            ],
-            datasets:[
-                {
-                    "label":"My First Dataset", //nome da pessoa
-                    "data":[
-                        65, //pontuação da pessoa na tag 1
-                        59,
-                        90,
-                        81,
-                        56,
-                        55,
-                        40
-                    ],
-                    "fill":true,
-                    "backgroundColor":"rgba(255, 193, 7, 0.2)",
-                    "borderColor":"rgb(255, 193, 7)",
-                    "pointBackgroundColor":"rgb(255, 193, 7)",
-                    "pointBorderColor":"#000",
-                    "pointHoverBackgroundColor":"#000",
-                    "pointHoverBorderColor":"rgb(255, 193, 7)"
-                },
-            ]
-        },
-        options: {
-            "elements":{
-                "line":{
-                    "tension":0,
-                    "borderWidth":3
-                }
-            }
-        }
-    });
+    var chart = new Chart(ctx, <%= radarReportData %>);
 </script>
 <% }else{ %>
 <div class="row">
