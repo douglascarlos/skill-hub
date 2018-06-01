@@ -52,6 +52,7 @@
                     <ul id='dropdown_action_<%= person.getId() %>' class='dropdown-content'>
                         <li><a href="/person?action=Edit&id=<%= person.getId() %>#general-data">Dados Gerais</a></li>
                         <li><a href="/person?action=Edit&id=<%= person.getId() %>#skills">Competências</a></li>
+                        <li><a href="/person?action=Edit&id=<%= person.getId() %>#report">Relatório Gráfico</a></li>
                         <li><a href="#modal_delete_<%= person.getId() %>" class="modal-trigger">Excluir</a></li>
                     </ul>
                 </td>
