@@ -19,8 +19,9 @@
     var chart = new Chart(ctx, {
         type: 'radar',
         data: {
+            //tags
             labels:[
-                "Eating",
+                "Eating", //nome da tag 1
                 "Drinking",
                 "Sleeping",
                 "Designing",
@@ -30,9 +31,9 @@
             ],
             datasets:[
                 {
-                    "label":"My First Dataset",
+                    "label":"My First Dataset", //nome da pessoa
                     "data":[
-                        65,
+                        65, //pontuação da pessoa na tag 1
                         59,
                         90,
                         81,
@@ -41,12 +42,12 @@
                         40
                     ],
                     "fill":true,
-                    "backgroundColor":"rgba(255, 99, 132, 0.2)",
-                    "borderColor":"rgb(255, 99, 132)",
-                    "pointBackgroundColor":"rgb(255, 99, 132)",
-                    "pointBorderColor":"#fff",
-                    "pointHoverBackgroundColor":"#fff",
-                    "pointHoverBorderColor":"rgb(255, 99, 132)"
+                    "backgroundColor":"rgba(255, 193, 7, 0.2)",
+                    "borderColor":"rgb(255, 193, 7)",
+                    "pointBackgroundColor":"rgb(255, 193, 7)",
+                    "pointBorderColor":"#000",
+                    "pointHoverBackgroundColor":"#000",
+                    "pointHoverBorderColor":"rgb(255, 193, 7)"
                 },
             ]
         },
