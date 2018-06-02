@@ -49,6 +49,7 @@
                         <li><a href="/project?action=Edit&id=<%= project.getId() %>#general-data">Dados Gerais</a></li>
                         <li><a href="/project?action=Edit&id=<%= project.getId() %>#members">Membros</a></li>
                         <li><a href="/member?action=Create&project_id=<%= project.getId() %>">Adicionar Membro</a></li>
+                        <li><a href="/project?action=Edit&id=<%= project.getId() %>#report">Relatório Gráfico</a></li>
                         <li><a href="#modal_delete_<%= project.getId() %>" class="modal-trigger">Excluir</a></li>
                     </ul>
                 </td>
