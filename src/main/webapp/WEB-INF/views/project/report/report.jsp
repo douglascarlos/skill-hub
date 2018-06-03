@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Project project = (Project) request.getAttribute("project");
-//    String radarReportData = (String) request.getAttribute("radarReportData");
+    String radarReportData = (String) request.getAttribute("radarReportData");
 
     Map<String, String> input = (Map) request.getAttribute("input");
     List<String> errors = (List) request.getAttribute("errors");
@@ -17,7 +17,7 @@
 </div>
 <script type="text/javascript">
     var ctx = $('#canvas_report');
-    <%--var chart = new Chart(ctx, <%= radarReportData %>);--%>
+    var chart = new Chart(ctx, <%= radarReportData %>);
 </script>
 <% }else{ %>
 <div class="row">

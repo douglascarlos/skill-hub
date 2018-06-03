@@ -7,6 +7,7 @@ public class Project extends Model {
 
     private String description;
     private List<Member> members;
+    private List<Skill> skills;
 
     public Project(){
         this.members = new ArrayList<>();
@@ -26,6 +27,14 @@ public class Project extends Model {
 
     public void setMembers(List<Member> members) {
         this.members = members;
+    }
+
+    public List<Skill> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
     }
 
     public Member getMemberById(long id){

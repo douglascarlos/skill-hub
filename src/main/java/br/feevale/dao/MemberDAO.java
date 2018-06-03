@@ -55,6 +55,7 @@ public class MemberDAO extends DAO {
 
                 member.setPerson(person);
                 member.setProject(project);
+                member.setSkills(this.skillDAO.listByMember(member));
 
                 members.add(member);
             }

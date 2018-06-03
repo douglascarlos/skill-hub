@@ -11,10 +11,12 @@ import java.util.ArrayList;
 public class ProjectDAO extends DAO implements Unique {
 
     private MemberDAO memberDAO;
+    private SkillDAO skillDAO;
 
     public ProjectDAO(){
         super();
         this.memberDAO = new MemberDAO();
+        this.skillDAO = new SkillDAO();
     }
 
     public ArrayList<Project> list() {
@@ -105,6 +107,7 @@ public class ProjectDAO extends DAO implements Unique {
                 project.setDescription(rs.getString("description"));
                 if(withMembers){
                     project.setMembers(this.memberDAO.listByProject(project));
+                    project.setSkills(this.skillDAO.listByProject(project));
                 }
             }
 

@@ -130,14 +130,15 @@ public class SkillDAO extends DAO {
     }
 
     public List<Skill> listByProject(Project project){
-        String sql = "SELECT s.id, s.tag_id, t.name as tag_name, s.level_id, l.name as level_name, l.ordination, l.weight " +
+        String sql = "SELECT s.tag_id, t.name as tag_name, sum(l.weight) / count(s.tag_id) as weight " +
                 "FROM skills s " +
                 "JOIN tags t ON t.id = s.tag_id " +
                 "JOIN levels l ON l.id = s.level_id " +
                 "JOIN member_skill ms ON ms.skill_id = s.id " +
                 "JOIN members m ON m.id = ms.member_id " +
                 "WHERE s.deleted_at IS NULL AND m.project_id = ? " +
-                "ORDER BY l.weight desc";
+                "GROUP BY s.tag_id, t.name " +
+                "ORDER BY weight DESC";
         ArrayList<Skill> skills = new ArrayList<Skill>();
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -146,21 +147,20 @@ public class SkillDAO extends DAO {
 
             while (rs.next()) {
                 Skill skill = new Skill();
-                skill.setId(rs.getLong("id"));
+//                skill.setId(rs.getLong("id"));
 
                 Tag tag = new Tag();
                 tag.setId(rs.getLong("tag_id"));
                 tag.setName(rs.getString("tag_name"));
 
                 Level level = new Level();
-                level.setId(rs.getLong("level_id"));
-                level.setName(rs.getString("level_name"));
+//                level.setId(rs.getLong("level_id"));
+//                level.setName(rs.getString("level_name"));
                 level.setWeight(rs.getInt("weight"));
-                level.setOrdination(rs.getInt("ordination"));
+//                level.setOrdination(rs.getInt("ordination"));
 
                 skill.setTag(tag);
                 skill.setLevel(level);
-                //skill.setPerson(person);
 
                 skills.add(skill);
             }

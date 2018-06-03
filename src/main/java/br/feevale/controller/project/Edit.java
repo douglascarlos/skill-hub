@@ -6,6 +6,7 @@ import br.feevale.http.response.Forward;
 import br.feevale.http.response.Responder;
 import br.feevale.http.servlet.Servlet;
 import br.feevale.model.Project;
+import br.feevale.service.ConvertToRadarReport;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,7 +23,11 @@ public class Edit implements Action {
         ProjectDAO dao = new ProjectDAO();
         Project project = dao.find(convertedInputId);
 
+        ConvertToRadarReport serviceRadarReport = new ConvertToRadarReport();
+        String radarReportData = serviceRadarReport.generate(project);
+
         request.setAttribute("project", project);
+        request.setAttribute("radarReportData", radarReportData);
 
         controller.withSession(request, "errors");
         controller.withSession(request, "input");
