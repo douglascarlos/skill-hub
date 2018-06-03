@@ -11,6 +11,16 @@ public class ConvertToPolarReport {
     private List<String> colors;
 
     public ConvertToPolarReport(){
+        this.resetColor();
+    }
+
+    private String getColor(){
+        String color = this.colors.remove(0);
+        this.colors.add(color);
+        return color;
+    }
+
+    private void resetColor(){
         this.colors = new ArrayList<>();
         colors.add("rgb(255,193,7)"); //amber
         colors.add("rgb(244,67,54)"); //red
@@ -27,16 +37,11 @@ public class ConvertToPolarReport {
         colors.add("rgb(0,150,136)"); //teal
         colors.add("rgb(205,220,57)"); //lime
         colors.add("rgb(158,158,158)"); //gray
-        colors.add("rgb(0,0,0)"); //black
+        colors.add("rgb(0,0,0)"); //blacks
     }
 
-    public String getColor(){
-        String color = this.colors.remove(0);
-        this.colors.add(color);
-        return color;
-    }
-
-    public String generate(List<TagCounter> tags){
+    public String generateCount(List<TagCounter> tags){
+        this.resetColor();
         String labels = "";
         String datasets = "";
         String backgroundColor = "";
@@ -44,6 +49,34 @@ public class ConvertToPolarReport {
         for (TagCounter tag : tags){
             labels += "\"" + tag.getName() + "\",";
             datasets += tag.getCount() + ",";
+            backgroundColor += "\"" + this.getColor() + "\",";
+        }
+
+        String reportStructure = "{\n" +
+                "   \"type\":\"polarArea\",\n" +
+                "   \"data\":{\n" +
+                "      \"labels\":[" + labels + "],\n" +
+                "      \"datasets\":[\n" +
+                "         {\n" +
+                "            \"label\":\"Gráfico do Tipo Polar de Competências\",\n" +
+                "            \"data\":[" + datasets + "],\n" +
+                "            \"backgroundColor\":[" + backgroundColor + "]\n" +
+                "         }\n" +
+                "      ]\n" +
+                "   }\n" +
+                "}";
+        return reportStructure;
+    }
+
+    public String generateAvarage(List<TagCounter> tags){
+        this.resetColor();
+        String labels = "";
+        String datasets = "";
+        String backgroundColor = "";
+
+        for (TagCounter tag : tags){
+            labels += "\"" + tag.getName() + "\",";
+            datasets += tag.getAvarage() + ",";
             backgroundColor += "\"" + this.getColor() + "\",";
         }
 

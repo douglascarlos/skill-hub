@@ -3,6 +3,7 @@ package br.feevale.model;
 public class TagCounter extends Tag {
 
     private int count;
+    private double avarage;
 
     public int getCount() {
         return count;
@@ -12,4 +13,11 @@ public class TagCounter extends Tag {
         this.count = count;
     }
 
+    public double getAvarage() {
+        return avarage;
+    }
+
+    public void setAvarage(double avarage) {
+        this.avarage = avarage;
+    }
 }

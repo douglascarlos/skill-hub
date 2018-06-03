@@ -311,9 +311,10 @@ public class TagDAO extends DAO implements Unique{
     }
 
     public ArrayList<TagCounter> listTagsCounter() {
-        String sql = "SELECT t.id, t.name, COUNT(s.tag_id) as count " +
+        String sql = "SELECT t.id, t.name, COUNT(s.tag_id) as count, SUM(l.weight) / COUNT(s.tag_id) as avarage " +
                 "FROM tags t " +
-                "LEFT JOIN skills s ON s.tag_id = t.id " +
+                "JOIN skills s ON s.tag_id = t.id " +
+                "JOIN levels l ON l.id = s.level_id " +
                 "WHERE t.deleted_at IS NULL AND s.deleted_at IS NULL " +
                 "GROUP BY t.id, t.name " +
                 "ORDER BY t.name";
@@ -327,6 +328,7 @@ public class TagDAO extends DAO implements Unique{
                 tag.setId(rs.getLong("id"));
                 tag.setName(rs.getString("name"));
                 tag.setCount(rs.getInt("count"));
+                tag.setAvarage(rs.getDouble("avarage"));
 
                 tags.add(tag);
             }

@@ -20,10 +20,12 @@ public class Index implements Action {
 
         TagDAO tagDAO = new TagDAO();
         List<TagCounter> tags = tagDAO.listTagsCounter();
-        String radarReportGeneralTags = polarReportService.generate(tags);
+        String radarReportGeneralTagsCount = polarReportService.generateCount(tags);
+        String radarReportGeneralTagsAvarage = polarReportService.generateAvarage(tags);
 
 
-        request.setAttribute("radarReportGeneralTags", radarReportGeneralTags);
+        request.setAttribute("radarReportGeneralTagsCount", radarReportGeneralTagsCount);
+        request.setAttribute("radarReportGeneralTagsAvarage", radarReportGeneralTagsAvarage);
 
 
         return new Forward("/WEB-INF/views/report/index.jsp");
