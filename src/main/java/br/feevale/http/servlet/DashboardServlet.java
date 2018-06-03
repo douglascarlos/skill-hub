@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "ReportServlet", urlPatterns = {"/report"})
-public class ReportServlet extends Servlet {
+@WebServlet(name = "DashboardServlet", urlPatterns = {"/dashboard"})
+public class DashboardServlet extends Servlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -19,7 +19,7 @@ public class ReportServlet extends Servlet {
             action = "Index";
         }
         
-        String nomeDaClasse = "br.feevale.controller.report." + action;
+        String nomeDaClasse = "br.feevale.controller.dashboard." + action;
 
         try {
             Class classe = Class.forName(nomeDaClasse);

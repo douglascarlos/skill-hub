@@ -1,4 +1,4 @@
-package br.feevale.controller.report;
+package br.feevale.controller.dashboard;
 
 import br.feevale.controller.Action;
 import br.feevale.dao.TagDAO;
@@ -28,7 +28,7 @@ public class Index implements Action {
         request.setAttribute("radarReportGeneralTagsAvarage", radarReportGeneralTagsAvarage);
 
 
-        return new Forward("/WEB-INF/views/report/index.jsp");
+        return new Forward("/WEB-INF/views/dashboard/index.jsp");
     }
     
 }

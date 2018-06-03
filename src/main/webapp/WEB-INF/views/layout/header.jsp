@@ -19,7 +19,7 @@
                 <li><a href="/tag">Tags</a></li>
                 <li><a href="/person">Pessoas</a></li>
                 <li><a href="/project">Projetos</a></li>
-                <li><a href="/report">Relatório</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
             </ul>
         </div>
     </nav>
@@ -27,7 +27,7 @@
         <li><a href="/tag">Tags</a></li>
         <li><a href="/person">Pessoas</a></li>
         <li><a href="/project">Projetos</a></li>
-        <li><a href="/report">Relatório</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
     </ul>
 </header>
 <main>
