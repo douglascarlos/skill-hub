@@ -28,7 +28,7 @@ public class ConvertToRadarReport {
         colors.add("0,150,136"); //teal
         colors.add("205,220,57"); //lime
         colors.add("158,158,158"); //gray
-        colors.add("0,0,0,"); //black
+        colors.add("0,0,0"); //black
     }
 
     public String getColor(){

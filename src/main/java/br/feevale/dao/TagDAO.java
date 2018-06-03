@@ -3,6 +3,7 @@ package br.feevale.dao;
 import br.feevale.http.validator.Unique;
 import br.feevale.model.Person;
 import br.feevale.model.Tag;
+import br.feevale.model.TagCounter;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,32 +12,6 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class TagDAO extends DAO implements Unique{
-
-    public ArrayList<Tag> list() {
-        String sql = "SELECT id, name FROM tags WHERE deleted_at IS NULL";
-        ArrayList<Tag> tags = new ArrayList<Tag>();
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                Tag tag = new Tag();
-                tag.setId(rs.getLong("id"));
-                tag.setName(rs.getString("name"));
-
-                tags.add(tag);
-            }
-
-            rs.close();
-            stmt.close();
-        } catch (SQLException exception) {
-            System.out.println("-------");
-            System.out.println(exception.getMessage());
-            System.out.println("-------");
-            throw new RuntimeException(exception);
-        }
-        return tags;
-    }
 
     public ArrayList<Tag> filterByName(String name) {
         String sql = "" +
@@ -322,6 +297,38 @@ public class TagDAO extends DAO implements Unique{
                 tagResult.setName(rs.getString("name"));
 
                 tags.add(tagResult);
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException exception) {
+            System.out.println("-------");
+            System.out.println(exception.getMessage());
+            System.out.println("-------");
+            throw new RuntimeException(exception);
+        }
+        return tags;
+    }
+
+    public ArrayList<TagCounter> listTagsCounter() {
+        String sql = "SELECT t.id, t.name, COUNT(s.tag_id) as count " +
+                "FROM tags t " +
+                "LEFT JOIN skills s ON s.tag_id = t.id " +
+                "WHERE t.deleted_at IS NULL AND s.deleted_at IS NULL " +
+                "GROUP BY t.id, t.name " +
+                "ORDER BY t.name";
+        ArrayList<TagCounter> tags = new ArrayList<TagCounter>();
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                TagCounter tag = new TagCounter();
+                tag.setId(rs.getLong("id"));
+                tag.setName(rs.getString("name"));
+                tag.setCount(rs.getInt("count"));
+
+                tags.add(tag);
             }
 
             rs.close();

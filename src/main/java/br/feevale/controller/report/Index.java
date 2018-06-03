@@ -1,23 +1,29 @@
 package br.feevale.controller.report;
 
 import br.feevale.controller.Action;
+import br.feevale.dao.TagDAO;
 import br.feevale.http.response.Forward;
 import br.feevale.http.response.Responder;
 import br.feevale.http.servlet.Servlet;
+import br.feevale.model.TagCounter;
+import br.feevale.service.ConvertToPolarReport;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 public class Index implements Action {
 
     public Responder execute(Servlet servlet, HttpServletRequest request, HttpServletResponse response) throws Exception {
-//        String name = request.getParameter("name");
-//        if(name == null){
-//            name = "";
-//        }
+
+        ConvertToPolarReport polarReportService = new ConvertToPolarReport();
+
+        TagDAO tagDAO = new TagDAO();
+        List<TagCounter> tags = tagDAO.listTagsCounter();
+        String radarReportGeneralTags = polarReportService.generate(tags);
 
 
-
-//        request.setAttribute("name", name);
+        request.setAttribute("radarReportGeneralTags", radarReportGeneralTags);
 
 
         return new Forward("/WEB-INF/views/report/index.jsp");
