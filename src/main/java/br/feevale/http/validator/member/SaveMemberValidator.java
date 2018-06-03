@@ -16,7 +16,6 @@ public class SaveMemberValidator extends ValidatorForm {
     public boolean validate(Map<String, String> input) {
         Unique rule = new TagDAO();
 
-        this.numeric("ID", input.get("id"));
         this.required("Projeto", input.get("project_id"));
         this.required("Pessoa", input.get("person_id"));
         this.required("Função", input.get("role"));
