@@ -7,30 +7,74 @@
 %>
 <jsp:include page="../layout/header.jsp" />
 <jsp:include page="../layout/add-button-fixed.jsp" />
-<div class="section">
-    <h5>Pesquisa</h5>
-</div>
 <jsp:include page="../layout/messages/messages.jsp" />
-<div class="row">
-    <form action="/search" method="get">
-        <div class="row">
-            <div class="input-field col s12">
-                <input name="filter" id="filter" type="text" class="validate" value="<%= filter %>">
-                <label for="filter">Filtro</label>
-            </div>
+
+<form action="/search" method="get" class="mt25">
+    <div class="row">
+        <div class="input-field col s12">
+            <input name="filter" id="filter" type="text" class="validate" value="<%= filter %>">
+            <%--required minlength="3" maxlength="255"--%>
+            <label for="filter">Filtro</label>
         </div>
-        <div class="row">
+        <div class="col s12">
             <button class="btn waves-effect waves-light right" type="submit">
-                Buscar<i class="material-icons right">search</i>
+                Pesquisar<i class="material-icons right">search</i>
             </button>
-            <a href="/search" class="btn waves-effect waves-light right btn-mr">
-                Limpar<i class="material-icons right">clear_all</i>
-            </a>
         </div>
-    </form>
-</div>
+    </div>
+</form>
 
 <% if(!models.isEmpty()){ %>
+<%--------------------------------------------------------%>
+
+<%--<ul class="collection">--%>
+    <%--<li class="collection-item avatar">--%>
+        <%--<div class="row">--%>
+            <%--<div class="col s12 m6">--%>
+                <%--<i class="material-icons circle black-text amber">person</i>--%>
+                <%--<strong class="title">Douglas Carlos</strong>--%>
+                <%--<p>--%>
+                    <%--0147969 <br>--%>
+                    <%--dnevescarlos@gmail.com--%>
+                <%--</p>--%>
+            <%--</div>--%>
+            <%--<div class="col s12 m6">--%>
+                <%--<div class="chip">7 Cometências</div>--%>
+                <%--<div class="chip">3 Projetos</div>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+        <%--<a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>--%>
+    <%--</li>--%>
+    <%--<li class="collection-item avatar">--%>
+        <%--<div class="row">--%>
+            <%--<div class="col s12 m6">--%>
+                <%--<i class="material-icons circle black-text amber">label</i>--%>
+                <%--<strong class="title">PHP</strong>--%>
+            <%--</div>--%>
+            <%--<div class="col s12 m6">--%>
+                <%--<div class="chip">5 Sub-Tags</div>--%>
+                <%--<div class="chip">7 Pessoas</div>--%>
+                <%--<div class="chip">19 Projetos</div>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+        <%--<a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>--%>
+    <%--</li>--%>
+    <%--<li class="collection-item avatar">--%>
+        <%--<div class="row">--%>
+            <%--<div class="col s12 m6">--%>
+                <%--<i class="material-icons circle black-text amber">description</i>--%>
+                <%--<strong class="title">Defesa contra as artes das trevas</strong>--%>
+            <%--</div>--%>
+            <%--<div class="col s12 m6">--%>
+                <%--<div class="chip">7 Pessoas</div>--%>
+                <%--<div class="chip">19 Competências</div>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+        <%--<a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>--%>
+    <%--</li>--%>
+<%--</ul>--%>
+
+<%--------------------------------------------------------%>
 <div class="row">
     <table class="responsive-table highlight">
         <thead>
