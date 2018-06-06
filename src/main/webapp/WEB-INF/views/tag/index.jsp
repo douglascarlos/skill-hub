@@ -13,15 +13,13 @@
     <h5>Tags</h5>
 </div>
 <jsp:include page="../layout/messages/messages.jsp" />
-<div class="row">
-    <form action="/tag" method="get">
-        <div class="row">
-            <div class="input-field col s12">
-                <input name="name" id="name" type="text" class="validate" value="<%= name %>">
-                <label for="name">Nome</label>
-            </div>
+<form action="/tag" method="get">
+    <div class="row">
+        <div class="input-field col s12">
+            <input name="name" id="name" type="text" class="validate" value="<%= name %>">
+            <label for="name">Nome</label>
         </div>
-        <div class="row">
+        <div class="col s12">
             <button class="btn waves-effect waves-light right" type="submit">
                 Buscar<i class="material-icons right">search</i>
             </button>
@@ -29,8 +27,8 @@
                 Limpar<i class="material-icons right">clear_all</i>
             </a>
         </div>
-    </form>
-</div>
+    </div>
+</form>
 
 <% if(!tags.isEmpty()){ %>
 <div class="row">
