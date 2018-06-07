@@ -6,6 +6,7 @@ import br.feevale.http.response.Forward;
 import br.feevale.http.response.Responder;
 import br.feevale.http.servlet.Servlet;
 import br.feevale.model.Model;
+import br.feevale.presenter.collectionItem.CollectionItemPresenter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,9 +24,12 @@ public class Index implements Action {
         SearchDAO searchDAO = new SearchDAO();
         List<Model> models = searchDAO.search(inputFilter);
 
+        CollectionItemPresenter collectionItemPresenter = new CollectionItemPresenter();
+
 
         request.setAttribute("filter", inputFilter);
         request.setAttribute("models", models);
+        request.setAttribute("collectionItemPresenter", collectionItemPresenter);
 
         servlet.withSession(request, "successMessage");
         servlet.withSession(request, "errors");
