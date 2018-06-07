@@ -17,10 +17,10 @@ public class PersonPresenter implements Presenter {
                 "                    " + person.getEmail() + "\n" +
                 "                </p>\n" +
                 "            </div>\n" +
-                "            <div class=\"col s12 m6\">\n" +
-                "                <div class=\"chip\">7 Cometências</div>\n" +
-                "                <div class=\"chip\">3 Projetos</div>\n" +
-                "            </div>\n" +
+//                "            <div class=\"col s12 m6\">\n" +
+//                "                <div class=\"chip\">7 Cometências</div>\n" +
+//                "                <div class=\"chip\">3 Projetos</div>\n" +
+//                "            </div>\n" +
                 "        </div>\n" +
                 "        <a href=\"#!\" class=\"secondary-content\"><i class=\"material-icons dropdown-trigger pointer\" data-target='dropdown_action_pp_" + model.getId() + "'>more_vert</i></a>\n" +
                 "        <ul id='dropdown_action_pp_" + model.getId() + "' class='dropdown-content'>\n" +

@@ -10,7 +10,7 @@
         <div class="row">
             <div class="row">
                 <div class="input-field col s12 m12">
-                    <input name="filter" id="filter" type="text" class="validate" minlength="3" maxlength="255" required>
+                    <input name="filter" id="filter" type="text" minlength="3" maxlength="255" required>
                     <label for="filter">Pesquisar no Skill Hub</label>
                 </div>
             </div>
@@ -22,5 +22,9 @@
         </div>
     </form>
 </div>
+
+<script type="text/javascript">
+    $('#filter').focus();
+</script>
 
 <jsp:include page="./layout/footer.jsp" />

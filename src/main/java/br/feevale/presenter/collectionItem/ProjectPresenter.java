@@ -11,10 +11,10 @@ public class ProjectPresenter implements Presenter {
                 "                <i class=\"material-icons circle black-text amber\">description</i>\n" +
                 "                <strong class=\"title\">" + model.getName() + "</strong>\n" +
                 "            </div>\n" +
-                "            <div class=\"col s12 m6\">\n" +
-                "                <div class=\"chip\">7 Pessoas</div>\n" +
-                "                <div class=\"chip\">19 Competências</div>\n" +
-                "            </div>\n" +
+//                "            <div class=\"col s12 m6\">\n" +
+//                "                <div class=\"chip\">7 Pessoas</div>\n" +
+//                "                <div class=\"chip\">19 Competências</div>\n" +
+//                "            </div>\n" +
                 "        </div>\n" +
                 "        <a href=\"#!\" class=\"secondary-content\"><i class=\"material-icons dropdown-trigger pointer\" data-target='dropdown_action_pj_" + model.getId() + "'>more_vert</i></a>\n" +
                 "        <ul id='dropdown_action_pj_" + model.getId() + "' class='dropdown-content-index-project'>\n" +
