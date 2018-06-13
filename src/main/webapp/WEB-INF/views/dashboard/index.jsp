@@ -6,7 +6,7 @@
     String radarReportGeneralTagsAvarage = (String) request.getAttribute("radarReportGeneralTagsAvarage");
 %>
 <div class="section container">
-    <h5>Relatórios</h5>
+    <h5>Dashboard</h5>
 </div>
 <jsp:include page="../layout/messages/messages.jsp" />
 <div class="row">
