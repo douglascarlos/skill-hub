@@ -13,7 +13,9 @@
 <header>
     <nav>
         <div class="nav-wrapper">
-            <a href="/" class="brand-logo"><img height="64" src="/images/logo.png" alt="Skill Hub"></a>
+            <a href="/" class="brand-logo">
+                <img src="/images/logo.png" alt="Skill Hub">
+            </a>
             <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="/tag">Tags</a></li>
