@@ -189,3 +189,13 @@ $datepicker-day-focus: transparentize(desaturate($primary-color, 5%), .75);
 .collection {
   overflow: unset !important;
 }
+
+.modal .modal-footer{
+  height: auto !important;
+}
+
+@media #{$small-and-down} {
+  .modal .modal-footer .btn{
+    width: 100% !important;
+  }
+}
