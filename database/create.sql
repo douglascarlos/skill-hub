@@ -118,3 +118,5 @@ with recursive tag_tree as (
 select id, name, tag_id, level, path
 from tag_tree
 order by path, name;
+
+CREATE EXTENSION fuzzystrmatch;
