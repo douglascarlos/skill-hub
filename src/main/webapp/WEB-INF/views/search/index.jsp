@@ -1,11 +1,13 @@
 <%@ page import="br.feevale.model.Model" %>
 <%@ page import="java.util.List" %>
 <%@ page import="br.feevale.presenter.collectionItem.CollectionItemPresenter" %>
+<%@ page import="br.feevale.model.Level" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String filter = (String) request.getAttribute("filter");
     List<Model> models = (List<Model>) request.getAttribute("models");
     CollectionItemPresenter collectionItemPresenter = (CollectionItemPresenter) request.getAttribute("collectionItemPresenter");
+    List<Level> levels = (List<Level>) request.getAttribute("levels");
 %>
 <jsp:include page="../layout/header.jsp" />
 <jsp:include page="../layout/add-button-fixed.jsp" />
@@ -26,17 +28,17 @@
                         <div class="row">
                             <div class="input-field col s12 m6">
                                 <select name="by_model[]" multiple>
-                                    <option value="1" selected>Tag</option>
-                                    <option value="2" selected>Pessoa</option>
-                                    <option value="3" selected>Projeto</option>
+                                    <option value="Tag" selected>Tag</option>
+                                    <option value="Person" selected>Pessoa</option>
+                                    <option value="Project" selected>Projeto</option>
                                 </select>
                                 <label>O que você está procurando?</label>
                             </div>
                             <div class="input-field col s12 m6">
                                 <select name="by_level[]" multiple>
-                                    <option value="1" selected>Iniciante</option>
-                                    <option value="2" selected>Padawan</option>
-                                    <option value="3" selected>Jedi</option>
+                                    <% for(Level level : levels){ %>
+                                    <option value="<%= level.getId() %>" selected><%= level.getName() %></option>
+                                    <% } %>
                                 </select>
                                 <label>Qual nível de conhecimento?</label>
                             </div>

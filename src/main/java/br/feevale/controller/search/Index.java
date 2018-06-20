@@ -1,10 +1,12 @@
 package br.feevale.controller.search;
 
 import br.feevale.controller.Action;
+import br.feevale.dao.LevelDAO;
 import br.feevale.dao.SearchDAO;
 import br.feevale.http.response.Forward;
 import br.feevale.http.response.Responder;
 import br.feevale.http.servlet.Servlet;
+import br.feevale.model.Level;
 import br.feevale.model.Model;
 import br.feevale.presenter.collectionItem.CollectionItemPresenter;
 
@@ -26,10 +28,13 @@ public class Index implements Action {
 
         CollectionItemPresenter collectionItemPresenter = new CollectionItemPresenter();
 
+        LevelDAO levelDAO = new LevelDAO();
+        List<Level> levels = levelDAO.list();
 
         request.setAttribute("filter", inputFilter);
         request.setAttribute("models", models);
         request.setAttribute("collectionItemPresenter", collectionItemPresenter);
+        request.setAttribute("levels", levels);
 
         servlet.withSession(request, "successMessage");
         servlet.withSession(request, "errors");
