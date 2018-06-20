@@ -19,8 +19,42 @@
             <label for="filter">Filtro</label>
         </div>
         <div class="col s12">
+            <ul class="collapsible" id="filters">
+                <li>
+                    <div class="collapsible-body">
+
+                        <div class="row">
+                            <div class="input-field col s12 m6">
+                                <select name="by_model[]" multiple>
+                                    <option value="1" selected>Tag</option>
+                                    <option value="2" selected>Pessoa</option>
+                                    <option value="3" selected>Projeto</option>
+                                </select>
+                                <label>O que você está procurando?</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <select name="by_level[]" multiple>
+                                    <option value="1" selected>Iniciante</option>
+                                    <option value="2" selected>Padawan</option>
+                                    <option value="3" selected>Jedi</option>
+                                </select>
+                                <label>Qual nível de conhecimento?</label>
+                            </div>
+                        </div>
+
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col s12">
             <button class="btn waves-effect waves-light right" type="submit">
                 Pesquisar<i class="material-icons right">search</i>
+            </button>
+            <button class="btn waves-effect waves-light right btn-mr" type="button" id="btn_open">
+                Pesquisa Avançada<i class="material-icons right">filter_list</i>
+            </button>
+            <button class="btn waves-effect waves-light right btn-mr" type="button" id="btn_close">
+                Remover Filtros Avançados <i class="material-icons right">filter_list</i>
             </button>
         </div>
     </div>
@@ -39,4 +73,25 @@
     <div class="card-panel blue lighten-4 blue-text"><strong>Não há resultados.</strong></div>
 </div>
 <% } %>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#btn_close').hide();
+        // $('#filters').hide();
+
+        $('#btn_open').on('click', function(){
+            // $('#filters').show();
+            $('#btn_close').show();
+            $('#btn_open').hide();
+            $('.collapsible').collapsible('open');
+        });
+
+        $('#btn_close').on('click', function(){
+            $('#btn_close').hide();
+            $('#btn_open').show();
+            $('.collapsible').collapsible('close');
+            // $('#filters').hide();
+        });
+
+    });
+</script>
 <jsp:include page="../layout/footer.jsp" />

@@ -10,4 +10,5 @@ $(document).ready(function(){
     $('.tooltipped').tooltip();
     $('.character-counter').characterCounter();
     $('.tabs').tabs();
+    $('.collapsible').collapsible();
 });

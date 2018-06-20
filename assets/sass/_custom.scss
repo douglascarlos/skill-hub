@@ -199,3 +199,23 @@ $datepicker-day-focus: transparentize(desaturate($primary-color, 5%), .75);
     width: 100% !important;
   }
 }
+
+.collection {
+  overflow: unset !important;
+}
+
+.collapsible {
+  border: none !important;
+  box-shadow: none !important;
+  > li {
+    box-shadow: none !important;
+  }
+  > li.active {
+    box-shadow: none !important;
+  }
+}
+
+.collapsible-body {
+  border-bottom: none !important;
+  padding: 0px !important;
+}
