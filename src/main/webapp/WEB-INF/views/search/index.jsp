@@ -82,10 +82,10 @@
                 Pesquisar<i class="material-icons right">search</i>
             </button>
             <button class="btn waves-effect waves-light right btn-mr" type="button" id="btn_open">
-                Pesquisa Avançada<i class="material-icons right">filter_list</i>
+                Mostrar Filtros <i class="material-icons right">filter_list</i>
             </button>
             <button class="btn waves-effect waves-light right btn-mr" type="button" id="btn_close">
-                Remover Filtros Avançados <i class="material-icons right">filter_list</i>
+                Ocultar Filtros <i class="material-icons right">filter_list</i>
             </button>
         </div>
     </div>
