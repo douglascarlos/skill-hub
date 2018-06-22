@@ -7,6 +7,12 @@
 
 <div class="search-form">
     <form action="/search" method="get" class="col s12">
+        <input type="checkbox" name="by_model[]" value="Tag" checked>
+        <input type="checkbox" name="by_model[]" value="Person" checked>
+        <input type="checkbox" name="by_model[]" value="Project" checked>
+        <input type="checkbox" name="by_level[]" value="1" checked>
+        <input type="checkbox" name="by_level[]" value="2" checked>
+        <input type="checkbox" name="by_level[]" value="3" checked>
         <div class="row">
             <div class="row">
                 <div class="input-field col s12 m12">
