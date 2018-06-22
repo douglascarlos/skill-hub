@@ -21,7 +21,6 @@
                 <ul>
                     <li><a target="_blank" href="https://github.com/douglascarlos/skill-hub">Github</a></li>
                     <li><a target="_blank" href="https://www.feevale.br/">Feevale</a></li>
-                    <li><a target="_blank" href="https://www.feevale.br/servicos/servicos--especializados/centro-de-tecnologias-digitais">CETED</a></li>
                 </ul>
             </div>
         </div>
