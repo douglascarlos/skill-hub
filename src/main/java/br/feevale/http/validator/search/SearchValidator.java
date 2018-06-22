@@ -29,4 +29,12 @@ public class SearchValidator extends ValidatorForm {
         }
         return true;
     }
+
+    public boolean validateFilterByLevel(String[] value) {
+        if (value == null || value.length == 0) {
+            this.addError("Você deve informar pelo menos um nível de habilidade.");
+            return false;
+        }
+        return true;
+    }
 }

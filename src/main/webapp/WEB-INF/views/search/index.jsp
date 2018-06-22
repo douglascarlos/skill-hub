@@ -7,6 +7,7 @@
 <%
     String filter = (String) request.getAttribute("filter");
     String[] filterByModelInput = (String[]) request.getAttribute("filter_by_model");
+    String[] filterByLevelInput = (String[]) request.getAttribute("filter_by_level");
 
     List<Model> models = (List<Model>) request.getAttribute("models");
     CollectionItemPresenter collectionItemPresenter = (CollectionItemPresenter) request.getAttribute("collectionItemPresenter");
@@ -60,7 +61,12 @@
                             <div class="input-field col s12 m6">
                                 <select name="by_level[]" multiple>
                                     <% for(Level level : levels){ %>
-                                    <option value="<%= level.getId() %>" selected><%= level.getName() %></option>
+                                    <option value="<%= level.getId() %>"
+                                            <% if(filterByLevelInput != null) for(int index = 0; index < filterByLevelInput.length; index++) {
+                                                if(filterByLevelInput[index].equals(""+level.getId())){ %>
+                                            selected
+                                            <% }
+                                            } %>><%= level.getName() %></option>
                                     <% } %>
                                 </select>
                                 <label>Qual nível de conhecimento?</label>

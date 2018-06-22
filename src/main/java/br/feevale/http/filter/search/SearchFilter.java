@@ -37,14 +37,17 @@ public class SearchFilter implements Filter {
 
         Map<String, String> input = RequestToMap.getInstance().map(servletRequest, attributes);
         String[] modelFilterInput = request.getParameterValues("by_model[]");
+        String[] levelFilterInput = request.getParameterValues("by_level[]");
 
         SearchValidator validator = (SearchValidator) SearchValidator.getInstance();
         validator.validateFilterByModel(modelFilterInput);
+        validator.validateFilterByLevel(levelFilterInput);
 
         if (validator.validate(input)) {
             request.setAttribute("errors", validator.getErrors());
             request.setAttribute("input", input);
             request.setAttribute("filter_by_model", modelFilterInput);
+            request.setAttribute("filter_by_level", levelFilterInput);
 
             List<Model> models = new ArrayList<>();
 

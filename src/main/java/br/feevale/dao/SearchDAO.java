@@ -13,11 +13,18 @@ import java.util.List;
 
 public class SearchDAO extends DAO {
 
-    public List<Model> search(String filter, String[] modelFilterInput){
+    private LevelDAO levelDAO;
+
+    public SearchDAO(){
+        this.levelDAO = new LevelDAO();
+    }
+
+    public List<Model> search(String filter, String[] modelFilterInput, String[] levelFilterInput){
         String filterByModel = this.prepareModelFilter(modelFilterInput);
+        String filterByLevel = this.prepareLevelFilter(levelFilterInput);
 
         String sql = "SELECT id, name, email, enrollment_number, description, type FROM (\n" +
-                "SELECT DISTINCT(p.id) as id, p.name, p.email, p.enrollment_number, NULL as description, 'Person' as type,\n" +
+                "SELECT DISTINCT(p.id) as id, p.name, p.email, p.enrollment_number, NULL as description, 'Person' as type, s.level_id,\n" +
                 "CASE \n" +
                 "\tWHEN DIFFERENCE(UPPER(p.name), UPPER('" + filter + "')) >= 3 OR UPPER(p.name) LIKE '%" + filter.toUpperCase() + "%'\n" +
                 "\t\tTHEN 1 \n" +
@@ -47,7 +54,7 @@ public class SearchDAO extends DAO {
                 "\t)\n" +
                 ")\n" +
                 "UNION\n" +
-                "SELECT DISTINCT(t.id) as id, t.name, '' as email, 0 as enrollment_number, '' as description, 'Tag' as type,\n" +
+                "SELECT DISTINCT(t.id) as id, t.name, '' as email, 0 as enrollment_number, '' as description, 'Tag' as type, s.level_id,\n" +
                 "CASE \n" +
                 "\tWHEN DIFFERENCE(UPPER(t.name), UPPER('" + filter + "')) >= 3 OR UPPER(t.name) LIKE '%" + filter.toUpperCase() + "%'\n" +
                 "\t\tTHEN 1 \n" +
@@ -78,7 +85,7 @@ public class SearchDAO extends DAO {
                 "\t)\n" +
                 ")\n" +
                 "UNION\n" +
-                "SELECT DISTINCT(pj.id) as id, pj.name, '' as email, 0 as enrollment_number, pj.description, 'Project' as type,\n" +
+                "SELECT DISTINCT(pj.id) as id, pj.name, '' as email, 0 as enrollment_number, pj.description, 'Project' as type, s.level_id,\n" +
                 "CASE \n" +
                 "\tWHEN DIFFERENCE(UPPER(pj.name), UPPER('" + filter + "')) >= 3 OR UPPER(pj.name) LIKE '%" + filter.toUpperCase() + "%'\n" +
                 "\t\tTHEN 1 \n" +
@@ -111,6 +118,8 @@ public class SearchDAO extends DAO {
                 ") AS search_resource\n" +
                 "WHERE \n" +
                     filterByModel + "\n" +
+                    " AND " + filterByLevel + "\n" +
+                "GROUP BY id, name, email, enrollment_number, description, type, first_instance \n" +
                 "ORDER BY\n" +
                 "first_instance desc,\n" +
                 "DIFFERENCE(UPPER(name), UPPER('" + filter + "')) desc,\n" +
@@ -175,6 +184,19 @@ public class SearchDAO extends DAO {
         }
         modelFilterSql += "'')";
         return modelFilterSql;
+    }
+
+    private String prepareLevelFilter(String[] levelFilterInput){
+        if(levelFilterInput.length == this.levelDAO.list().size()){
+            return " 1=1 ";
+        }
+
+        String levelFilterSql = " level_id in (";
+        for(int index = 0; index < levelFilterInput.length; index++) {
+            levelFilterSql += "'" + levelFilterInput[index] + "', ";
+        }
+        levelFilterSql += "0)";
+        return levelFilterSql;
     }
 
 }
