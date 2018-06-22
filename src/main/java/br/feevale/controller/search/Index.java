@@ -23,8 +23,10 @@ public class Index implements Action {
             inputFilter = "";
         }
 
+        String[] modelFilterInput = request.getParameterValues("by_model[]");
+
         SearchDAO searchDAO = new SearchDAO();
-        List<Model> models = searchDAO.search(inputFilter);
+        List<Model> models = searchDAO.search(inputFilter, modelFilterInput);
 
         CollectionItemPresenter collectionItemPresenter = new CollectionItemPresenter();
 
@@ -32,6 +34,7 @@ public class Index implements Action {
         List<Level> levels = levelDAO.list();
 
         request.setAttribute("filter", inputFilter);
+        request.setAttribute("filter_by_model", modelFilterInput);
         request.setAttribute("models", models);
         request.setAttribute("collectionItemPresenter", collectionItemPresenter);
         request.setAttribute("levels", levels);

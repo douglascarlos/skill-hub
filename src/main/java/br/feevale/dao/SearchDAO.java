@@ -13,7 +13,9 @@ import java.util.List;
 
 public class SearchDAO extends DAO {
 
-    public List<Model> search(String filter){
+    public List<Model> search(String filter, String[] modelFilterInput){
+        String filterByModel = this.prepareModelFilter(modelFilterInput);
+
         String sql = "SELECT id, name, email, enrollment_number, description, type FROM (\n" +
                 "SELECT DISTINCT(p.id) as id, p.name, p.email, p.enrollment_number, NULL as description, 'Person' as type,\n" +
                 "CASE \n" +
@@ -107,6 +109,8 @@ public class SearchDAO extends DAO {
                 "\t)\n" +
                 ")\n" +
                 ") AS search_resource\n" +
+                "WHERE \n" +
+                    filterByModel + "\n" +
                 "ORDER BY\n" +
                 "first_instance desc,\n" +
                 "DIFFERENCE(UPPER(name), UPPER('" + filter + "')) desc,\n" +
@@ -162,6 +166,15 @@ public class SearchDAO extends DAO {
             throw new RuntimeException(exception);
         }
         return models;
+    }
+
+    private String prepareModelFilter(String[] modelFilterInput){
+        String modelFilterSql = " type in (";
+        for(int index = 0; index < modelFilterInput.length; index++) {
+            modelFilterSql += "'" + modelFilterInput[index] + "', ";
+        }
+        modelFilterSql += "'')";
+        return modelFilterSql;
     }
 
 }
